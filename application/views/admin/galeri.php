@@ -29,7 +29,7 @@
 </div>
 
 <!-- Search Berita -->
-<label for="exampleFormControlInput1">Cari Berita</label>
+<label for="exampleFormControlInput1">Cari Galeri</label>
     <div class="row">
         <div class="form-group col-md-6">
             <input type="email" class="form-control" id="cariTransaksi" placeholder="Ketikan disini...">

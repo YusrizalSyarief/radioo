@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Waktu pembuatan: 07 Feb 2021 pada 04.39
+-- Waktu pembuatan: 07 Feb 2021 pada 11.50
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.2
 
@@ -25,28 +25,104 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `buku_tamu`
+--
+
+CREATE TABLE `buku_tamu` (
+  `ID_BUKU` int(11) NOT NULL,
+  `SPONSOR` text DEFAULT NULL,
+  `GAMBAR_SPONSOR` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `galeri`
+--
+
+CREATE TABLE `galeri` (
+  `ID_GALERI` int(11) NOT NULL,
+  `NAMA_FILE` text DEFAULT NULL,
+  `KATEGORI` varchar(30) DEFAULT NULL,
+  `JUDUL` text DEFAULT NULL,
+  `DESK_GALERI` text DEFAULT NULL,
+  `TANGGAL` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jadwal`
+--
+
+CREATE TABLE `jadwal` (
+  `ID_JADWAL` int(11) NOT NULL,
+  `JUDUL_JADWAL` text DEFAULT NULL,
+  `WAKTU` datetime DEFAULT NULL,
+  `DESK_JADWAL` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `komentar`
+--
+
+CREATE TABLE `komentar` (
+  `ID_KOMENTAR` int(11) NOT NULL,
+  `KOMENTAR` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `penyiar`
+--
+
+CREATE TABLE `penyiar` (
+  `ID_PENYIAR` int(11) NOT NULL,
+  `NAMA_PENYIAR` varchar(128) DEFAULT NULL,
+  `NO_TLP_PENYIAR` varchar(15) DEFAULT NULL,
+  `DESK` text DEFAULT NULL,
+  `GAMBAR_PENYIAR` text DEFAULT NULL,
+  `INSTAGRAM` text DEFAULT NULL,
+  `FACEBOOK` text DEFAULT NULL,
+  `TWITTER` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `rating`
+--
+
+CREATE TABLE `rating` (
+  `ID_RATING` int(11) NOT NULL,
+  `ID_JADWAL` int(11) DEFAULT NULL,
+  `ID_PENYIAR` int(11) DEFAULT NULL,
+  `ID_USER` int(11) DEFAULT NULL,
+  `ID_KOMENTAR` int(11) DEFAULT NULL,
+  `ID_GALERI` int(11) DEFAULT NULL,
+  `KATEGORI_RATING` text DEFAULT NULL,
+  `RATING` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `username` varchar(128) NOT NULL,
-  `email` varchar(128) NOT NULL,
-  `image` varchar(128) NOT NULL,
-  `password` varchar(256) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `is_active` int(1) NOT NULL,
-  `date_created` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `user`
---
-
-INSERT INTO `user` (`id`, `username`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(23, 'cobaaja', 'cobaaja@gmail.com', 'default.jpg', '$2y$10$bwHJJX7N1ucvVEiMYiER5e3col5XllsUUVG42f/u/t.xJV21oXT4.', 1, 1, 1589225942),
-(24, 'Audlyn', 'audi.pratama.45@gmail.com', 'tumblr_n7rh71ytou1r31n4zo1_2501.gif', '$2y$10$iglBzcfrpQ4h8O3hgn1or.7h/DthprjGOFE/V2h5c17MjoTbk7Vum', 2, 1, 1589227178),
-(25, 'admin', 'admin@gmail.com', 'default.jpg', '$2y$10$KoFPF9L7MwnciWh9DAEOouLmyYZhAx5LdehYC1tpXCDD6.AfJbT5G', 2, 1, 1589406763);
+  `ID_USER` int(11) NOT NULL,
+  `ID_ROLE` smallint(6) DEFAULT NULL,
+  `EMAIL` varchar(128) NOT NULL,
+  `NAMA` varchar(128) DEFAULT NULL,
+  `PASSWORD` varchar(50) DEFAULT NULL,
+  `NO_TLP` varchar(15) DEFAULT NULL,
+  `USER_ACTIVE` smallint(6) DEFAULT NULL,
+  `GAMBAR` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -55,21 +131,23 @@ INSERT INTO `user` (`id`, `username`, `email`, `image`, `password`, `role_id`, `
 --
 
 CREATE TABLE `user_access_menu` (
-  `id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `menu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ID_ACCES` int(11) NOT NULL,
+  `ID_ROLE` smallint(6) DEFAULT NULL,
+  `ID_MENU` smallint(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user_access_menu`
 --
 
-INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
+INSERT INTO `user_access_menu` (`ID_ACCES`, `ID_ROLE`, `ID_MENU`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 2, 2),
-(4, 1, 3),
-(5, 2, 3);
+(3, 1, 3),
+(4, 2, 1),
+(5, 2, 2),
+(6, 2, 3),
+(7, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -78,17 +156,18 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 --
 
 CREATE TABLE `user_menu` (
-  `id` int(11) NOT NULL,
-  `menu` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ID_MENU` smallint(6) NOT NULL,
+  `NAMA_MENU` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user_menu`
 --
 
-INSERT INTO `user_menu` (`id`, `menu`) VALUES
-(1, 'Admin'),
-(3, 'Pengaturan Siaran');
+INSERT INTO `user_menu` (`ID_MENU`, `NAMA_MENU`) VALUES
+(1, 'Administrasi'),
+(2, 'Konfigurasi Konten'),
+(3, 'Konten');
 
 -- --------------------------------------------------------
 
@@ -97,18 +176,18 @@ INSERT INTO `user_menu` (`id`, `menu`) VALUES
 --
 
 CREATE TABLE `user_role` (
-  `id` int(11) NOT NULL,
-  `role` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ID_ROLE` smallint(6) NOT NULL,
+  `ROLE` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user_role`
 --
 
-INSERT INTO `user_role` (`id`, `role`) VALUES
-(1, 'Admin'),
-(2, 'Member'),
-(3, 'Super Admin');
+INSERT INTO `user_role` (`ID_ROLE`, `ROLE`) VALUES
+(1, 'super admin'),
+(2, 'admin'),
+(3, 'user');
 
 -- --------------------------------------------------------
 
@@ -117,92 +196,206 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 --
 
 CREATE TABLE `user_sub_menu` (
-  `id` int(11) NOT NULL,
-  `menu_id` int(11) NOT NULL,
-  `title` varchar(128) NOT NULL,
-  `url` varchar(128) NOT NULL,
-  `icon` varchar(128) NOT NULL,
-  `is_active` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ID_SUB` int(11) NOT NULL,
+  `ID_MENU` smallint(6) DEFAULT NULL,
+  `JUDUL_SUB` varchar(30) DEFAULT NULL,
+  `URL` text DEFAULT NULL,
+  `ICON` text DEFAULT NULL,
+  `SUB_ACTIVE` smallint(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user_sub_menu`
 --
 
-INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
+INSERT INTO `user_sub_menu` (`ID_SUB`, `ID_MENU`, `JUDUL_SUB`, `URL`, `ICON`, `SUB_ACTIVE`) VALUES
 (1, 1, 'Dashboard', 'welcome', 'fas fa-fw fa-chart-line', 1),
-(5, 3, 'Jadwal', 'welcome/jadwal', 'fas fa-fw fa-calendar-alt', 1),
-(6, 3, 'Berita', 'welcome/berita', 'fas fa-fw fa-newspaper', 1),
-(8, 3, 'Penyiar', 'welcome/penyiar', 'fas fa-fw fa-user', 1),
-(10, 1, 'User', 'welcome/user', 'fas fa-fw fa-users', 1);
+(2, 1, 'Manajemen Akun', 'welcome/user', 'fas fa-fw fa-users-cog', 1),
+(3, 2, 'Manajemen Jadwal', 'welcome/jadwal', 'fas fa-fw fa-calendar-alt', 1),
+(4, 2, 'Manajemen Galeri', 'welcome/galeri', 'fas fa-fw fa-photo-video', 1),
+(5, 2, 'Manajemen Penyiar', 'welcome/penyiar', 'far fa-fw fa-id-card', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indeks untuk tabel `buku_tamu`
+--
+ALTER TABLE `buku_tamu`
+  ADD PRIMARY KEY (`ID_BUKU`);
+
+--
+-- Indeks untuk tabel `galeri`
+--
+ALTER TABLE `galeri`
+  ADD PRIMARY KEY (`ID_GALERI`);
+
+--
+-- Indeks untuk tabel `jadwal`
+--
+ALTER TABLE `jadwal`
+  ADD PRIMARY KEY (`ID_JADWAL`);
+
+--
+-- Indeks untuk tabel `komentar`
+--
+ALTER TABLE `komentar`
+  ADD PRIMARY KEY (`ID_KOMENTAR`);
+
+--
+-- Indeks untuk tabel `penyiar`
+--
+ALTER TABLE `penyiar`
+  ADD PRIMARY KEY (`ID_PENYIAR`);
+
+--
+-- Indeks untuk tabel `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`ID_RATING`),
+  ADD KEY `FK_GALERI_RATING` (`ID_GALERI`),
+  ADD KEY `FK_JADWAL_RATING` (`ID_JADWAL`),
+  ADD KEY `FK_KOMENTAR_RATING` (`ID_KOMENTAR`),
+  ADD KEY `FK_PENYIAR_RATING` (`ID_PENYIAR`),
+  ADD KEY `FK_USER_RATING` (`ID_USER`);
+
+--
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`ID_USER`),
+  ADD KEY `FK_USER_ROLE_USER` (`ID_ROLE`);
 
 --
 -- Indeks untuk tabel `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`ID_ACCES`),
+  ADD KEY `FK_USER_MENU_USER_ACCES` (`ID_MENU`),
+  ADD KEY `FK_USER_ROLE_USER_ACCES` (`ID_ROLE`);
 
 --
 -- Indeks untuk tabel `user_menu`
 --
 ALTER TABLE `user_menu`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`ID_MENU`);
 
 --
 -- Indeks untuk tabel `user_role`
 --
 ALTER TABLE `user_role`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`ID_ROLE`);
 
 --
 -- Indeks untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`ID_SUB`),
+  ADD KEY `FK_USER_MENU_USER_SUB` (`ID_MENU`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `buku_tamu`
+--
+ALTER TABLE `buku_tamu`
+  MODIFY `ID_BUKU` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `galeri`
+--
+ALTER TABLE `galeri`
+  MODIFY `ID_GALERI` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `jadwal`
+--
+ALTER TABLE `jadwal`
+  MODIFY `ID_JADWAL` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `komentar`
+--
+ALTER TABLE `komentar`
+  MODIFY `ID_KOMENTAR` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `penyiar`
+--
+ALTER TABLE `penyiar`
+  MODIFY `ID_PENYIAR` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `ID_RATING` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID_USER` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_ACCES` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_MENU` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_ROLE` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID_SUB` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `rating`
+--
+ALTER TABLE `rating`
+  ADD CONSTRAINT `FK_GALERI_RATING` FOREIGN KEY (`ID_GALERI`) REFERENCES `galeri` (`ID_GALERI`),
+  ADD CONSTRAINT `FK_JADWAL_RATING` FOREIGN KEY (`ID_JADWAL`) REFERENCES `jadwal` (`ID_JADWAL`),
+  ADD CONSTRAINT `FK_KOMENTAR_RATING` FOREIGN KEY (`ID_KOMENTAR`) REFERENCES `komentar` (`ID_KOMENTAR`),
+  ADD CONSTRAINT `FK_PENYIAR_RATING` FOREIGN KEY (`ID_PENYIAR`) REFERENCES `penyiar` (`ID_PENYIAR`),
+  ADD CONSTRAINT `FK_USER_RATING` FOREIGN KEY (`ID_USER`) REFERENCES `user` (`ID_USER`);
+
+--
+-- Ketidakleluasaan untuk tabel `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `FK_USER_ROLE_USER` FOREIGN KEY (`ID_ROLE`) REFERENCES `user_role` (`ID_ROLE`);
+
+--
+-- Ketidakleluasaan untuk tabel `user_access_menu`
+--
+ALTER TABLE `user_access_menu`
+  ADD CONSTRAINT `FK_USER_MENU_USER_ACCES` FOREIGN KEY (`ID_MENU`) REFERENCES `user_menu` (`ID_MENU`),
+  ADD CONSTRAINT `FK_USER_ROLE_USER_ACCES` FOREIGN KEY (`ID_ROLE`) REFERENCES `user_role` (`ID_ROLE`);
+
+--
+-- Ketidakleluasaan untuk tabel `user_sub_menu`
+--
+ALTER TABLE `user_sub_menu`
+  ADD CONSTRAINT `FK_USER_MENU_USER_SUB` FOREIGN KEY (`ID_MENU`) REFERENCES `user_menu` (`ID_MENU`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

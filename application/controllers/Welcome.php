@@ -13,12 +13,12 @@ class Welcome extends CI_Controller {
    
 	}
 
-	public function berita()
+	public function galeri()
 	{
 		$data['title'] = 'Berita';
 		$this->load->view('tema/admin/sidebar');
       	$this->load->view('tema/admin/topbar');
-      	$this->load->view('admin/berita', $data);
+      	$this->load->view('admin/galeri', $data);
       	$this->load->view('tema/admin/footer');
    
 	}
