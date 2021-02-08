@@ -42,15 +42,6 @@
                 <div class="col-lg-10 col-md-10">
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
-<<<<<<< HEAD
-                            <ul>
-                                <li class="active"><a href="<?= base_url()?>">Home</a></li>
-                                <li><a href="<?= base_url()?>assets/user/about.html">About</a></li>
-                                <li><a href="<?= base_url()?>assets/user/discography.html">Discography</a></li>
-                                <li><a href="<?= base_url()?>assets/user/tours.html">Tours</a></li>
-                                <li><a href="<?= base_url()?>assets/user/videos.html">Videos</a></li>
-                                <li><a href="#">Pages</a>
-=======
                         
                         <!-- Ambil Role -->
                         <?php 
@@ -86,16 +77,7 @@
 
                         </ul>
 
-                                <!-- <li><a href="#">Pages</a>
->>>>>>> 902c26b165545bf58c511186d8a5457449b0473b
-                                    <ul class="dropdown">
-                                        <li><a href="<?= base_url()?>assets/user/about.html">About</a></li>
-                                        <li><a href="<?= base_url()?>assets/user/blog.html">Blog</a></li>
-                                        <li><a href="<?= base_url()?>assets/user/blog-details.html">Blog Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="<?= base_url()?>assets/user/contact.html">Contact</a></li> -->
-                            <!-- </ul> -->
+                               
                         </nav>
                         
                     </div>
