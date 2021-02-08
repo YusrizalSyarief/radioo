@@ -4,18 +4,29 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="hero__text">
-                        <span>New single</span>
+                        <span>Now Playing</span>
                         <h1>Feel the heart beats</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <br />tempor
                             incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-play"></i></a>
+                        <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-play"></i></a> <br> <br>
+                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ratingWeb">Rating Web</button>
                     </div>
+                    
                 </div>
+                
             </div>
         </div>
+        <div class="container">
+        <div class="row justify-content-center">
+                    <div class="col">
+                    
+                    </div>
+                </div>
+        </div>  
         <div class="linear__icon">
             <i class="fa fa-angle-double-down"></i>
         </div>
+
     </section>
     <!-- Hero Section End -->
 
@@ -116,7 +127,7 @@
     <!-- About Section End -->
 
     <!-- Services Section Begin -->
-    <section class="services">
+    <!-- <section class="services">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 p-0">
@@ -158,7 +169,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Services Section End -->
 
     <!-- Track Section Begin -->
@@ -447,6 +458,7 @@
             </div>
         </div>
     </section>
+
     <!-- Youtube Section End -->
 
     <!-- Countdown Section Begin -->
@@ -484,3 +496,39 @@
         </div>
     </section>
     <!-- Countdown Section End -->
+
+    <!-- Modal Rating Web -->
+<div class="modal fade" id="ratingWeb" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Register Akun Baru</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">×</span>
+            </button>
+         </div>
+         <div class="modal-body">
+         <form class="user"method="post" action="">
+            <div class="form-group">
+               <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+               <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email">
+            </div>
+               <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                     <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
+                  </div>
+               <div class="col-sm-6">
+                  <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Ulangi Password">
+               </div>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Daftarkan</a>
+         </div>
+      </form>
+      </div>
+   </div>
+</div>
