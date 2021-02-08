@@ -58,12 +58,7 @@
                                 <li><a href="<?= base_url()?>assets/user/contact.html">Contact</a></li>
                             </ul>
                         </nav>
-                        <div class="header__right__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
