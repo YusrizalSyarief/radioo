@@ -15,7 +15,7 @@ class Admin extends CI_Controller {
 
 	public function galeri()
 	{
-		$data['title'] = 'Berita';
+		$data['title'] = 'Galeri';
 		$this->load->view('tema/admin/sidebar');
       	$this->load->view('tema/admin/topbar');
       	$this->load->view('admin/galeri', $data);
