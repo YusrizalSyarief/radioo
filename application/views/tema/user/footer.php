@@ -58,7 +58,7 @@
     <script src="<?= base_url()?>assets/user/js/jquery.slicknav.js"></script>
     <script src="<?= base_url()?>assets/user/js/owl.carousel.min.js"></script>
     <script src="<?= base_url()?>assets/user/js/main.js"></script>
-    <script src="https://kit.fontawesome.com/e5e5df5e31.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/e5e5df5e31.js" crossorigin="anonymous"></script> -->
 
     <!-- Music Plugin -->
     <script src="<?= base_url()?>assets/user/js/jquery.jplayer.min.js"></script>

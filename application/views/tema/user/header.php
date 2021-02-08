@@ -43,7 +43,7 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="<?= base_url()?>assets/user/index.html">Home</a></li>
+                                <li class="active"><a href="<?= base_url()?>">Home</a></li>
                                 <li><a href="<?= base_url()?>assets/user/about.html">About</a></li>
                                 <li><a href="<?= base_url()?>assets/user/discography.html">Discography</a></li>
                                 <li><a href="<?= base_url()?>assets/user/tours.html">Tours</a></li>
