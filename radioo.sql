@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Waktu pembuatan: 07 Feb 2021 pada 11.50
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.2
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 08 Feb 2021 pada 10.19
+-- Versi server: 10.1.38-MariaDB
+-- Versi PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `buku_tamu` (
   `ID_BUKU` int(11) NOT NULL,
-  `SPONSOR` text DEFAULT NULL,
-  `GAMBAR_SPONSOR` text DEFAULT NULL
+  `SPONSOR` text,
+  `GAMBAR_SPONSOR` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -42,10 +42,10 @@ CREATE TABLE `buku_tamu` (
 
 CREATE TABLE `galeri` (
   `ID_GALERI` int(11) NOT NULL,
-  `NAMA_FILE` text DEFAULT NULL,
+  `NAMA_FILE` text,
   `KATEGORI` varchar(30) DEFAULT NULL,
-  `JUDUL` text DEFAULT NULL,
-  `DESK_GALERI` text DEFAULT NULL,
+  `JUDUL` text,
+  `DESK_GALERI` text,
   `TANGGAL` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -57,9 +57,9 @@ CREATE TABLE `galeri` (
 
 CREATE TABLE `jadwal` (
   `ID_JADWAL` int(11) NOT NULL,
-  `JUDUL_JADWAL` text DEFAULT NULL,
+  `JUDUL_JADWAL` text,
   `WAKTU` datetime DEFAULT NULL,
-  `DESK_JADWAL` text DEFAULT NULL
+  `DESK_JADWAL` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -70,7 +70,7 @@ CREATE TABLE `jadwal` (
 
 CREATE TABLE `komentar` (
   `ID_KOMENTAR` int(11) NOT NULL,
-  `KOMENTAR` text DEFAULT NULL
+  `KOMENTAR` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -83,11 +83,11 @@ CREATE TABLE `penyiar` (
   `ID_PENYIAR` int(11) NOT NULL,
   `NAMA_PENYIAR` varchar(128) DEFAULT NULL,
   `NO_TLP_PENYIAR` varchar(15) DEFAULT NULL,
-  `DESK` text DEFAULT NULL,
-  `GAMBAR_PENYIAR` text DEFAULT NULL,
-  `INSTAGRAM` text DEFAULT NULL,
-  `FACEBOOK` text DEFAULT NULL,
-  `TWITTER` text DEFAULT NULL
+  `DESK` text,
+  `GAMBAR_PENYIAR` text,
+  `INSTAGRAM` text,
+  `FACEBOOK` text,
+  `TWITTER` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -103,7 +103,7 @@ CREATE TABLE `rating` (
   `ID_USER` int(11) DEFAULT NULL,
   `ID_KOMENTAR` int(11) DEFAULT NULL,
   `ID_GALERI` int(11) DEFAULT NULL,
-  `KATEGORI_RATING` text DEFAULT NULL,
+  `KATEGORI_RATING` text,
   `RATING` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -121,7 +121,7 @@ CREATE TABLE `user` (
   `PASSWORD` varchar(50) DEFAULT NULL,
   `NO_TLP` varchar(15) DEFAULT NULL,
   `USER_ACTIVE` smallint(6) DEFAULT NULL,
-  `GAMBAR` text DEFAULT NULL
+  `GAMBAR` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -199,8 +199,8 @@ CREATE TABLE `user_sub_menu` (
   `ID_SUB` int(11) NOT NULL,
   `ID_MENU` smallint(6) DEFAULT NULL,
   `JUDUL_SUB` varchar(30) DEFAULT NULL,
-  `URL` text DEFAULT NULL,
-  `ICON` text DEFAULT NULL,
+  `URL` text,
+  `ICON` text,
   `SUB_ACTIVE` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -209,11 +209,13 @@ CREATE TABLE `user_sub_menu` (
 --
 
 INSERT INTO `user_sub_menu` (`ID_SUB`, `ID_MENU`, `JUDUL_SUB`, `URL`, `ICON`, `SUB_ACTIVE`) VALUES
-(1, 1, 'Dashboard', 'welcome', 'fas fa-fw fa-chart-line', 1),
-(2, 1, 'Manajemen Akun', 'welcome/user', 'fas fa-fw fa-users-cog', 1),
-(3, 2, 'Manajemen Jadwal', 'welcome/jadwal', 'fas fa-fw fa-calendar-alt', 1),
-(4, 2, 'Manajemen Galeri', 'welcome/galeri', 'fas fa-fw fa-photo-video', 1),
-(5, 2, 'Manajemen Penyiar', 'welcome/penyiar', 'far fa-fw fa-id-card', 1);
+(1, 1, 'Dashboard', 'admin', 'fas fa-fw fa-chart-line', 1),
+(2, 1, 'Manajemen Akun', 'admin/user', 'fas fa-fw fa-users-cog', 1),
+(3, 2, 'Manajemen Jadwal', 'admin/jadwal', 'fas fa-fw fa-calendar-alt', 1),
+(4, 2, 'Manajemen Galeri', 'admin/galeri', 'fas fa-fw fa-photo-video', 1),
+(5, 2, 'Manajemen Penyiar', 'admin/penyiar', 'far fa-fw fa-id-card', 1),
+(6, 3, 'Beranda', 'user', NULL, 1),
+(7, 3, 'Galeri', 'user/galeri', NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -362,7 +364,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `ID_SUB` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_SUB` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

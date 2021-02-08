@@ -5,10 +5,20 @@ class User extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'Dashboard';
+		$data['title'] = 'Beranda';
 		
-      	$this->load->view('tema/user/header');
-          $this->load->view('user/index');
+      	$this->load->view('tema/user/header', $data);
+        $this->load->view('user/index');
+      	$this->load->view('tema/user/footer');
+   
+	}
+
+	public function galeri()
+	{
+		$data['title'] = 'Galeri';
+		
+      	$this->load->view('tema/user/header', $data);
+        $this->load->view('user/galeri');
       	$this->load->view('tema/user/footer');
    
 	}

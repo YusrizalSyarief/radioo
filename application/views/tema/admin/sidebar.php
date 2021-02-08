@@ -64,7 +64,7 @@ $menu = $this->db->query($queryMenu)->result_array();
 <!-- Querry subMenu -->
 <?php
 $menuId = $m['id_menu'];
-$querySubMenu = " SELECT * FROM `user_sub_menu` JOIN `user_menu` ON `user_sub_menu`.`id_menu` = `user_menu`.`id_menu` WHERE `user_sub_menu`.`id_menu` = {$m['id_menu']} AND `user_sub_menu`.`sub_active` = 1 ";
+$querySubMenu = " SELECT * FROM `user_sub_menu` JOIN `user_menu` ON `user_sub_menu`.`id_menu` = `user_menu`.`id_menu` WHERE `user_sub_menu`.`id_menu` = {$m['id_menu']} AND `user_sub_menu`.`sub_active` = 1 AND `user_sub_menu`.`id_menu` != 3 ";
 
 $subMenu = $this->db->query($querySubMenu)->result_array();
 $title = "dashboard";

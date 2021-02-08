@@ -1,5 +1,5 @@
  <!-- Hero Section Begin -->
- <section class="hero spad set-bg" data-setbg="<?= base_url()?>assets/user/img/hero-bg.png">
+ <section class="hero spad set-bg" data-setbg="<?= base_url()?>assets/logo/radio-bg.png">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
