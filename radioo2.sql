@@ -63,7 +63,7 @@ create table JADWAL
    ID_JADWAL            int not null AUTO_INCREMENT,
    JUDUL_JADWAL         text,
    WAKTU                datetime,
-   DESC_JADWAL          text,
+   DESCK_JADWAL          text,
    primary key (ID_JADWAL)
 );
 
@@ -95,7 +95,7 @@ create table PENYIAR
    ID_PENYIAR           int not null AUTO_INCREMENT,
    NAMA_PENYIAR         varchar(128),
    NO_TLP_PENYIAR       varchar(15),
-   "DESC"               text,
+   DESCK               text,
    GAMBAR_PENYIAR       text,
    INSTAGRAM            text,
    FACEBOOK             text,
