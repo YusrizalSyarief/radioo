@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title><?= $title; ?></title>
-
-<!-- Custom fonts for this template-->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-<!-- Custom styles for this template-->
-<link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-</head>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -30,25 +10,32 @@
 
 <!-- Search Berita -->
 <div class="row">
-<div class="col-md-6">
-<label for="exampleFormControlInput1">Cari Jadwal</label>
-</div>
-<div class="col-md-6">
-<label for="exampleFormControlInput1">Cari Interval Waktu</label>
-</div>
+    <div class="col-md-6">
+        <label for="exampleFormControlInput1">Cari Jadwal</label>
+    </div>
+    <div class="col-md-6">
+        <label for="exampleFormControlInput1">Cari Interval Waktu</label>
+    </div>
 </div>
 
-    <div class="row">
-        <div class="form-group col-md-6">
-            <input type="email" class="form-control" id="cariTransaksi" placeholder="Ketikan disini...">
-        </div>
-        <div class="form-group col-md-2">
-            <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">
-        </div>
-        <div class="form-group col-md-2">
-            <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">
-        </div>
+<div class="row">
+    <div class="form-group col-md-6">
+        <input type="email" class="form-control" id="cariTransaksi" placeholder="Ketikan disini...">
     </div>
+    <div class="form-group col-md-2">
+        <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">
+    </div>
+    <div class="form-group col-md-2">
+        <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">
+    </div>
+</div>
+
+<div class="row">
+<div class="form-group col-md-6">
+    <a data-toggle="modal" data-target="#formJadwal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    <i class="fas fa-plus"></i> Tambah Jadwal </a>
+</div>
+</div>
 
 <!-- Tabel Berita -->
 <div class="row mb-5">
@@ -65,6 +52,7 @@
                             <th scope="col">Nama Acara</th>
                             <th scope="col">Penyiar</th>
                             <th scope="col">Deskripsi Acara</th>
+                            <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="tBodyTransaksi">              
@@ -74,7 +62,16 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
+                            <td>
+                            <button href=""  class="btn btn-success ml-1 tampilModalRevisiSPJ" data-toggle="modal"
+                                    data-target="#formJadwal" data-id=""><i class="fas fa-info-circle"></i> Detail</button>
+                            </td>
+                            <td>
+                                <button href=""  class="btn btn-warning ml-1 tampilModalRevisiSPJ" data-toggle="modal"
+                                    data-target="#formJadwal" data-id=""><i class="fas fa-pen"></i> Edit</button>
+                                <button href=""  class="btn btn-danger ml-1 "><i class="fas fa-trash-alt"></i> Hapus</button>
+                        
+                            </td>
                         </tr>
                     </tbody>
                     </table>
@@ -84,3 +81,42 @@
     </div>
 </div>
 <!-- End of Main Content -->
+
+<!-- merubah password user -->
+<div class="modal fade" id="formJadwal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Jadwal</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form class="user"method="post" action="">
+                    <div class="form-group">
+                        <input type="text" class="form-control " id="username" name="username" placeholder="Judul">
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input type="date" class="form-control " id="tanggal" name="tanggal" >
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="time" class="form-control " id="waktu" name="waktu" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Deskripsi Jadwal</label>
+                        <textarea class="form-control " id="DeskripsiJadwal" name="DeskripsiJadwal" rows="3"></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                <a class="btn btn-primary" href="login.html">Ubah Password</a>
+            </div>
+                </form>
+        </div>
+    </div>
+</div>
