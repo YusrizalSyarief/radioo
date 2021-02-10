@@ -82,16 +82,12 @@
                   <input type="text" class="form-control " id="email" name="email" placeholder="Alamat email">
                </div>
                <div class="form-group">
-                  <div class="dropdown">
-                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Hak Akses
-                     </button>
-                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Admin</a>
-                        <a class="dropdown-item" href="#">Super Admin</a>
-                        
-                     </div>
-                  </div>
+                  <select class="custom-select custom-select-sm " style="  height: 40px;">
+                     <option selected>Pilih Jenis</option>
+                     <option value="1">Pocast</option>
+                     <option value="2">Two</option>
+                     <option value="3">Three</option>
+                  </select>
                </div>
                <div class="form-group row">
                      <div class="col-sm-6 mb-3 mb-sm-0">

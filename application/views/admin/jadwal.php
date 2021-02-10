@@ -82,7 +82,7 @@
 </div>
 <!-- End of Main Content -->
 
-<!-- merubah password user -->
+<!-- jadwal -->
 <div class="modal fade" id="formJadwal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -103,6 +103,7 @@
                             <input type="date" class="form-control " id="tanggal" name="tanggal" >
                         </div>
                         <div class="col-sm-6">
+                        
                             <input type="time" class="form-control " id="waktu" name="waktu" >
                         </div>
                     </div>
@@ -113,7 +114,7 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
                 <a class="btn btn-primary" href="login.html">Ubah Password</a>
             </div>
                 </form>
@@ -121,7 +122,7 @@
     </div>
 </div>
 
-<!-- merubah password user -->
+<!-- info jadwal -->
 <div class="modal fade" id="formInfoJadwal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -134,14 +135,17 @@
             <div class="modal-body">
                 <form class="user"method="post" action="">
                     <div class="form-group">
-                        <input type="text" class="form-control " id="username" name="username" placeholder="Judul" readonly>
+                        <label for="exampleFormControlTextarea1">Judul</label>
+                        <input type="text" class="form-control " id="judul" name="judul"  readonly>
                     </div>
                     
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label for="exampleFormControlTextarea1">Tanggal</label>
                             <input type="date" class="form-control " id="tanggal" name="tanggal" readonly>
                         </div>
                         <div class="col-sm-6">
+                            <label for="exampleFormControlTextarea1">Waktu</label>
                             <input type="time" class="form-control " id="waktu" name="waktu" readonly>
                         </div>
                     </div>

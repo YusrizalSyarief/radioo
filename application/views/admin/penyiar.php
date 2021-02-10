@@ -84,10 +84,12 @@
                 <img src="<?= base_url()?>assets/user/img/events/event-2.jpg" alt="..." class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control " id="nama" name="nama" placeholder="Nama" readonly>
+                <label for="exampleFormControlTextarea1">Nama</label>
+                <input type="text" class="form-control " id="nama" name="nama"  readonly>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control " id="username" name="username" placeholder="No Tlp" readonly>
+                <label for="exampleFormControlTextarea1">No Tlp</label>
+                <input type="text" class="form-control " id="noTlp" name="noTlp"  readonly>
             </div>
             <div class="form-group">
                     <label for="exampleFormControlTextarea1">Biografi</label>
@@ -141,7 +143,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
                 <a class="btn btn-primary" href="login.html">Tambah Penyiar</a>
             </div>
         </form>

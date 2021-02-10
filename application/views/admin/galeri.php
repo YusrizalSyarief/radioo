@@ -84,16 +84,15 @@
             </div>
             <div class="modal-body">
             <form class="user"method="post" action="">
-                <div class="form-group ">
-                    <img src="<?= base_url()?>assets/user/img/events/event-2.jpg" alt="..." class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;">
-                    
-                </div>
+        
                 <div class="form-group">
-                    <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="Judul" readonly>
+                    <label for="exampleFormControlTextarea1">Judul</label>
+                    <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="" readonly>
                 </div>
                 
                 <div class="form-group">
-                    <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="Judul" readonly>
+                    <label for="exampleFormControlTextarea1">Tanggal Upload</label>
+                    <input type="text" class="form-control " id="TanggalUpload" name="TanggalUpload" placeholder="" readonly>
                 </div>
                 
                 <div class="form-group">
@@ -122,23 +121,19 @@
             <div class="modal-body">
             <form class="user"method="post" action="">
                 <div class="form-group ">
-                    <img src="<?= base_url()?>assets/user/img/events/event-2.jpg" alt="..." class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
-                    <label for="exampleFormControlFile1">Upload Thumbnail</label><br>
+                    <label for="exampleFormControlFile1">Upload file </label>
                     <input type="file" class="form-control-file" id="exampleFormControlFile1" name="UploadFoto" >
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="Judul">
                 </div>
                 <div class="form-group">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Kategori
-                        </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">1</a>
-                        <a class="dropdown-item" href="#">2</a>
-                        
-                    </div>
+                    <select class="custom-select custom-select-sm " style="  height: 40px;">
+                        <option selected>Pilih jenis</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Deskripsi Galeri</label>
@@ -146,11 +141,22 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                    
+                <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
+                <div class="dropdown float-left">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Kategori
+                        </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Youtube</a>
+                        <a class="dropdown-item" href="#">File</a>
+                        
+                    </div>
                 <a class="btn btn-primary" href="login.html">Tambah Galeri</a>
             </div>
         </form>
         </div>
     </div>
+</div>
 </div>
 

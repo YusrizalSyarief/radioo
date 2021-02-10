@@ -57,14 +57,16 @@
                   <input type="file" class="form-control-file" id="exampleFormControlFile1" name="UbahFoto" >
                </div>
                <div class="form-group">
-                  <input type="text" class="form-control " id="nama" name="nama" placeholder="Nama" readonly>
+                  <label for="exampleFormControlFile1">Nama</label>
+                  <input type="text" class="form-control " id="nama" name="nama"  >
                </div>
                <div class="form-group">
-                  <input type="text" class="form-control " id="username" name="username" placeholder="No Tlp" readonly>
+                  <label for="exampleFormControlFile1">No Tlp</label>
+                  <input type="text" class="form-control " id="noTlp" name="noTlp"  >
                </div>
                <div class="form-group">
                      <label for="exampleFormControlTextarea1">Biografi</label>
-                           <textarea class="form-control " id="DeskripsiJadwal" name="DeskripsiJadwal" rows="3" readonly></textarea>
+                           <textarea class="form-control " id="DeskripsiJadwal" name="DeskripsiJadwal" rows="3" ></textarea>
                </div>
                
                </div>
@@ -75,7 +77,7 @@
                </form>
             </div>
       </div>
-      
+
 </div>
 
  <!-- Bootstrap core JavaScript-->
