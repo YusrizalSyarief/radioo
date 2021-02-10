@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title><?= $title; ?></title>
-
-<!-- Custom fonts for this template-->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-<!-- Custom styles for this template-->
-<link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-</head>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -42,6 +22,14 @@
         </div>
     </div>
 
+<!-- btn tambah galeri -->
+<div class="row">
+   <div class="form-group col-md-6">
+      <a data-toggle="modal" data-target="#formTambahGaleri" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+      class="fas fa-fw fa-photo-video"></i> Tambah Galeri </a>
+   </div>
+</div>
+
 <!-- Tabel Berita -->
 <div class="row mb-5">
     <div class="col-md-12">
@@ -51,11 +39,12 @@
                     <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Judul Berita</th>
+                            <th scope="col">Judul </th>
                             <th scope="col">Tanggal</th>
                             <th scope="col">Kategori</th>
-                            <th scope="col">Gambar</th>
-                            <th scope="col">Isi Berita</th>
+                            <th scope="col">gambar</th>
+                            <th scope="col">Isi galeri</th>
+                            <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="tBodyTransaksi">              
@@ -64,7 +53,15 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
+                            <td>
+                                <button href=""  class="btn btn-success ml-1 tampilModalRevisiSPJ" data-toggle="modal"
+                                        data-target="#formInfoGaleri" data-id=""><i class="fas fa-info-circle"></i> Detail</button>
+                            </td>
+                            <td>
+                                <button href=""  class="btn btn-warning ml-1 tampilModalRevisiSPJ" data-toggle="modal"
+                                    data-target="#formTambahGaleri" data-id=""><i class="fas fa-pen"></i> Edit</button>
+                                <button href=""  class="btn btn-danger ml-1 "><i class="fas fa-trash-alt"></i> Hapus</button>
+                            </td>
                         </tr>
                     </tbody>
                     </table>
@@ -74,3 +71,86 @@
     </div>
 </div>
 <!-- End of Main Content -->
+
+<!-- Info Galeri -->
+<div class="modal fade" id="formInfoGaleri" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Info Galeri</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form class="user"method="post" action="">
+                <div class="form-group ">
+                    <img src="<?= base_url()?>assets/user/img/events/event-2.jpg" alt="..." class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;">
+                    
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="Judul" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="Judul" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Deskripsi Galeri</label>
+                    <textarea class="form-control " id="DeskripsiGaleri" name="DeskripsiGaleri" rows="3" readonly></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+<!-- Tambah Galeri -->
+<div class="modal fade" id="formTambahGaleri" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Galeri</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form class="user"method="post" action="">
+                <div class="form-group ">
+                    <img src="<?= base_url()?>assets/user/img/events/event-2.jpg" alt="..." class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
+                    <label for="exampleFormControlFile1">Upload Thumbnail</label><br>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="UploadFoto" >
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="Judul">
+                </div>
+                <div class="form-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Kategori
+                        </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">1</a>
+                        <a class="dropdown-item" href="#">2</a>
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Deskripsi Galeri</label>
+                    <textarea class="form-control " id="DeskripsiGaleri" name="DeskripsiGaleri" rows="3" ></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                <a class="btn btn-primary" href="login.html">Tambah Galeri</a>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+

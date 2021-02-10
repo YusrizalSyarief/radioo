@@ -63,8 +63,8 @@
                             <td></td>
                             <td></td>
                             <td>
-                            <button href=""  class="btn btn-success ml-1 tampilModalRevisiSPJ" data-toggle="modal"
-                                    data-target="#formJadwal" data-id=""><i class="fas fa-info-circle"></i> Detail</button>
+                                <button href=""  class="btn btn-success ml-1 tampilModalRevisiSPJ" data-toggle="modal"
+                                    data-target="#formInfoJadwal" data-id=""><i class="fas fa-info-circle"></i> Detail</button>
                             </td>
                             <td>
                                 <button href=""  class="btn btn-warning ml-1 tampilModalRevisiSPJ" data-toggle="modal"
@@ -115,6 +115,43 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
                 <a class="btn btn-primary" href="login.html">Ubah Password</a>
+            </div>
+                </form>
+        </div>
+    </div>
+</div>
+
+<!-- merubah password user -->
+<div class="modal fade" id="formInfoJadwal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Info Jadwal</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form class="user"method="post" action="">
+                    <div class="form-group">
+                        <input type="text" class="form-control " id="username" name="username" placeholder="Judul" readonly>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input type="date" class="form-control " id="tanggal" name="tanggal" readonly>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="time" class="form-control " id="waktu" name="waktu" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Deskripsi Jadwal</label>
+                        <textarea class="form-control " id="DeskripsiJadwal" name="DeskripsiJadwal" rows="3" readonly></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
             </div>
                 </form>
         </div>

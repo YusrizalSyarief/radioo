@@ -1,76 +1,81 @@
  <!-- Footer -->
- <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="inputData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Register Akun Baru</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">×</span>
-            </button>
-         </div>
-         <div class="modal-body">
-         <form class="user"method="post" action="">
-            <div class="form-group">
-               <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username">
-            </div>
-            <div class="form-group">
-               <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email">
-            </div>
-               <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                     <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
-                  </div>
-               <div class="col-sm-6">
-                  <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Ulangi Password">
-               </div>
-            </div>
-         </div>
-         <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Daftarkan</a>
-         </div>
-      </form>
+<footer class="sticky-footer bg-white">
+   <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+         <span>Copyright &copy; Your Website 2020</span>
       </div>
    </div>
+</footer>
+            <!-- End of Footer -->
+
+      </div>
+      <!-- End of Content Wrapper -->
+   </div>
+   <!-- End of Page Wrapper -->
+
+   <!-- Scroll to Top Button-->
+   <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+   </a>
+
+   <!-- Logout Modal-->
+   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                  </button>
+               </div>
+               <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+               <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                  <a class="btn btn-primary" href="login.html">Logout</a>
+               </div>
+         </div>
+      </div>
+   </div>
+
+
+<!-- profil user -->
+<div class="modal fade" id="formProfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Profil</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+               <form class="user"method="post" action="">
+               <div class="form-group ">
+                  <img src="<?= base_url()?>assets/user/img/events/event-2.jpg" alt="..." class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
+                  <label for="exampleFormControlFile1">Ubah Foto</label><br>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1" name="UbahFoto" >
+               </div>
+               <div class="form-group">
+                  <input type="text" class="form-control " id="nama" name="nama" placeholder="Nama" readonly>
+               </div>
+               <div class="form-group">
+                  <input type="text" class="form-control " id="username" name="username" placeholder="No Tlp" readonly>
+               </div>
+               <div class="form-group">
+                     <label for="exampleFormControlTextarea1">Biografi</label>
+                           <textarea class="form-control " id="DeskripsiJadwal" name="DeskripsiJadwal" rows="3" readonly></textarea>
+               </div>
+               
+               </div>
+               <div class="modal-footer">
+                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                     <a class="btn btn-primary" href="login.html">Ubah</a>
+               </div>
+               </form>
+            </div>
+      </div>
+      
 </div>
 
  <!-- Bootstrap core JavaScript-->

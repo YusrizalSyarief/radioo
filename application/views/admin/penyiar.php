@@ -19,7 +19,7 @@
 <div class="row">
     <div class="form-group col-md-6">
         <a data-toggle="modal" data-target="#formTambahPenyiar" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-        class="fas fa-user-plus"></i> Buat Akun Admin </a>
+        class="fas fa-user-plus"></i> Tambah Penyiar </a>
     </div>
 </div>
 <!-- Tabel penyiar -->
@@ -51,9 +51,9 @@
                             </td>
                             <td>
                                 <button href=""  class="btn btn-success ml-1 tampilModalRevisiSPJ" data-toggle="modal"
-                                        data-target="#formUbahProfil" data-id=""><i class="fas fa-info-circle"></i> Detail</button>
+                                        data-target="#formInfoPenyiar" data-id=""><i class="fas fa-info-circle"></i> Detail</button>
                                 <button href=""  class="btn btn-warning ml-1 tampilModalRevisiSPJ" data-toggle="modal"
-                                    data-target="#formUbahProfil" data-id=""><i class="fas fa-pen"></i> Edit</button>
+                                    data-target="#formTambahPenyiar" data-id=""><i class="fas fa-pen"></i> Edit</button>
                                 <button href=""  class="btn btn-danger ml-1 "><i class="fas fa-trash-alt"></i> Hapus</button>
                             </td>
                                 
@@ -69,11 +69,11 @@
 <!-- End of Main Content -->
 
 <!-- profil penyiar user -->
-<div class="modal fade" id="formUbahProfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="formInfoPenyiar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Penyiar</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Info Penyiar</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -81,9 +81,7 @@
             <div class="modal-body">
             <form class="user"method="post" action="">
             <div class="form-group ">
-                <img src="<?= base_url()?>assets/user/img/events/event-2.jpg" alt="..." class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
-                <label for="exampleFormControlFile1">Ubah Foto</label><br>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="UbahFoto" >
+                <img src="<?= base_url()?>assets/user/img/events/event-2.jpg" alt="..." class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control " id="nama" name="nama" placeholder="Nama" readonly>
@@ -102,8 +100,7 @@
             </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-primary" href="login.html">Rubah Penyiar</a>
+
             </div>
         </form>
         </div>
@@ -124,7 +121,7 @@
             <form class="user"method="post" action="">
             <div class="form-group ">
                 <img src="<?= base_url()?>assets/user/img/events/event-2.jpg" alt="..." class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
-                <label for="exampleFormControlFile1">Upload Foto</label><br>
+                <label for="exampleFormControlFile1">Upload Foto</label><br>    
                 <input type="file" class="form-control-file" id="exampleFormControlFile1" name="UploadFoto" >
             </div>
             <div class="form-group">
@@ -134,8 +131,8 @@
                 <input type="text" class="form-control " id="username" name="username" placeholder="No Tlp" >
             </div>
             <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Biografi</label>
-                        <textarea class="form-control " id="DeskripsiJadwal" name="DeskripsiJadwal" rows="3" ></textarea>
+                <label for="exampleFormControlTextarea1">Biografi</label>
+                    <textarea class="form-control " id="DeskripsiJadwal" name="DeskripsiJadwal" rows="3" ></textarea>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control " id="fb" name="fb" placeholder="Url Facebook" ><br>
@@ -145,7 +142,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-primary" href="login.html">Rubah Penyiar</a>
+                <a class="btn btn-primary" href="login.html">Tambah Penyiar</a>
             </div>
         </form>
         </div>
