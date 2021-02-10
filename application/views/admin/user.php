@@ -99,7 +99,7 @@
                </div>
             </div>
             <div class="modal-footer">
-               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+               <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
                <a class="btn btn-primary" href="login.html">Daftarkan</a>
             </div>
          </form>
@@ -128,7 +128,7 @@
             </div>
          </div>
          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
             <a class="btn btn-primary" href="login.html">Ubah Password</a>
          </div>
       </form>

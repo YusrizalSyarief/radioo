@@ -64,14 +64,10 @@
                   <label for="exampleFormControlFile1">No Tlp</label>
                   <input type="text" class="form-control " id="noTlp" name="noTlp"  >
                </div>
-               <div class="form-group">
-                     <label for="exampleFormControlTextarea1">Biografi</label>
-                           <textarea class="form-control " id="DeskripsiJadwal" name="DeskripsiJadwal" rows="3" ></textarea>
-               </div>
                
-               </div>
+            </div>
                <div class="modal-footer">
-                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                     <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
                      <a class="btn btn-primary" href="login.html">Ubah</a>
                </div>
                </form>
