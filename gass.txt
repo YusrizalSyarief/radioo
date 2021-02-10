@@ -1,0 +1,19 @@
+Command penting git
+
+<update data>
+1. git pull
+
+<upload data>
+1. git add .
+2. git commit -m "(deskripsi pembaruan)"
+3. git push -u origin master
+
+<cek link repo>
+1. git remote -v
+
+<unduh repo baru>
+1. git clone (url)
+
+<koneksi akun github>
+1. git config --global user.name "(username)"
+2. git config --global user.email "(email)"
