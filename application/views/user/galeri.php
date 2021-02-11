@@ -1,8 +1,7 @@
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
+<!-- Spasi -->
+<section class="discography spad">
+
+</section>
 
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
@@ -10,8 +9,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>Discography</span>
+                        <a href="<?= base_url('user'); ?>"><i class="fa fa-home"></i> Beranda</a>
+                        <span>Galeri RSKP</span>
                     </div>
                 </div>
             </div>
@@ -122,18 +121,12 @@
     </section>
     <!-- Discography Section End -->
 
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
-<?= " " ?>  <br>
+<!-- Spasi -->
+<section class="discography spad">
+
+</section>
+
+<!-- Spasi -->
+<section class="discography spad">
+
+</section>

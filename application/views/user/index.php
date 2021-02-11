@@ -4,10 +4,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="hero__text">
-                        <span>Now Playing</span>
-                        <h1>Feel the heart beats</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <br />tempor
-                            incididunt ut labore et dolore magna aliqua.</p>
+                        <span>Selamat datang</span>
+                        <h1>Radio Suara Kota Probolinggo</h1>
+                        <p>Now Streaming</p>
                         <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-play"></i></a> <br> <br>
                         <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ratingWeb">Rating Web</button>
                     </div>
@@ -36,7 +35,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Upcoming Events</h2>
+                        <h2>Jadwal Hari Ini</h2>
                     </div>
                 </div>
             </div>
@@ -46,16 +45,19 @@
                         <div class="event__item">
                             <div class="event__item__pic set-bg" data-setbg="<?= base_url()?>assets/user/img/events/event-1.jpg">
                                 <div class="tag-date">
-                                    <span>Dec 15, 2019</span>
+                                    <a data-toggle="modal" data-target="#ratingAcara">
+                                    <span>Rating Acara</span>
+                                    </a>
                                 </div>
                             </div>
                             <div class="event__item__text">
-                                <h4>David Guetta Miami Ultra</h4>
-                                <p><i class="fa fa-map-marker"></i> Funkhaus Berlin, Berlin, Germany</p>
+                                <h4>Nama Acara</h4>
+                                <p><i class="fas fa-clock"></i> Waktu Acara</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+
+                    <!-- <div class="col-lg-4">
                         <div class="event__item">
                             <div class="event__item__pic set-bg" data-setbg="<?= base_url()?>assets/user/img/events/event-2.jpg">
                                 <div class="tag-date">
@@ -93,7 +95,8 @@
                                 <p><i class="fa fa-map-marker"></i> Funkhaus Berlin, Berlin, Germany</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
                 </div>
             </div>
         </div>
@@ -112,12 +115,10 @@
                 <div class="col-lg-6">
                     <div class="about__text">
                         <div class="section-title">
-                            <h2>DJ Alexandra Rud</h2>
-                            <h1>About me</h1>
+                            <h2>Nama Penyiar</h2>
+                            <h1>Tentang Penyiar</h1>
                         </div>
-                        <p>DJ Rainflow knows how to move your mind, body and soul by delivering tracks that stand out
-                            from the norm. As if this impressive succession of high impact, floor-filling bombs wasn’t
-                            enough to sustain.</p>
+                        <p>Deskripsi Penyiar</p>
                         <a href="#" class="primary-btn">CONTACT ME</a>
                     </div>
                 </div>
@@ -178,13 +179,13 @@
             <div class="row">
                 <div class="col-lg-7">
                     <div class="section-title">
-                        <h2>Latest tracks</h2>
-                        <h1>Music podcast</h1>
+                        <h2>Galeri RSKP</h2>
+                        <h1>Galeri RSKP</h1>
                     </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="track__all">
-                        <a href="#" class="primary-btn border-btn">View all tracks</a>
+                        <a href="<?= base_url('user/galeri'); ?>" class="primary-btn border-btn">Selengkapnya</a>
                     </div>
                 </div>
             </div>
@@ -419,8 +420,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Youtube feed</h2>
-                        <h1>Latest videos</h1>
+                        <h2>Profil RSKP</h2>
+                        <h1>Profile</h1>
                     </div>
                 </div>
             </div>
@@ -462,8 +463,8 @@
     <!-- Youtube Section End -->
 
     <!-- Countdown Section Begin -->
-    <section class="countdown spad set-bg" data-setbg="<?= base_url()?>assets/user/img/countdown-bg.jpg">
-        <div class="container">
+    <section class="countdown spad set-bg">
+        <!-- <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="countdown__text">
@@ -493,7 +494,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
     <!-- Countdown Section End -->
 
@@ -502,17 +503,28 @@
    <div class="modal-dialog" role="document">
       <div class="modal-content">
          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Register Akun Baru</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Rating Web</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                <span aria-hidden="true">×</span>
             </button>
          </div>
          <div class="modal-body">
+            <p> Bagaimana menurut anda mengenai web ini ?
+            </p>
          <form class="user"method="post" action="">
             <div class="form-group">
-               <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-thumbs-up"></i></a> <br>
+                </div>
             </div>
             <div class="form-group">
+               <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email" readonly>
+            </div>
+            <div class="form-floating">
+                <label for="floatingTextarea">Komentar</label>
+                <textarea class="form-control" placeholder="..." id="floatingTextarea"></textarea> 
+            </div>  
+            <!-- <div class="form-group">
                <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email">
             </div>
                <div class="form-group row">
@@ -522,11 +534,60 @@
                <div class="col-sm-6">
                   <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Ulangi Password">
                </div>
-            </div>
+            </div> -->
          </div>
          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Daftarkan</a>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+            <a class="btn btn-primary" href="login.html">Kirim</a>
+         </div>
+      </form>
+      </div>
+   </div>
+</div>
+
+<!-- Modal Rating Web -->
+<div class="modal fade" id="ratingAcara" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Rating Acara</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">×</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <p> Bagaimana menurut anda mengenai acara kami ?
+            </p>
+         <form class="user"method="post" action="">
+            <div class="form-group">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-up"></i></a> 
+                <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-down"></i></a>
+                <br>
+                </div>
+            </div>
+            <div class="form-group">
+               <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email" readonly>
+            </div>
+            <div class="form-floating">
+                <label for="floatingTextarea">Komentar</label>
+                <textarea class="form-control" placeholder="..." id="floatingTextarea"></textarea> 
+            </div>  
+            <!-- <div class="form-group">
+               <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email">
+            </div>
+               <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                     <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
+                  </div>
+               <div class="col-sm-6">
+                  <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Ulangi Password">
+               </div>
+            </div> -->
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+            <a class="btn btn-primary" href="login.html">Kirim</a>
          </div>
       </form>
       </div>

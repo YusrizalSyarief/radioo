@@ -75,7 +75,7 @@
                         <?php endforeach; ?>
                         <?php endforeach; ?>
 
-                        <li><a data-toggle="modal" data-target="#modalLogin">Login</a></li>
+                        <li><button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalLogin">Login</button></li>
                         </ul>
 
                                

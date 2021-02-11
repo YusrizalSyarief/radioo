@@ -23,7 +23,15 @@ class User extends CI_Controller {
    
 	}
 
-	
+	public function bukutamu()
+	{
+		$data['title'] = 'Buku Tamu';
+		
+      	$this->load->view('tema/user/header', $data);
+        $this->load->view('user/bukutamu');
+      	$this->load->view('tema/user/footer');
+   
+	}
 
 
 }
