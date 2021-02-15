@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
 	function __construct(){
+		header('Access-Control-Allow-Origin: *');
+    	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 		parent::__construct();
 		$this->load->helper('download');
 		$config['upload_path']          = './uploads/';
@@ -26,7 +28,45 @@ class Admin extends CI_Controller {
 	public function galeri()
 	{
 		$data['title'] = 'Galeri';
-		$data['z'] = $this->AdminModel->getDataGaleri();
+		//$id = $this->session->userdata('ID_USER');
+		$config['base_url'] = 'https://localhost/radioo/admin/galeri';
+		$config['total_rows'] = $this->AdminModel->getCountDataGaleri();
+		
+		$config['per_page'] = 5;
+
+		$config['full_tag_open'] = '<nav><ul class="pagination">';
+		$config['full_tag_close'] = ' </ul></nav>';
+
+		$config['first_link'] = 'First';
+		$config['first_tag_open'] = '<li class="page-item">';
+		$config['first_tag_close'] = '</li>';
+
+		$config['last_link'] = 'Last';
+		$config['last_tag_open'] = '<li class="page-item">';
+		$config['last_tag_close'] = '</li>';
+
+		$config['next_link'] = '&raquo';
+		$config['next_tag_open'] = '<li class="page-item">';
+		$config['next_tag_close'] = '</li>';
+
+		$config['prev_link'] = '&laquo';
+		$config['prev_tag_open'] = '<li class="page-item">';
+		$config['prev_tag_close'] = '</li>';
+
+		$config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+
+		$config['num_tag_open'] = '<li class="page-item">';
+		$config['num_tag_close'] = '</li>';
+
+		$config['attributes'] = array('class' => 'page-link');
+		
+		$this->pagination->initialize($config);
+		
+		$data['start'] = $this->uri->segment(3);
+		
+		$data['z'] = $this->AdminModel->getDataGaleri($config['per_page'],$data['start']);
+		//$data['z'] = $this->AdminModel->getDataGaleri();
 		$this->load->view('tema/admin/sidebar');
       	$this->load->view('tema/admin/topbar');
       	$this->load->view('admin/galeri', $data);

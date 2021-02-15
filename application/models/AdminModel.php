@@ -1,13 +1,17 @@
 <?php
 class AdminModel extends CI_Model
 {
-    public function getDataGaleri() 
+    public function getDataGaleri($limit, $start) 
    {
     //$x = $this->db->get('kategori_galeri')->result_array();
-    $x = $this->db->select('*')->from('galeri')->join('kategori_galeri', ' galeri.ID_KATEGORI = kategori_galeri.ID_KATEGORI ' )->get()->result_array();
+    $x = $this->db->select('*')->from('galeri')->join('kategori_galeri', ' galeri.ID_KATEGORI = kategori_galeri.ID_KATEGORI ' )->limit($limit, $start)->get()->result_array();
     $z = array($x, $this->db->get('kategori_galeri')->result_array()) ;
       
       return $z;
+   }
+   public function getCountDataGaleri() 
+   {
+      return $this->db->get('galeri')->num_rows();
    }
    public function tambahGaleri($namaBerkas)
     {
