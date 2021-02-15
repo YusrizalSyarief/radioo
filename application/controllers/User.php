@@ -18,7 +18,7 @@ class User extends CI_Controller {
 		$data['title'] = 'Galeri';
 		
       	$this->load->view('tema/user/header', $data);
-        $this->load->view('user/galeri');
+        $this->load->view('user/galeri', $data);
       	$this->load->view('tema/user/footer');
    
 	}
