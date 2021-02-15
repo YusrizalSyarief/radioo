@@ -15,6 +15,9 @@
                 </div>
                 <div class="col-lg-8">
 					<br>
+
+                    <!-- Looping Kategori dalam Select -->
+
                     <?php
                     $queryGaleri = " SELECT * FROM `galeri` ";
                     $Galeri = $this->db->query($queryGaleri)->result_array();
@@ -29,6 +32,9 @@
                             <?php foreach ($Galeri as $p) : ?>
                             <option nilai="<?=$p['ID_KATEGORI'];?>"><?= $p['KATEGORI']; ?></option>
                             <?php endforeach; ?>
+
+                    <!-- Akhir Looping Kategori -->
+
                         </select>
                         <input type="text" id="idNilai" name="idnilai" hidden>
                     </div>
@@ -41,6 +47,8 @@
     <!-- Discography Section Begin -->
     <section class="discography spad">
         <div class="container">
+
+            <!-- Looping Isi Kategori -->
 
             <?php
     
@@ -142,6 +150,9 @@
                 ?>        
 
                 <?php endforeach; ?>
+
+            <!-- Akhir Looping Isi Kategori -->
+
             </div>
         </div>
     </section>
