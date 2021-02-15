@@ -19,6 +19,7 @@ class AdminModel extends CI_Model
             
             "ID_KATEGORI" => $this->input->post('Kategori', true),
             "NAMA_FILE" => $namaBerkas,
+            "KATEGORI" => 'audio',
             "JUDUL" => $this->input->post('JudulGaleri', true),
             "DESC_GALERI" => $this->input->post('DeskripsiGaleri', true),
             //"TGL_REV_PENGAJUAN" => date("y-m-d"),
@@ -32,6 +33,7 @@ class AdminModel extends CI_Model
             
             "ID_KATEGORI" => $this->input->post('KategoriYt', true),
             "NAMA_FILE" => $this->input->post('UrlYt', true),
+            "KATEGORI" => 'youtube',
             "JUDUL" => $this->input->post('JudulGaleriYt', true),
             "DESC_GALERI" => $this->input->post('DeskripsiGaleriYt', true),
             //"TGL_REV_PENGAJUAN" => date("y-m-d"),

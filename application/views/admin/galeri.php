@@ -68,7 +68,11 @@
                             <td>
                                 <a href="<?=base_url(); ?>uploads/<?= $g['NAMA_FILE']; ?>"  class="btn btn-success  ml-1 ModalInfoGaleri" data-toggle="modal"
                                         data-target="#formInfoGaleri" data-id="<?= $g['ID_GALERI']; ?>"><i class="fas fa-info-circle"></i> Detail</a>
-                                <a href="<?=base_url(); ?>uploads/<?= $g['NAMA_FILE']; ?>"  class="btn btn-primary ml-1 ModalInfoGaleri">Lihat Konten</a>
+                                <?php if ($g['KATEGORI'] == 'youtube') : ?>
+                                    <a href="<?= $g['NAMA_FILE']; ?>"  class="btn btn-primary ml-1 ">Lihat Konten</a>
+                                <?php else: ?>
+                                    <a href="<?=base_url(); ?>uploads/<?= $g['NAMA_FILE']; ?>"  class="btn btn-primary ml-1 ">Lihat Konten</a>
+                                <?php endif; ?>
                             </td>
                             <td>
                                 <button href=""  class="btn btn-warning ml-1 tampilModalRevisiSPJ" data-toggle="modal"
