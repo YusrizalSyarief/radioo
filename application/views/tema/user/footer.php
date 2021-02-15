@@ -48,6 +48,20 @@
     </footer>
     <!-- Footer Section End -->
 
+    <!-- Script Menampilkan kategori -->
+    <script>
+
+    $('#pilihan').on('change', function(){
+    // ambil nilai
+    var nilai = $('#pilihan option:selected').attr('nilai');
+
+    // pindahkan nilai ke input
+    $('#idNilai').val(nilai);
+    });
+
+    </script>
+    <!-- Akhir script -->
+
     <!-- Js Plugins -->
     <script src="<?= base_url()?>assets/user/js/jquery-3.3.1.min.js"></script>
     <script src="<?= base_url()?>assets/user/js/bootstrap.min.js"></script>
