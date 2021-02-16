@@ -149,6 +149,25 @@ class Admin extends CI_Controller {
 			
 		}
 	}
+	public function tambahKetegoriGaleri()
+	{
+		
+		$this->form_validation->set_rules('NamaKategori', 'Nama Kategori', 'trim|required');
+	
+		
+		//$this->upload->initialize($config);
+		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Ditambahkan Pastikan Data Terisi Dengan Benar</div>');
+			redirect('admin/galeri');	
+		} else {
+			
+				//$namaBerkas = $this->upload->data("file_name");
+				$this->AdminModel->tambahKategoriGaleri();
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Ditambahkan</div>');
+				redirect('admin/galeri');	
+			
+		}
+	}
 
 	public function hapusGaleri($id)
     {
@@ -163,6 +182,56 @@ class Admin extends CI_Controller {
 		echo json_encode($this->AdminModel->getGaleriById($_POST['id']));
 
    }
+   
+   public function ubahGaleriYt()
+   {
+	 
+	
+	$this->form_validation->set_rules('UrlYt', 'Url Youtube', 'trim|required');
+	$this->form_validation->set_rules('JudulGaleriYt', 'Judul Galeri', 'trim|required');
+	$this->form_validation->set_rules('DeskripsiGaleriYt', 'Deskripsi Galeri', 'trim|required');
 
-
+	
+	//$this->upload->initialize($config);
+	if ($this->form_validation->run() == false) {
+		$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dirubah Pastikan Data Terisi Dengan Benar</div>');
+		redirect('admin/galeri');	
+	} else {
+		
+			//$namaBerkas = $this->upload->data("file_name");
+			$this->AdminModel->ubahGaleriYt();
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
+			redirect('admin/galeri');	
+		
+	}
 }
+
+public function ubahGaleri()
+	{
+		
+		//$this->form_validation->set_rules('UrlYt', 'Url Youtube', 'trim|required');
+		$this->form_validation->set_rules('JudulGaleri', 'Judul Galeri', 'trim|required');
+		$this->form_validation->set_rules('DeskripsiGaleri', 'Deskripsi Galeri', 'trim|required');
+	
+		
+		//$this->upload->initialize($config);
+		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dirubah Pastikan Data Terisi Dengan Benar</div>');
+			redirect('admin/galeri');	
+		} else {
+			if(!$this->upload->do_upload('UploadFile')) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Periksa Lagi File Upload</div>');
+				redirect('admin/galeri');	
+			} else {
+				$namaBerkas = $this->upload->data("file_name");
+				$this->AdminModel->ubahGaleri($namaBerkas);
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
+				redirect('admin/galeri');
+			}
+					
+			
+		}
+	}
+}
+
+

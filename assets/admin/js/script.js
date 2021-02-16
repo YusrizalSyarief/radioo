@@ -1,15 +1,82 @@
 $(function() {
 
-    $('.tombolTambahData').on('click', function() {
-        $('#formModalLabel').html('Tambah Data Pengajuan');
+    $('.ModalTambahGaleri').on('click', function() {
+
+        $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
         $('.modal-footer button[type=submit]').html('Tambah Data');
+        $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'btn btn-secondary dropdown-toggle');
+        //$('.modal-footer button[type=submit]').attr('', 'invisible');
         
+        
+
+    });
+    $('.ModalTambahGaleriYt').on('click', function() {
+
+        $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
+        $('.modal-footer button[type=submit]').html('Tambah Data');
+        $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'btn btn-secondary dropdown-toggle');
+        //$('.modal-footer button[type=submit]').attr('', 'invisible');
+        
+        
+
+    });
+
+    $('.ModalUbahGaleri').on('click', function() {
+
+        $('.modal-header h5[id=exampleModalLabel]').html('Ubah Galeri');
+        $('.modal-footer button[type=submit]').html('Ubah Data');
+        $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'invisible');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahGaleri');
+        
+        const id = $(this).data('id');
+        
+        $.ajax({
+            url: 'https://localhost/radioo/admin/getInfoGaleri',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                $('#id').val(data.ID_GALERI);
+                $('#JudulGaleri').val(data.JUDUL);
+                $('#Kategori').val(data.ID_KATEGORI);
+                $('#DeskripsiGaleri').val(data.DESC_GALERI);
+                
+            }
+        });
+
+    });
+
+    $('.ModalUbahGaleriYt').on('click', function() {
+
+        $('.modal-header h5[id=exampleModalLabel]').html('Ubah Galeri');
+        $('.modal-footer button[type=submit]').html('Ubah Data');
+        $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'invisible');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahGaleriYt');
+        
+        const id = $(this).data('id');
+        
+        $.ajax({
+            url: 'https://localhost/radioo/admin/getInfoGaleri',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                $('#idYt').val(data.ID_GALERI);
+                $('#UrlYt').val(data.NAMA_FILE);
+                $('#JudulGaleriYt').val(data.JUDUL);
+                $('#KategoriYt').val(data.ID_KATEGORI);
+                $('#DeskripsiGaleriYt').val(data.DESC_GALERI);
+                
+            }
+        });
+
     });
 
 
     $('.ModalInfoGaleri').on('click', function() {
         
-        $('#exampleModalLabel').html('Wakakakak');
 
         const id = $(this).data('id');
         
@@ -20,76 +87,16 @@ $(function() {
             dataType: 'json',
             success: function(data) {
                 console.log(data);
+                
                 $('#JudulGaleriInfo').val(data.JUDUL);
                 $('#TanggalUploadInfo').val(data.TANGGAL);
-                $('#datepickerInfo').val(data.TGL_ACARA);
                 $('#DeskripsiGaleriInfo').val(data.DESC_GALERI);
                 
             }
         });
         
     });
-    $('.tampilModalRevisi').on('click', function() {
-        
-        $('#formModalLabelRevisi').html('Revisi Proposal');
-        $('.modal-footer button[type=submit]').html('Upload');
-        $('.modal-body form').attr('action', 'http://localhost/proyekpisi/user/revisi');
-
-        const id = $(this).data('id');
-        
-        $.ajax({
-            url: 'http://localhost/proyekpisi/user/getubah',
-            data: {id : id},
-            method: 'post',
-            dataType: 'json',
-            success: function(data) {
-                console.log(data);
-                $('#id_rev').val(data.ID_PENGAJUAN);
-            }
-        });
-        
-    });
-
-    $('.tampilModalSpj').on('click', function() {
-        $('#formModalLabelSpj').html('Upload SPJ');
-        $('.modal-footer button[type=submit]').html('Upload');
-        const id = $(this).data('id');
-        
-        $.ajax({
-            url: 'http://localhost/proyekpisi/user/getspj',
-            data: {id : id},
-            method: 'post',
-            dataType: 'json',
-            success: function(data) {
-                console.log(data);
-                $('#id_rev').val(data.ID_TPENGAJUAN);
-            }
-        });
-        
-    });
-        
-
-
-    $('.tampilModalRevisiSPJ').on('click', function() {
-        
-        $('#formModalLabelSpj').html('Revisi SPJ');
-        $('.modal-footer button[type=submit]').html('Upload');
-        $('.modal-body form').attr('action', 'http://localhost/proyekpisi/user/revisiSpj');
-
-        const id = $(this).data('id');
-        
-        $.ajax({
-            url: 'http://localhost/proyekpisi/user/getspj',
-            data: {id : id},
-            method: 'post',
-            dataType: 'json',
-            success: function(data) {
-                console.log(data);
-                $('#id_rev').val(data.ID_TPENGAJUAN);
-            }
-        });
-        
-    });
+    
 
 
 

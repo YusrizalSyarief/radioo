@@ -35,8 +35,10 @@
 <!-- btn tambah galeri -->
 <div class="row">
     <div class="form-group col-md-6">
-        <a data-toggle="modal" data-target="#formTambahGaleri" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        <a data-toggle="modal" data-target="#formTambahGaleri" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm ModalTambahGaleri"><i
         class="fas fa-fw fa-photo-video"></i> Tambah Galeri </a>
+        <a data-toggle="modal" data-target="#formKategoriGaleri" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm ModalTambahGaleri"><i
+        class="fas fa-plus"></i> Tambah Kategori Galeri </a>
     </div>
 </div>
 
@@ -69,14 +71,19 @@
                                 <a href="<?=base_url(); ?>uploads/<?= $g['NAMA_FILE']; ?>"  class="btn btn-success  ml-1 ModalInfoGaleri" data-toggle="modal"
                                         data-target="#formInfoGaleri" data-id="<?= $g['ID_GALERI']; ?>"><i class="fas fa-info-circle"></i> Detail</a>
                                 <?php if ($g['KATEGORI'] == 'youtube') : ?>
-                                    <a href="<?= $g['NAMA_FILE']; ?>"  class="btn btn-primary ml-1 ">Lihat Konten</a>
+                                    <a href="<?= $g['NAMA_FILE']; ?>"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>
                                 <?php else: ?>
-                                    <a href="<?=base_url(); ?>uploads/<?= $g['NAMA_FILE']; ?>"  class="btn btn-primary ml-1 ">Lihat Konten</a>
+                                    <a href="<?=base_url(); ?>uploads/<?= $g['NAMA_FILE']; ?>"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <button href=""  class="btn btn-warning ml-1 tampilModalRevisiSPJ" data-toggle="modal"
-                                    data-target="#formTambahGaleri" data-id=""><i class="fas fa-pen"></i> Edit</button>
+                            <?php if ($g['KATEGORI'] == 'youtube') : ?>
+                                <a href=""  class="btn btn-warning ml-1 ModalUbahGaleriYt" data-toggle="modal"
+                                    data-target="#formTambahGaleriYt" data-id="<?= $g['ID_GALERI']; ?>"><i class="fas fa-pen"></i> Edit</a>
+                            <?php else: ?>
+                                <a href=""  class="btn btn-warning ml-1 ModalUbahGaleri" data-toggle="modal"
+                                    data-target="#formTambahGaleri" data-id="<?= $g['ID_GALERI']; ?>" ><i class="fas fa-pen"></i> Edit</a>
+                            <?php endif; ?>
                                 <a href="<?=base_url(); ?>admin/hapusGaleri/<?= $g['ID_GALERI']; ?>"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>
                             </td>
                         </tr>
@@ -96,7 +103,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Info Galeri</h5>
+                <h5 class="modal-title" >Info Galeri</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
                 </button>
@@ -128,6 +135,44 @@
     </div>
 </div>
 
+<!-- Tambah Kategori Galeri -->
+<div class="modal fade" id="formKategoriGaleri" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Tambah Kategori Galeri</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="user"method="post" action="<?php echo base_url(); ?>admin/tambahKetegoriGaleri">
+            
+                    <div class="form-group">
+                    <small class="form-text text-danger">Pastikan data benar, data tidak dapat dihapus dan dirubah</small>
+                        <input type="text" class="form-control " id="NamaKategori" name="NamaKategori" placeholder="Nama Ketegori" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Kategori Yang Telah Ditambahkan</label>
+                        <select class="custom-select custom-select-sm " style="  height: 40px;" >
+                            
+                                <?php foreach($z['1'] as $kg): ?>
+                                <option value="<?= $kg['ID_KATEGORI']?>"><?= $kg['NAMA_KATEGORI']?></option>
+                                <?php endforeach; ?>
+                        </select>
+                    </div>
+                    
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Tambah Data</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 
 <!-- Tambah Galeri yt-->
@@ -142,6 +187,7 @@
             </div>
             <div class="modal-body">
             <form class="user"method="post" action="<?php echo base_url(); ?>admin/tambahGaleriYt">
+            <input type="hidden" name='idYt' id='idYt' value="1">
                 <div class="form-group ">
                 <input type="text" class="form-control " id="UrlYt" name="UrlYt" placeholder="Url Youtube">
                 </div>
@@ -170,7 +216,7 @@
                         </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#" >Youtube</a>
-                        <a class="dropdown-item" href="#" data-dismiss="modal" data-toggle="modal"  data-target="#formTambahGaleri">File</a>
+                        <a class="dropdown-item ModalTambahGaleri" href="#" data-dismiss="modal" data-toggle="modal"  data-target="#formTambahGaleri">Audio</a>
                         
                     </div>
                 <button type="submit" class="btn btn-primary">Tambah Data</button>
@@ -185,6 +231,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
+            
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Galeri</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
@@ -192,8 +239,10 @@
             </div>
             <div class="modal-body">
                 <form class="user" method="post" action="<?php echo base_url(); ?>admin/tambahGaleri" enctype="multipart/form-data">
+                <input type="hidden" name='id' id='id' value="1">
                     <div class="form-group ">
                         <label for="exampleFormControlFile1">Upload file </label>
+                        <small class="form-text text-danger">Harus berformat Mp3</small>
                         <input type="file" class="form-control-file" id="UploadFile" name="UploadFile" > 
                     </div>
                     <div class="form-group">
@@ -221,8 +270,8 @@
                                 Kategori
                             </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#" data-dismiss="modal" data-toggle="modal"  data-target="#formTambahGaleriYt">Youtube</a>
-                            <a class="dropdown-item" href="#">File</a>
+                            <a class="dropdown-item ModalTambahGaleriYt" href="#" data-dismiss="modal" data-toggle="modal"  data-target="#formTambahGaleriYt">Youtube</a>
+                            <a class="dropdown-item" href="#">Audio</a>
                             
                         </div>
                         <button type="submit" class="btn btn-primary">Tambah Data</button>
