@@ -49,22 +49,15 @@
     <!-- Footer Section End -->
 
     <!-- Script Menampilkan kategori -->
-    <script>
-
-    $('#pilihan').on('change', function(){
-    // ambil nilai
-    var nilai = $('#pilihan option:selected').attr('nilai');
-
-    // pindahkan nilai ke input
-    $('#idNilai').val(nilai);
-    });
-
-    </script>
+    
     <!-- Akhir script -->
 
     <!-- Js Plugins -->
-    <script src="<?= base_url()?>assets/user/js/jquery-3.3.1.min.js"></script>
-    <script src="<?= base_url()?>assets/user/js/bootstrap.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script> -->
+    <!-- <script src="<?= base_url()?>assets/user/js/jquery-3.3.1.min.js"></script> -->
+    <script src="<?= base_url()?>assets/admin/js/jquery.min.js"></script>
+    <script src="<?= base_url()?>assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- <script src="<?= base_url()?>assets/user/js/bootstrap.min.js"></script> -->
     <script src="<?= base_url()?>assets/user/js/jquery.magnific-popup.min.js"></script>
     <script src="<?= base_url()?>assets/user/js/jquery.nicescroll.min.js"></script>
     <script src="<?= base_url()?>assets/user/js/jquery.barfiller.js"></script>
@@ -72,11 +65,20 @@
     <script src="<?= base_url()?>assets/user/js/jquery.slicknav.js"></script>
     <script src="<?= base_url()?>assets/user/js/owl.carousel.min.js"></script>
     <script src="<?= base_url()?>assets/user/js/main.js"></script>
-    <!-- <script src="https://kit.fontawesome.com/e5e5df5e31.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/e5e5df5e31.js" crossorigin="anonymous"></script>
 
     <!-- Music Plugin -->
     <script src="<?= base_url()?>assets/user/js/jquery.jplayer.min.js"></script>
     <script src="<?= base_url()?>assets/user/js/jplayerInit.js"></script>
+
+    
+ <!-- Bootstrap core JavaScript-->
+    <script src="<?= base_url()?>assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+    
+    <!-- <script src="<?= base_url()?>assets/admin/js/script.js"></script>  -->
+
+    <script src="<?= base_url()?>assets/user/js/galeri.js"></script>
+
 </body>
 
 </html>

@@ -273,7 +273,7 @@
                             <a class="dropdown-item ModalTambahGaleriYt" href="#" data-dismiss="modal" data-toggle="modal"  data-target="#formTambahGaleriYt">Youtube</a>
                             <a class="dropdown-item" href="#">Audio</a>
                             
-                        </div>
+                    </div>
                         <button type="submit" class="btn btn-primary">Tambah Data</button>
                 </div>
             </form>
