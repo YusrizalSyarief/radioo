@@ -87,6 +87,43 @@ class Admin extends CI_Controller {
 	public function jadwal()
 	{
 		$data['title'] = 'Jadwal';
+		$config['base_url'] = 'https://localhost/radioo/admin/jadwal';
+		$config['total_rows'] = $this->AdminModel->getCountDataJadwal();
+		
+		$config['per_page'] = 5;
+
+		$config['full_tag_open'] = '<nav><ul class="pagination">';
+		$config['full_tag_close'] = ' </ul></nav>';
+
+		$config['first_link'] = 'First';
+		$config['first_tag_open'] = '<li class="page-item">';
+		$config['first_tag_close'] = '</li>';
+
+		$config['last_link'] = 'Last';
+		$config['last_tag_open'] = '<li class="page-item">';
+		$config['last_tag_close'] = '</li>';
+
+		$config['next_link'] = '&raquo';
+		$config['next_tag_open'] = '<li class="page-item">';
+		$config['next_tag_close'] = '</li>';
+
+		$config['prev_link'] = '&laquo';
+		$config['prev_tag_open'] = '<li class="page-item">';
+		$config['prev_tag_close'] = '</li>';
+
+		$config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+
+		$config['num_tag_open'] = '<li class="page-item">';
+		$config['num_tag_close'] = '</li>';
+
+		$config['attributes'] = array('class' => 'page-link');
+		
+		$this->pagination->initialize($config);
+		
+		$data['start'] = $this->uri->segment(3);
+
+		$data['z'] = $this->AdminModel->getDataJadwal($config['per_page'],$data['start']);
 		$this->load->view('tema/admin/sidebar');
       	$this->load->view('tema/admin/topbar');
       	$this->load->view('admin/jadwal', $data);
@@ -168,18 +205,50 @@ class Admin extends CI_Controller {
 			
 		}
 	}
-
+	 
+	public function tambahJadwal()
+	{
+		$this->form_validation->set_rules('Judul', 'Judul', 'trim|required');
+		$this->form_validation->set_rules('Tanggal', 'Tanggal', 'trim|required');
+		$this->form_validation->set_rules('DeskripsiJadwal', 'Deskripsi Jadwal', 'trim|required');
+	
+		
+		//$this->upload->initialize($config);
+		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Ditambahkan Pastikan Data Terisi Dengan Benar</div>');
+			redirect('admin/jadwal');	
+		} else {
+			
+				//$namaBerkas = $this->upload->data("file_name");
+				$this->AdminModel->tambahJadwal();
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Ditambahkan</div>');
+				redirect('admin/jadwal');	
+			
+		}
+	}
 	public function hapusGaleri($id)
     {
 			$this->AdminModel->hapusDataGaleri($id);
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dihapus</div>');
 			redirect('admin/galeri');
     }
+	public function hapusJadwal($id)
+    {
+			$this->AdminModel->hapusDataJadwal($id);
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dihapus</div>');
+			redirect('admin/jadwal');
+    }
 
 	public function getInfoGaleri()
    {
 	 
 		echo json_encode($this->AdminModel->getGaleriById($_POST['id']));
+
+   }
+   public function getInfoJadwal()
+   {
+	 
+		echo json_encode($this->AdminModel->getJadwalById($_POST['id']));
 
    }
    
@@ -229,6 +298,26 @@ public function ubahGaleri()
 				redirect('admin/galeri');
 			}
 					
+			
+		}
+	}
+	public function ubahJadwal()
+	{
+		$this->form_validation->set_rules('Judul', 'Judul', 'trim|required');
+		$this->form_validation->set_rules('Tanggal', 'Tanggal', 'trim|required');
+		$this->form_validation->set_rules('DeskripsiJadwal', 'Deskripsi Jadwal', 'trim|required');
+	
+		
+		//$this->upload->initialize($config);
+		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Ditambahkan Pastikan Data Terisi Dengan Benar</div>');
+			redirect('admin/jadwal');	
+		} else {
+			
+				//$namaBerkas = $this->upload->data("file_name");
+				$this->AdminModel->ubahJadwal();
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Ditambahkan</div>');
+				redirect('admin/jadwal');	
 			
 		}
 	}

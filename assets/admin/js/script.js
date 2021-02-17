@@ -21,6 +21,17 @@ $(function() {
 
     });
 
+    $('.ModalTambahJadwal').on('click', function() {
+
+        $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
+        $('.modal-footer button[type=submit]').html('Tambah Data');
+        //$('.modal-footer button[id=dropdownMenuButton]').attr('class', 'btn btn-secondary dropdown-toggle');
+        //$('.modal-footer button[type=submit]').attr('', 'invisible');
+        
+        
+
+    });
+
     $('.ModalUbahGaleri').on('click', function() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Ubah Galeri');
@@ -40,7 +51,7 @@ $(function() {
                 $('#id').val(data.ID_GALERI);
                 $('#JudulGaleri').val(data.JUDUL);
                 $('#Kategori').val(data.ID_KATEGORI);
-                $('#DeskripsiGaleri').val(data.DESC_GALERI);
+                $('#DeskripsiGaleri').val(data.DESCK_GALERI);
                 
             }
         });
@@ -67,7 +78,7 @@ $(function() {
                 $('#UrlYt').val(data.NAMA_FILE);
                 $('#JudulGaleriYt').val(data.JUDUL);
                 $('#KategoriYt').val(data.ID_KATEGORI);
-                $('#DeskripsiGaleriYt').val(data.DESC_GALERI);
+                $('#DeskripsiGaleriYt').val(data.DESCK_GALERI);
                 
             }
         });
@@ -90,14 +101,60 @@ $(function() {
                 
                 $('#JudulGaleriInfo').val(data.JUDUL);
                 $('#TanggalUploadInfo').val(data.TANGGAL);
-                $('#DeskripsiGaleriInfo').val(data.DESC_GALERI);
+                $('#DeskripsiGaleriInfo').val(data.DESCK_GALERI);
                 
             }
         });
         
     });
     
+    $('.ModalInfoJadwal').on('click', function() {
+        
 
+        const id = $(this).data('id');
+        
+        $.ajax({
+            url: 'http://localhost/radioo/admin/getInfoJadwal',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                $('#JudulInfo').val(data.JUDUL_JADWAL);
+                $('#WaktuInfo').val(data.WAKTU);
+                $('#TanggalInfo').val(data.TANGGAL_JADWAL);
+                $('#DeskripsiJadwalInfo').val(data.DESCK_JADWAL);
+                
+            }
+        });
+        
+    });
+
+    $('.ModalUbahJadwal').on('click', function() {
+
+        $('.modal-header h5[id=exampleModalLabel]').html('Ubah Jadwal');
+        $('.modal-footer button[type=submit]').html('Ubah Data');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahJadwal');
+
+        const id = $(this).data('id');
+        
+        $.ajax({
+            url: 'http://localhost/radioo/admin/getInfoJadwal',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                $('#idJadwal').val(data.ID_JADWAL);
+                $('#Judul').val(data.JUDUL_JADWAL);
+                $('#Waktu').val(data.WAKTU);
+                $('#Tanggal').val(data.TANGGAL_JADWAL);
+                $('#DeskripsiJadwal').val(data.DESCK_JADWAL);
+                
+            }
+        });
+        
+    });
 
 
 });
