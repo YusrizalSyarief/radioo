@@ -54,9 +54,9 @@
 
     <!-- Js Plugins -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script> -->
-    <!-- <script src="<?= base_url()?>assets/user/js/jquery-3.3.1.min.js"></script> -->
-    <script src="<?= base_url()?>assets/admin/js/jquery.min.js"></script>
-    <script src="<?= base_url()?>assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?= base_url()?>assets/user/js/jquery-3.3.1.min.js"></script>
+    <!-- <script src="<?= base_url()?>assets/admin/js/jquery.min.js"></script> -->
+    <!-- <script src="<?= base_url()?>assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script> -->
     <!-- <script src="<?= base_url()?>assets/user/js/bootstrap.min.js"></script> -->
     <script src="<?= base_url()?>assets/user/js/jquery.magnific-popup.min.js"></script>
     <script src="<?= base_url()?>assets/user/js/jquery.nicescroll.min.js"></script>

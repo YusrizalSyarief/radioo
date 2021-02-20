@@ -54,18 +54,15 @@
                         $queryMenu = " SELECT `user_menu`.`id_menu`, `nama_menu` FROM `user_menu` JOIN `user_access_menu` ON `user_menu`.`id_menu` = `user_access_menu`.`id_menu` WHERE `user_access_menu`.`id_role` = 1 ORDER BY `user_access_menu`.`id_menu` ASC ";
                         $menu = $this->db->query($queryMenu)->result_array();
                         ?>
-
                         <!-- Looping Role -->
                         <?php foreach ($menu as $m) : ?>
                         <!-- <?= $m['nama_menu']; ?> -->
-
                         <!-- Ambil Data Sub Menu -->
                         <?php
                         $menuId = $m['id_menu'];
                         $querySubMenu = " SELECT * FROM `user_sub_menu` JOIN `user_menu` ON `user_sub_menu`.`id_menu` = `user_menu`.`id_menu` WHERE `user_sub_menu`.`id_menu` = {$m['id_menu']} AND `user_sub_menu`.`sub_active` = 1 AND `user_sub_menu`.`id_menu` != 1 AND `user_sub_menu`.`id_menu` != 2 ";
                         $subMenu = $this->db->query($querySubMenu)->result_array();
                         ?>
-
                         <ul>
 
                         <!-- Looping Sub Menu -->
@@ -82,25 +79,23 @@
                         <?php endforeach; ?>
 
                         <li><button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalLogin">Login</button></li>
-                        </ul>
-
-                               
+                        </ul>    
                         </nav>
-                        
                     </div>
                 </div>
             </div>
-            <div id="mobile-menu-wrap"></div>
+            <div id="mobile-menu-wrap">
+            </div>
         </div>
     </header>
     <!-- Header Section End -->
 
-    <!-- Modal Rating Web -->
+    <!-- Modal Login -->
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
       <div class="modal-content">
          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Register Akun Baru</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                <span aria-hidden="true">×</span>
             </button>
@@ -108,23 +103,16 @@
          <div class="modal-body">
          <form class="user"method="post" action="">
             <div class="form-group">
-               <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username">
-            </div>
-            <div class="form-group">
                <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email">
             </div>
-               <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                     <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
-                  </div>
-               <div class="col-sm-6">
-                  <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Ulangi Password">
-               </div>
+            <div class="form-group">
+               <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
             </div>
          </div>
          <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Daftarkan</a>
+            <a class="btn btn-primary" data-toggle="modal" data-target="#modalRegister">Register</a>
+            <a class="btn btn-primary" href="<?= base_url('user/login'); ?>">Daftarkan</a>
          </div>
       </form>
       </div>
