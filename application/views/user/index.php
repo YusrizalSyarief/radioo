@@ -7,7 +7,8 @@
                         <span>Selamat datang</span>
                         <h1>Radio Suara Kota Probolinggo</h1>
                         <p>Now Streaming</p>
-                        <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-play"></i></a> <br> <br>
+                        <audio src="http://127.0.0.1:8000/;" controls></audio>
+                        <a href="<?= base_url(); ?>assets/stream/stream.m3u" class="play-btn video-popup"><i class="fa fa-play"></i></a> <br> <br>
                         <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ratingWeb">Rating Web</button>
                     </div>
                     
@@ -193,9 +194,9 @@
                 <div class="col-lg-7 p-0">
                     <div class="track__content nice-scroll">
                         <div class="single_player_container">
-                            <h4>David Guetta Miami Ultra</h4>
+                            <h4>Streaming</h4>
                             <div class="jp-jplayer jplayer" data-ancestor=".jp_container_1"
-                                data-url="<?= base_url()?>assets/user/music-files/1.mp3"></div>
+                                data-url="<?= base_url(); ?>assets/stream/stream.m3u"></div>
                             <div class="jp-audio jp_container_1" role="application" aria-label="media player">
                                 <div class="jp-gui jp-interface">
                                     <!-- Player Controls -->

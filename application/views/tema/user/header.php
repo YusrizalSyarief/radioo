@@ -17,7 +17,6 @@
       rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
     
-
     <!-- Css Styles -->
     <link rel="stylesheet" href="<?= base_url()?>assets/user/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url()?>assets/user/css/font-awesome.min.css" type="text/css">
@@ -74,10 +73,8 @@
                         <?php endif; ?>
                                 <a href="<?= base_url($sm['URL']); ?>"><?= $sm['JUDUL_SUB']; ?></a>
                                 </li>
-                            
                         <?php endforeach; ?>
                         <?php endforeach; ?>
-
                         <li><button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalLogin">Login</button></li>
                         </ul>    
                         </nav>
