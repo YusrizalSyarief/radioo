@@ -243,7 +243,7 @@
                     <div class="form-group ">
                         <label for="exampleFormControlFile1">Upload file </label>
                         <small class="form-text text-danger">Harus berformat Mp3</small>
-                        <input type="file" class="form-control-file" id="UploadFile" name="UploadFile" > 
+                        <input type="file" class="form-control-file" id="UploadFile" accept="audio/*" name="UploadFile" > 
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="Judul">

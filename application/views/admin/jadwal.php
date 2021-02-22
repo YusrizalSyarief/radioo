@@ -79,7 +79,7 @@
                             <td>
                                 <button href=""  class="btn btn-warning ml-1 ModalUbahJadwal" data-toggle="modal"
                                     data-target="#formJadwal" data-id="<?= $j['ID_JADWAL']; ?>"><i class="fas fa-pen"></i> Edit</button>
-                                <a href="<?=base_url(); ?>admin/hapusJadwal/<?= $j['ID_JADWAL']; ?>"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>
+                                <a href="<?=base_url(); ?>admin/hapusJadwal/<?= $j['ID_JADWAL']; ?>"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"><i class="fas fa-trash-alt"></i> Hapus</a>
                         
                             </td>
                         </tr>
@@ -87,6 +87,7 @@
                     </tbody>
                     
                     </table>
+                    <?= $this->pagination->create_links(); ?>
                 </div>
             </div>
         </div>

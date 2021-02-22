@@ -12,7 +12,17 @@
    </div>
 
 </div>
+<!-- pesan error -->
+<?php if ($this->session->flashdata('pesan')):?>
 
+<div class="row mt-3">
+    <div class="col-md-6">
+
+        <?= $this->session->flashdata('pesan'); ?>
+
+    </div>
+</div>
+<?php endif; ?>
 <!-- btn tambah akun -->
 <div class="row">
    <div class="form-group col-md-6">
@@ -33,24 +43,27 @@
                      <th scope="col">Nama</th>
                      <th scope="col">Role</th>
                      <th scope="col">Email</th>
-                     <th scope="col">Dibuat Pada Tanggal</th>
+                     <th scope="col">No Tlp</th>
                      <th scope="col">Aksi</th>
                   </tr>
                </thead>
-               <tbody id="tBodyTransaksi">              
+               <tbody id="tBodyTransaksi">  
+               <?php foreach($z['0'] as $u): ?>            
                   <tr>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
+                     <td><?= $u['NAMA']?></td>
+                     <td><?= $u['ROLE']?></td>
+                     <td><?= $u['EMAIL']?></td>
+                     <td><?= $u['NO_TLP']?></td>
                      <td>
-                        <button href=""  class="btn btn-warning ml-1 tampilModalRevisiSPJ" data-toggle="modal"
-                           data-target="#formGantiPassword" data-id=""><i class="fas fa-pen"></i> Ganti Password</button>
-                        <button href=""  class="btn btn-danger ml-1 tampilModalRevisiSPJ"><i class="fas fa-trash-alt"></i> Hapus</button>
+                        <button href=""  class="btn btn-warning ml-1 ModalGantiPass" data-toggle="modal"
+                           data-target="#formGantiPassword" data-id="<?= $u['ID_USER']; ?>"><i class="fas fa-pen"></i> Ganti Password</button>
+                        <a href="<?=base_url(); ?>admin/hapusUser/<?= $u['ID_USER']; ?>"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"></i> Hapus</button>
                      </td>
                   </tr>
+                  <?php endforeach; ?>
                </tbody>
                </table>
+               <?= $this->pagination->create_links(); ?>
             </div>
          </div>
       </div>
@@ -69,38 +82,46 @@
             </button>
          </div>
          <div class="modal-body">
-            <form class="user"method="post" action="">
+            <form class="user"method="post" action="<?php echo base_url(); ?>admin/tambahUser"  enctype="multipart/form-data">
                <div class="form-group ">
-                  <img src="<?= base_url()?>assets/user/img/events/event-2.jpg" alt="..." class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
-                  <label for="exampleFormControlFile1">Ubah Foto</label><br>
-                  <input type="file" class="form-control-file" id="exampleFormControlFile1" name="UbahFoto" >
+                  <img src="<?= base_url()?>assets/user/img/blank.png" alt="..."  id="outputUser" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
+                  <label for="exampleFormControlFile1">Upload Foto</label><br>
+                  <small class="form-text text-danger">Ukuran maksimal Foto 500x500 pixel, Berformat JPG atau PNG</small>
+                  <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)">
                </div>
                <div class="form-group">
-                  <input type="text" class="form-control " id="username" name="username" placeholder="Nama">
+                  <input type="text" class="form-control " id="Nama" name="Nama" placeholder="Nama">
+               </div>
+               <div class="form-group row">
+               <div class="col-sm-11 mb-3 mb-sm-0">
+                  <input type="email" class="form-control " id="Email" name="Email" placeholder="Alamat email">
+               </div>
+               <div class="col-sm-1 validasiEmail">
+               
+               </div>
                </div>
                <div class="form-group">
-                  <input type="text" class="form-control " id="email" name="email" placeholder="Alamat email">
+                  <input type="number" class="form-control " id="NoTlpUser" name="NoTlpUser" placeholder="No TLp">
                </div>
                <div class="form-group">
-                  <select class="custom-select custom-select-sm " style="  height: 40px;">
-                     <option selected>Pilih Jenis</option>
-                     <option value="1">Pocast</option>
-                     <option value="2">Two</option>
-                     <option value="3">Three</option>
+                  <select class="custom-select custom-select-sm " style="  height: 40px;" name="KategoriUser">
+                        <?php foreach($z['1'] as $u): ?>
+                           <option value="<?= $u['ID_ROLE']?>"><?= $u['ROLE']?></option>
+                        <?php endforeach; ?>
                   </select>
                </div>
                <div class="form-group row">
                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="password" class="form-control " id="password" name="password" placeholder="Password">
+                        <input type="password" class="form-control " id="Password" name="Password" placeholder="Password">
                      </div>
                   <div class="col-sm-6">
-                     <input type="password" class="form-control " id="password2" name="password2" placeholder="Ulangi Password">
+                     <input type="password" class="form-control " id="Password2" name="Password2" placeholder="Ulangi Password">
                   </div>
                </div>
             </div>
             <div class="modal-footer">
                <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
-               <a class="btn btn-primary" href="login.html">Daftarkan</a>
+               <button class="btn btn-primary" type="submit">Daftarkan</button>
             </div>
          </form>
       </div>
@@ -117,21 +138,32 @@
             </button>
          </div>
          <div class="modal-body">
-         <form class="user"method="post" action="">
+         <form class="user"method="post" action="<?php echo base_url(); ?>admin/ubahPass">
+         <input type="hidden" name='idGantiPass' id='idGantiPass' value="1">
                <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                     <input type="password" class="form-control " id="password" name="password" placeholder="Password">
+                     <input type="password" class="form-control " id="Ubahpassword" name="Ubahpassword" placeholder="Password">
                   </div>
                <div class="col-sm-6">
-                  <input type="password" class="form-control " id="password2" name="password2" placeholder="Ulangi Password">
+                  <input type="password" class="form-control " id="Ubahpassword2" name="Ubahpassword2" placeholder="Ulangi Password">
                </div>
             </div>
          </div>
          <div class="modal-footer">
             <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
-            <a class="btn btn-primary" href="login.html">Ubah Password</a>
+            <button class="btn btn-primary" type="submit">Ubah Password</button>
          </div>
       </form>
       </div>
    </div>
 </div>
+<script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('outputUser');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script>

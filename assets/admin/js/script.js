@@ -5,8 +5,10 @@ $(function() {
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
         $('.modal-footer button[type=submit]').html('Tambah Data');
         $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'btn btn-secondary dropdown-toggle');
-        //$('.modal-footer button[type=submit]').attr('', 'invisible');
-        
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahGaleri');
+        $('#JudulGaleri').val("");
+        $('#Kategori').val("");
+        $('#DeskripsiGaleri').val("");
         
 
     });
@@ -15,8 +17,11 @@ $(function() {
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
         $('.modal-footer button[type=submit]').html('Tambah Data');
         $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'btn btn-secondary dropdown-toggle');
-        //$('.modal-footer button[type=submit]').attr('', 'invisible');
-        
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahGaleriYt');
+        $('#UrlYt').val("");
+        $('#JudulGaleriYt').val("");
+        $('#KategoriYt').val("");
+        $('#DeskripsiGaleriYt').val("");
         
 
     });
@@ -25,8 +30,26 @@ $(function() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
         $('.modal-footer button[type=submit]').html('Tambah Data');
-        //$('.modal-footer button[id=dropdownMenuButton]').attr('class', 'btn btn-secondary dropdown-toggle');
-        //$('.modal-footer button[type=submit]').attr('', 'invisible');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahJadwal');
+        $('#Judul').val("");
+        $('#Waktu').val("");
+        $('#Tanggal').val("");
+        $('#DeskripsiJadwal').val("");
+        
+
+    });
+    $('.ModalTambahPenyiar').on('click', function() {
+
+        $('.modal-header h5[id=exampleModalLabel]').html('Tambah Penyiar');
+        $('.modal-footer button[type=submit]').html('Tambah Data');
+        $('#outputPenyiar').attr('src', 'https://localhost/radioo/uploads/img/blank.png');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahPenyiar');
+        $('#Nama').val("");
+        $('#NoTlp').val("");
+        $('#Biografi').val("");
+        $('#ig').val("");
+        $('#fb').val("");
+        $('#twt').val("");
         
         
 
@@ -155,6 +178,119 @@ $(function() {
         });
         
     });
+
+    $('.ModalUbahPenyiar').on('click', function() {
+        $('.modal-header h5[id=exampleModalLabel]').html('Ubah Penyiar');
+        $('.modal-footer button[type=submit]').html('Ubah Data');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahPenyiar');
+
+        const id = $(this).data('id');
+        
+        $.ajax({
+            url: 'http://localhost/radioo/admin/getInfoPenyiar',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                $('#idPenyiar').val(data.ID_PENYIAR);
+                $('#outputPenyiar').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_PENYIAR);
+                $('#Nama').val(data.NAMA_PENYIAR);
+                $('#NoTlp').val(data.NO_TLP_PENYIAR);
+                $('#Biogafi').val(data.DESCK);
+                $('#ig').val(data.INSTAGRAM);
+                $('#fb').val(data.FACEBOOK);
+                $('#twt').val(data.TWITTER);
+                
+            }
+        });
+        
+    });
+    $('.ModalInfoPenyiar').on('click', function() {
+        
+
+        const id = $(this).data('id');
+        
+        $.ajax({
+            url: 'http://localhost/radioo/admin/getInfoPenyiar',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                //https://localhost/radioo/assets/user/img/events/event-2.jpg
+                $('#FotoInfo').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_PENYIAR);
+                $('#NamaInfo').val(data.NAMA_PENYIAR);
+                $('#NoTlpInfo').val(data.NO_TLP_PENYIAR);
+                $('#BiografiInfo').val(data.DESCK);
+                $('#igInfo').html(data.INSTAGRAM);
+                $('#igInfo').attr('href', data.INSTAGRAM);
+                $('#fbInfo').html(data.FACEBOOK);
+                $('#fbInfo').attr('href',data.FACEBOOK);
+                $('#twtInfo').html(data.TWITTER);
+                $('#twtInfo').attr('href',data.TWITTER);
+                
+            }
+        });
+        
+    });
+    $('.ModalGantiPass').on('click', function() {
+        
+
+        const id = $(this).data('id');
+        
+        $.ajax({
+            url: 'http://localhost/radioo/admin/getInfoUser',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                
+                
+                $('#idGantiPass').val(data.ID_USER);
+               
+                
+            }
+        });
+        
+    });
+
+    $('#Email').keyup( function() {
+        
+
+        const nilai = $(this).val();
+        
+        let output = '';
+        
+        //console.log(output);
+        //
+        $.ajax({
+
+            url: 'http://localhost/radioo/admin/getCountUser',
+            data: {nilai : nilai},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                if (data ==! 1) {
+                    $(".validasiEmail").empty();
+                    output = '<i class="fas fa-check fa-lg"></i>'
+                    $(".validasiEmail").append(output);
+                    $('.modal-footer button[type=submit]').attr('class', 'btn btn-primary ');
+                } else {
+                    $(".validasiEmail").empty();
+                    output = '<i class="fas fa-times-circle fa-lg"></i>'
+                    $(".validasiEmail").append(output);
+                    $('.modal-footer button[type=submit]').attr('class', 'invisible')
+                }
+            }
+
+        });
+
+        
+    });
+    
 
 
 });
