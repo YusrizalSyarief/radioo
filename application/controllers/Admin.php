@@ -480,8 +480,11 @@ class Admin extends CI_Controller {
    }
    public function pencarianJadwal()
    {
-      $hasil = $this->AdminModel->cariJadwal($this->input->post('nilai'));
-      echo json_encode($hasil);
+      echo json_encode($this->AdminModel->cariJadwal($_POST['nilai']));
+   }
+   public function pencarianPenyiar()
+   {
+      echo json_encode($this->AdminModel->cariPenyiar($_POST['nilai']));
    }
    
    public function ubahGaleriYt()

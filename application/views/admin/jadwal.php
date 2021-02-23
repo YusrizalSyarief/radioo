@@ -20,7 +20,7 @@
 
 <div class="row">
     <div class="form-group col-md-6">
-        <input type="email" class="form-control" id="cariJadwal" placeholder="Ketikan disini...">
+        <input type="text" class="form-control" id="cariJadwal" placeholder="Berdasarkan Nama Acara & Penyiar">
     </div>
     <div class="form-group col-md-2">
         <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">

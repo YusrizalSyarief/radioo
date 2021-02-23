@@ -5,7 +5,10 @@ class AdminModel extends CI_Model
     public function getDataGaleri($limit, $start) 
    {
     //$x = $this->db->get('kategori_galeri')->result_array();
-    $x = $this->db->select('*')->from('galeri')->join('kategori_galeri', ' galeri.ID_KATEGORI = kategori_galeri.ID_KATEGORI ' )->limit($limit, $start)->get()->result_array();
+    $x = $this->db->select('*')->from('galeri')
+    ->join('kategori_galeri', ' galeri.ID_KATEGORI = kategori_galeri.ID_KATEGORI ' )
+    ->limit($limit, $start)
+    ->order_by('galeri.ID_GALERI', 'DESC')->get()->result_array();
     $z = array($x, $this->db->get('kategori_galeri')->result_array()) ;
       
       return $z;
@@ -91,7 +94,12 @@ class AdminModel extends CI_Model
     public function getDataJadwal($limit, $start) 
     {
      //$x = $this->db->get('kategori_galeri')->result_array();
-     $x = $this->db->select('*')->from('jadwal')->join('penyiar', ' jadwal.ID_PENYIAR = penyiar.ID_PENYIAR ' )->limit($limit, $start)->get()->result_array();
+     $x = $this->db->select('*')->from('jadwal')
+     ->join('penyiar', ' jadwal.ID_PENYIAR = penyiar.ID_PENYIAR ' )
+     ->limit($limit, $start)
+     ->order_by('jadwal.ID_JADWAL', 'DESC')
+     ->get()
+     ->result_array();
      $z = array($x, $this->db->get('penyiar')->result_array()) ;
        
        return $z;
@@ -138,9 +146,10 @@ class AdminModel extends CI_Model
     }
     public function cariJadwal($nilai)
    {
-      return $this->db->select('*')->from($this->_jadwal)
+      return $this->db->select('*')->from('jadwal')
          ->join('penyiar', 'jadwal.ID_PENYIAR = penyiar.ID_PENYIAR')
-         ->like('JUDUL_JADWAL', $nilai, 'after')
+         ->like('JUDUL_JADWAL', $nilai, 'both')
+         ->or_like('NAMA_PENYIAR', $nilai, 'both')
          ->order_by('jadwal.ID_JADWAL', 'DESC')
          ->get()->result();
    }
@@ -148,7 +157,7 @@ class AdminModel extends CI_Model
     public function getDataPenyiar($limit, $start) 
     {
      //$x = $this->db->get('kategori_galeri')->result_array();
-     $z = $this->db->get('penyiar',$limit, $start)->result_array();
+     $z = $this->db->order_by('penyiar.ID_PENYIAR', 'DESC')->get('penyiar',$limit, $start)->result_array();
      //$z = array($x, $this->db->get('penyiar')->result_array()) ;
        
        return $z;
@@ -207,12 +216,23 @@ class AdminModel extends CI_Model
         $this->db->where('ID_PENYIAR', $this->input->post('idPenyiar'));
         $this->db->update('penyiar', $data);
     }
+    public function cariPenyiar($nilai)
+   {
+      return $this->db->select('*')->from('penyiar')
+         ->like('NAMA_PENYIAR', $nilai, 'both')
+         ->or_like('NO_TLP_PENYIAR', $nilai, 'both')
+         ->order_by('penyiar.ID_PENYIAR', 'DESC')
+         ->get()->result();
+   }
 
     //admin 
     public function getDataUser($limit, $start) 
     {
      //$x = $this->db->get('kategori_galeri')->result_array();
-     $x = $this->db->select('*')->from('user')->join('user_role', ' user.ID_ROLE = user_role.ID_ROLE ' )->limit($limit, $start)->get()->result_array();
+     $x = $this->db->select('*')->from('user')
+     ->join('user_role', ' user.ID_ROLE = user_role.ID_ROLE ' )
+     ->limit($limit, $start)
+     ->order_by('user.ID_USER', 'DESC')->get()->result_array();
      $z = array($x, $this->db->get('user_role')->result_array()) ;
        
        return $z;
@@ -266,7 +286,7 @@ class AdminModel extends CI_Model
     {
      //$x = $this->db->get('kategori_galeri')->result_array();
      
-     $z = $this->db->get('buku_tamu',$limit, $start)->result_array(); ;
+     $z = $this->db->order_by('buku_tamu.ID_TAMU', 'DESC')->get('buku_tamu',$limit, $start)->result_array(); ;
        
         return $z;
     }

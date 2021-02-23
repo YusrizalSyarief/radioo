@@ -1,11 +1,11 @@
 $(function() {
-
+    req();
     $('.ModalTambahGaleri').on('click', function() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
         $('.modal-footer button[type=submit]').html('Tambah Data');
         $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'btn btn-secondary dropdown-toggle');
-        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahGaleri');
+        $('.modal-body form').attr('action', './tambahGaleri');
         $('#JudulGaleri').val("");
         $('#Kategori').val("");
         $('#DeskripsiGaleri').val("");
@@ -17,7 +17,7 @@ $(function() {
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
         $('.modal-footer button[type=submit]').html('Tambah Data');
         $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'btn btn-secondary dropdown-toggle');
-        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahGaleriYt');
+        $('.modal-body form').attr('action', './tambahGaleriYt');
         $('#UrlYt').val("");
         $('#JudulGaleriYt').val("");
         $('#KategoriYt').val("");
@@ -30,7 +30,7 @@ $(function() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
         $('.modal-footer button[type=submit]').html('Tambah Data');
-        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahJadwal');
+        $('.modal-body form').attr('action', './tambahJadwal');
         $('#Judul').val("");
         $('#Waktu').val("");
         $('#Tanggal').val("");
@@ -42,8 +42,8 @@ $(function() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Penyiar');
         $('.modal-footer button[type=submit]').html('Tambah Data');
-        $('#outputPenyiar').attr('src', 'https://localhost/radioo/uploads/img/blank.png');
-        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahPenyiar');
+        $('#outputPenyiar').attr('src', '../uploads/img/blank.png');
+        $('.modal-body form').attr('action', './tambahPenyiar');
         $('#Nama').val("");
         $('#NoTlp').val("");
         $('#Biografi').val("");
@@ -55,17 +55,116 @@ $(function() {
 
     });
 
+
+    // pencarian jadwal
+    $("#cariJadwal").keyup(function() {
+     const nilai = $(this).val();
+     $.post("./pencarianJadwal", {
+        nilai: nilai
+     }, function(data) {
+        let output = '';
+        let btnAksi = '';
+       let btnInfo = '';
+
+    
+        $("#tBodyJadwal").empty();
+        data.map((data) => {
+         
+            
+        btnAksi = `<button href=""  class="btn btn-warning ml-1 ModalUbahJadwal" id="ModalUbahJadwal" data-toggle="modal"
+            data-target="#formJadwal" data-id="${data.ID_JADWAL}"><i class="fas fa-pen"></i> Edit</button>
+          <a href="../hapusJadwal/${data.ID_JADWAL}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
+
+      btnInfo = `<button href=""  class="btn btn-success ml-1 ModalInfoJadwal" data-toggle="modal"
+           data-target="#formInfoJadwal" data-id="${data.ID_JADWAL}"><i class="fas fa-info-circle"></i> Detail</button>`
+      output += `
+                <tr>
+                   <td>${data.JUDUL_JADWAL}</td>
+                   <td>${data.NAMA_PENYIAR}</td>
+                   <td>${data.TANGGAL_JADWAL}</td>
+                   <td>${data.WAKTU}</td>
+                   <td>${btnInfo}</td>
+                   <td>${btnAksi}</td>
+               </tr>
+             `;
+         
+             console.log(output);
+
+          
+       })
+    $("#tBodyJadwal").append(output);
+    }, "json").done(function(){
+        req();
+    });
+
+});
+    
+$("#cariPenyiar").keyup(function() {
+    const nilai = $(this).val();
+    $.post("./pencarianPenyiar", {
+       nilai: nilai
+    }, function(data) {
+       let output = '';
+       let btnAksi = '';
+      let btnInfo = '';
+
+   
+       $("#tBodyPenyiar").empty();
+       data.map((data) => {
+        
+           
+       btnAksi = `<button href=""  class="btn btn-warning ml-1 ModalUbahPenyiar" data-toggle="modal"
+                    data-target="#formTambahPenyiar" data-id="${data.ID_PENYIAR}"><i class="fas fa-pen"></i> Edit</button>
+                    <a href="../hapusPenyiar/${data.ID_PENYIAR}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus penyiar ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
+
+     btnInfo = `<button href=""  class="btn btn-success ml-1 ModalInfoPenyiar" data-toggle="modal"
+     data-target="#formInfoPenyiar"  data-id="${data.ID_PENYIAR}"><i class="fas fa-info-circle"></i> Detail</button>`
+     output += `
+               <tr>
+                  <td>${data.NAMA_PENYIAR}</td>
+                  <td>${data.NO_TLP_PENYIAR}</td>
+                  <td>${btnInfo}</td>
+                  <td>
+                  Facebook = ${data.FACEBOOK}    <br>
+                  Instagram =  ${data.INSTAGRAM}   <br>
+                  Twitter = ${data.TWITTER}
+                  
+                  </td>
+                  
+                  <td>${btnAksi}</td>
+              </tr>
+            `;
+        
+            console.log(output);
+
+         
+      })
+   $("#tBodyPenyiar").append(output);
+   }, "json").done(function(){
+       req();
+   });
+
+   
+
+
+
+
+});
+
+});
+
+function req() {
     $('.ModalUbahGaleri').on('click', function() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Ubah Galeri');
         $('.modal-footer button[type=submit]').html('Ubah Data');
         $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'invisible');
-        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahGaleri');
+        $('.modal-body form').attr('action', './ubahGaleri');
         
         const id = $(this).data('id');
         
         $.ajax({
-            url: 'https://localhost/radioo/admin/getInfoGaleri',
+            url: './getInfoGaleri',
             data: {id : id},
             method: 'post',
             dataType: 'json',
@@ -86,12 +185,12 @@ $(function() {
         $('.modal-header h5[id=exampleModalLabel]').html('Ubah Galeri');
         $('.modal-footer button[type=submit]').html('Ubah Data');
         $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'invisible');
-        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahGaleriYt');
+        $('.modal-body form').attr('action', './ubahGaleriYt');
         
         const id = $(this).data('id');
         
         $.ajax({
-            url: 'https://localhost/radioo/admin/getInfoGaleri',
+            url: './getInfoGaleri',
             data: {id : id},
             method: 'post',
             dataType: 'json',
@@ -115,7 +214,7 @@ $(function() {
         const id = $(this).data('id');
         
         $.ajax({
-            url: 'http://localhost/radioo/admin/getInfoGaleri',
+            url: './getInfoGaleri',
             data: {id : id},
             method: 'post',
             dataType: 'json',
@@ -136,7 +235,7 @@ $(function() {
         const id = $(this).data('id');
         
         $.ajax({
-            url: 'http://localhost/radioo/admin/getInfoTamu',
+            url: './getInfoTamu',
             data: {id : id},
             method: 'post',
             dataType: 'json',
@@ -151,38 +250,18 @@ $(function() {
         
     });
     
-    $('.ModalInfoJadwal').on('click', function() {
-        
-
-        const id = $(this).data('id');
-        
-        $.ajax({
-            url: 'http://localhost/radioo/admin/getInfoJadwal',
-            data: {id : id},
-            method: 'post',
-            dataType: 'json',
-            success: function(data) {
-                console.log(data);
-                $('#JudulInfo').val(data.JUDUL_JADWAL);
-                $('#WaktuInfo').val(data.WAKTU);
-                $('#TanggalInfo').val(data.TANGGAL_JADWAL);
-                $('#DeskripsiJadwalInfo').val(data.DESCK_JADWAL);
-                
-            }
-        });
-        
-    });
+    
 
     $('.ModalUbahJadwal').on('click', function() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Ubah Jadwal');
         $('.modal-footer button[type=submit]').html('Ubah Data');
-        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahJadwal');
+        $('.modal-body form').attr('action', './ubahJadwal');
 
         const id = $(this).data('id');
         
         $.ajax({
-            url: 'http://localhost/radioo/admin/getInfoJadwal',
+            url: './getInfoJadwal',
             data: {id : id},
             method: 'post',
             dataType: 'json',
@@ -202,19 +281,19 @@ $(function() {
     $('.ModalUbahPenyiar').on('click', function() {
         $('.modal-header h5[id=exampleModalLabel]').html('Ubah Penyiar');
         $('.modal-footer button[type=submit]').html('Ubah Data');
-        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahPenyiar');
+        $('.modal-body form').attr('action', './ubahPenyiar');
 
         const id = $(this).data('id');
         
         $.ajax({
-            url: 'http://localhost/radioo/admin/getInfoPenyiar',
+            url: './getInfoPenyiar',
             data: {id : id},
             method: 'post',
             dataType: 'json',
             success: function(data) {
                 console.log(data);
                 $('#idPenyiar').val(data.ID_PENYIAR);
-                $('#outputPenyiar').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_PENYIAR);
+                $('#outputPenyiar').attr('src', '../uploads/img/'+data.GAMBAR_PENYIAR);
                 $('#Nama').val(data.NAMA_PENYIAR);
                 $('#NoTlp').val(data.NO_TLP_PENYIAR);
                 $('#Biogafi').val(data.DESCK);
@@ -232,14 +311,14 @@ $(function() {
         const id = $(this).data('id');
         
         $.ajax({
-            url: 'http://localhost/radioo/admin/getInfoPenyiar',
+            url: './getInfoPenyiar',
             data: {id : id},
             method: 'post',
             dataType: 'json',
             success: function(data) {
                 console.log(data);
                 //https://localhost/radioo/assets/user/img/events/event-2.jpg
-                $('#FotoInfo').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_PENYIAR);
+                $('#FotoInfo').attr('src', '../uploads/img/'+data.GAMBAR_PENYIAR);
                 $('#NamaInfo').val(data.NAMA_PENYIAR);
                 $('#NoTlpInfo').val(data.NO_TLP_PENYIAR);
                 $('#BiografiInfo').val(data.DESCK);
@@ -260,7 +339,7 @@ $(function() {
         const id = $(this).data('id');
         
         $.ajax({
-            url: 'http://localhost/radioo/admin/getInfoUser',
+            url: './getInfoUser',
             data: {id : id},
             method: 'post',
             dataType: 'json',
@@ -287,7 +366,7 @@ $(function() {
         //
         $.ajax({
 
-            url: 'http://localhost/radioo/admin/getCountUser',
+            url: './getCountUser',
             data: {nilai : nilai},
             method: 'post',
             dataType: 'json',
@@ -310,56 +389,25 @@ $(function() {
 
         
     });
-
-    // pencarian jadwal
-   $("#cariJadwal").keyup(function() {
-    const nilai = $(this).val();
-    $.ajax("http://localhost/radioo/admin/pencarianJadwal", {
-       nilai: nilai
-    }, function(data) {
-       //let output = '';
-       let btnAksi = '';
-       let btnInfo = '';
-
-    //    const monthNames = ["January", "February", "March", "April", "May", "June",
-    //       "July", "August", "September", "October", "November", "December"
-    //    ];
-
-       //$("#tBodyJadwal").empty();
-       data.map((data) => {
-         
+    $('.ModalInfoJadwal').on('click', function() {
         
-        btnAksi = `<button href=""  class="btn btn-warning ml-1 ModalUbahJadwal" data-toggle="modal"
-                     data-target="#formJadwal" data-id="${data.ID_JADWAL}"><i class="fas fa-pen"></i> Edit</button>
-                    <a href="<?=base_url(); ?>admin/hapusJadwal/${data.ID_JADWAL}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
 
-        btnInfo = `<button href=""  class="btn btn-success ml-1 ModalInfoJadwal" data-toggle="modal"
-                    data-target="#formInfoJadwal" data-id="${data.ID_JADWAL}"><i class="fas fa-info-circle"></i> Detail</button>`
-
-         
-        console.log(data);
-            //  output += `
-            //     <tr>
-            //        <td>${index+1}</td>
-            //        <td>${data.NAMA_UKM}</td>
-            //        <td>${data.NAMA_ACARA}</td>
-            //        <td>${tglAcara.getDate()} ${monthNames[tglAcara.getMonth()]} ${tglAcara.getFullYear()}</td>
-            //        <td>${tglDisetujui.getDate()} ${monthNames[tglDisetujui.getMonth()]} ${tglDisetujui.getFullYear()}</td>
-            //        ${statusRevisi}
-            //        ${statusTpengajuan}
-            //        <td>${statusTpengajuan2}</td>
-            //     </tr>
-            //  `;
-          
-       })
-       //$("#tBodyTransaksi").append(output);
-    }, "json");
-
-
-
-
- });
-    
-
-
-});
+        const id = $(this).data('id');
+        
+        $.ajax({
+            url: './getInfoJadwal',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                $('#JudulInfo').val(data.JUDUL_JADWAL);
+                $('#WaktuInfo').val(data.WAKTU);
+                $('#TanggalInfo').val(data.TANGGAL_JADWAL);
+                $('#DeskripsiJadwalInfo').val(data.DESCK_JADWAL);
+                
+            }
+        });
+        
+    });
+}

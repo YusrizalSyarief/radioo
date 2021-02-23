@@ -12,7 +12,7 @@
 <label for="exampleFormControlInput1">Cari Penyiar</label>
 <div class="row">
     <div class="form-group col-md-6">
-        <input type="email" class="form-control" id="cariTransaksi" placeholder="Ketikan disini...">
+        <input type="email" class="form-control" id="cariPenyiar" placeholder="Berdasarkan Nama & No Tlp">
     </div>
     
 </div>
