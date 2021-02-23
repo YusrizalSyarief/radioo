@@ -130,6 +130,26 @@ $(function() {
         });
         
     });
+    $('.ModalInfoTamu').on('click', function() {
+        
+
+        const id = $(this).data('id');
+        
+        $.ajax({
+            url: 'http://localhost/radioo/admin/getInfoTamu',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                
+                $('#PesanTamu').val(data.PESAN);
+                
+                
+            }
+        });
+        
+    });
     
     $('.ModalInfoJadwal').on('click', function() {
         
@@ -290,6 +310,55 @@ $(function() {
 
         
     });
+
+    // pencarian jadwal
+   $("#cariJadwal").keyup(function() {
+    const nilai = $(this).val();
+    $.ajax("http://localhost/radioo/admin/pencarianJadwal", {
+       nilai: nilai
+    }, function(data) {
+       //let output = '';
+       let btnAksi = '';
+       let btnInfo = '';
+
+    //    const monthNames = ["January", "February", "March", "April", "May", "June",
+    //       "July", "August", "September", "October", "November", "December"
+    //    ];
+
+       //$("#tBodyJadwal").empty();
+       data.map((data) => {
+         
+        
+        btnAksi = `<button href=""  class="btn btn-warning ml-1 ModalUbahJadwal" data-toggle="modal"
+                     data-target="#formJadwal" data-id="${data.ID_JADWAL}"><i class="fas fa-pen"></i> Edit</button>
+                    <a href="<?=base_url(); ?>admin/hapusJadwal/${data.ID_JADWAL}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
+
+        btnInfo = `<button href=""  class="btn btn-success ml-1 ModalInfoJadwal" data-toggle="modal"
+                    data-target="#formInfoJadwal" data-id="${data.ID_JADWAL}"><i class="fas fa-info-circle"></i> Detail</button>`
+
+         
+        console.log(data);
+            //  output += `
+            //     <tr>
+            //        <td>${index+1}</td>
+            //        <td>${data.NAMA_UKM}</td>
+            //        <td>${data.NAMA_ACARA}</td>
+            //        <td>${tglAcara.getDate()} ${monthNames[tglAcara.getMonth()]} ${tglAcara.getFullYear()}</td>
+            //        <td>${tglDisetujui.getDate()} ${monthNames[tglDisetujui.getMonth()]} ${tglDisetujui.getFullYear()}</td>
+            //        ${statusRevisi}
+            //        ${statusTpengajuan}
+            //        <td>${statusTpengajuan2}</td>
+            //     </tr>
+            //  `;
+          
+       })
+       //$("#tBodyTransaksi").append(output);
+    }, "json");
+
+
+
+
+ });
     
 
 

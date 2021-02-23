@@ -20,7 +20,7 @@
 
 <div class="row">
     <div class="form-group col-md-6">
-        <input type="email" class="form-control" id="cariTransaksi" placeholder="Ketikan disini...">
+        <input type="email" class="form-control" id="cariJadwal" placeholder="Ketikan disini...">
     </div>
     <div class="form-group col-md-2">
         <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">
@@ -64,7 +64,7 @@
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody id="tBodyTransaksi">     
+                    <tbody id="tBodyJadwal">     
                     <?php foreach($z['0'] as $j): ?>         
                         <tr>
                             <td><?= $j['JUDUL_JADWAL']?></td>

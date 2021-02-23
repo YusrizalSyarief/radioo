@@ -47,7 +47,7 @@
                      <th scope="col">Aksi</th>
                   </tr>
                </thead>
-               <tbody id="tBodyTransaksi">  
+               <tbody id="tBodyUser">  
                <?php foreach($z['0'] as $u): ?>            
                   <tr>
                      <td><?= $u['NAMA']?></td>

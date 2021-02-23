@@ -37,7 +37,7 @@
     <div class="form-group col-md-6">
         <a data-toggle="modal" data-target="#formTambahGaleri" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm ModalTambahGaleri"><i
         class="fas fa-fw fa-photo-video"></i> Tambah Galeri </a>
-        <a data-toggle="modal" data-target="#formKategoriGaleri" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm ModalTambahGaleri"><i
+        <a data-toggle="modal" data-target="#formKategoriGaleri" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm "><i
         class="fas fa-plus"></i> Tambah Kategori Galeri </a>
     </div>
 </div>
@@ -59,7 +59,7 @@
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody id="tBodyTransaksi">  
+                    <tbody id="tBodyGaleri">  
                     <?php foreach($z['0'] as $g): ?>            
                         <tr>
                             <td><?= $g['JUDUL']?></td>
@@ -146,7 +146,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="user"method="post" action="<?php echo base_url(); ?>admin/tambahKetegoriGaleri">
+                <form class="user" method="post" action="<?php echo base_url(); ?>admin/tambahKetegoriGaleri">
             
                     <div class="form-group">
                     <small class="form-text text-danger">Pastikan data benar, data tidak dapat dihapus dan dirubah</small>

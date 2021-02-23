@@ -136,6 +136,14 @@ class AdminModel extends CI_Model
         $this->db->where('ID_JADWAL', $this->input->post('idJadwal'));
         $this->db->update('jadwal', $data);
     }
+    public function cariJadwal($nilai)
+   {
+      return $this->db->select('*')->from($this->_jadwal)
+         ->join('penyiar', 'jadwal.ID_PENYIAR = penyiar.ID_PENYIAR')
+         ->like('JUDUL_JADWAL', $nilai, 'after')
+         ->order_by('jadwal.ID_JADWAL', 'DESC')
+         ->get()->result();
+   }
     //penyiar
     public function getDataPenyiar($limit, $start) 
     {
@@ -253,5 +261,22 @@ class AdminModel extends CI_Model
         $this->db->update('user', $data);
     }
 
+    //buku tamu
+    public function getDataTamu($limit, $start) 
+    {
+     //$x = $this->db->get('kategori_galeri')->result_array();
+     
+     $z = $this->db->get('buku_tamu',$limit, $start)->result_array(); ;
+       
+        return $z;
+    }
+    public function getCountDataTamu() 
+   {
+      return $this->db->get('buku_tamu')->num_rows();
+   }
+   public function getTamuById($id)
+   {
+       return $this->db->get_where('buku_tamu', ['ID_TAMU' => $id])->row_array();
+   }
 }
 

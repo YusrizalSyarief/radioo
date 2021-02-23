@@ -163,6 +163,52 @@ class Admin extends CI_Controller {
       	$this->load->view('tema/admin/footer');
    
 	}
+	public function buku_tamu()
+	{
+		$data['title'] = 'Buku_Tamu';
+		$config['base_url'] = 'https://localhost/radioo/admin/buku_tamu';
+		$config['total_rows'] = $this->AdminModel->getCountDataTamu();
+		
+		$config['per_page'] = 5;
+
+		$config['full_tag_open'] = '<nav><ul class="pagination">';
+		$config['full_tag_close'] = ' </ul></nav>';
+
+		$config['first_link'] = 'First';
+		$config['first_tag_open'] = '<li class="page-item">';
+		$config['first_tag_close'] = '</li>';
+
+		$config['last_link'] = 'Last';
+		$config['last_tag_open'] = '<li class="page-item">';
+		$config['last_tag_close'] = '</li>';
+
+		$config['next_link'] = '&raquo';
+		$config['next_tag_open'] = '<li class="page-item">';
+		$config['next_tag_close'] = '</li>';
+
+		$config['prev_link'] = '&laquo';
+		$config['prev_tag_open'] = '<li class="page-item">';
+		$config['prev_tag_close'] = '</li>';
+
+		$config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+
+		$config['num_tag_open'] = '<li class="page-item">';
+		$config['num_tag_close'] = '</li>';
+
+		$config['attributes'] = array('class' => 'page-link');
+		
+		$this->pagination->initialize($config);
+		
+		$data['start'] = $this->uri->segment(3);
+
+		$data['z'] = $this->AdminModel->getDataTamu($config['per_page'],$data['start']);
+		$this->load->view('tema/admin/sidebar');
+      	$this->load->view('tema/admin/topbar');
+      	$this->load->view('admin/buku_tamu', $data);
+      	$this->load->view('tema/admin/footer');
+   
+	}
 
 	public function user()
 	{
@@ -408,6 +454,12 @@ class Admin extends CI_Controller {
 		echo json_encode($this->AdminModel->getJadwalById($_POST['id']));
 
    }
+   public function getInfoTamu()
+   {
+	 
+		echo json_encode($this->AdminModel->getTamuById($_POST['id']));
+
+   }
    public function getInfoPenyiar()
    {
 	 
@@ -425,6 +477,11 @@ class Admin extends CI_Controller {
 	 
 		echo json_encode($this->AdminModel->getUserById($_POST['id']));
 		
+   }
+   public function pencarianJadwal()
+   {
+      $hasil = $this->AdminModel->cariJadwal($this->input->post('nilai'));
+      echo json_encode($hasil);
    }
    
    public function ubahGaleriYt()

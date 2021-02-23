@@ -50,7 +50,7 @@
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody id="tBodyTransaksi">  
+                    <tbody id="tBodyPenyiar">  
                     <?php foreach($z as $p): ?>              
                         <tr>
                             <td><?= $p['NAMA_PENYIAR']?></td>
