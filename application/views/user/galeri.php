@@ -55,10 +55,12 @@
             </div>
         </div>   
         <div class="row">
+
             <?php 
                 foreach ($format as $f) :
                 $kate = $f['KATEGORI'];
                 $id = $f['ID_KATEGORI'];
+                
                     switch(isset($kate)){
                         case $kate == 'youtube' :
                             // if($id)
@@ -82,7 +84,7 @@
                 <div class="track__content nice-scroll">
                     <div class="single_player_container">
                         <h4><?= $f['JUDUL']; ?></h4>
-                        <div class="jp-jplayer jplayer" data-ancestor=".jp_container_1" data-url="<?= base_url(); ?>assets/user/music-files/<?= $f['NAMA_FILE']; ?>"></div>
+                        <div class="jp-jplayer jplayer" data-ancestor=".jp_container_1" data-url="<?= base_url(); ?>uploads/<?= $f['NAMA_FILE']; ?>"></div>
                             <div class="jp-audio jp_container_1" role="application" aria-label="media player">
                                 <div class="jp-gui jp-interface">
                                     <!-- Player Controls -->

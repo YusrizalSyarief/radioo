@@ -34,7 +34,6 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
     <!-- Header Section Begin -->
     <header class="header">
         <div class="container">
@@ -47,7 +46,6 @@
                 <div class="col-lg-10 col-md-10">
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
-                        
                         <!-- Ambil Role -->
                         <?php 
                         $queryMenu = " SELECT `user_menu`.`id_menu`, `nama_menu` FROM `user_menu` JOIN `user_access_menu` ON `user_menu`.`id_menu` = `user_access_menu`.`id_menu` WHERE `user_access_menu`.`id_role` = 1 ORDER BY `user_access_menu`.`id_menu` ASC ";
@@ -55,7 +53,6 @@
                         ?>
                         <!-- Looping Role -->
                         <?php foreach ($menu as $m) : ?>
-                        <!-- <?= $m['nama_menu']; ?> -->
                         <!-- Ambil Data Sub Menu -->
                         <?php
                         $menuId = $m['id_menu'];
@@ -63,19 +60,20 @@
                         $subMenu = $this->db->query($querySubMenu)->result_array();
                         ?>
                         <ul>
-
                         <!-- Looping Sub Menu -->
                         <?php foreach($subMenu as $sm) : ?>
                         <?php if($title == $sm['JUDUL_SUB']) : ?>
-                                <li class="active">
+                            <li class="active">
                         <?php else : ?>
-                                <li>
+                            <li>
                         <?php endif; ?>
                                 <a href="<?= base_url($sm['URL']); ?>"><?= $sm['JUDUL_SUB']; ?></a>
-                                </li>
+                            </li>
                         <?php endforeach; ?>
                         <?php endforeach; ?>
-                        <li><button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalLogin">Login</button></li>
+                            <li>
+                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalLogin">Login</button>
+                            </li>
                         </ul>    
                         </nav>
                     </div>
@@ -86,32 +84,3 @@
         </div>
     </header>
     <!-- Header Section End -->
-
-    <!-- Modal Login -->
-<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">×</span>
-            </button>
-         </div>
-         <div class="modal-body">
-         <form class="user"method="post" action="">
-            <div class="form-group">
-               <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email">
-            </div>
-            <div class="form-group">
-               <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
-            </div>
-         </div>
-         <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" data-toggle="modal" data-target="#modalRegister">Register</a>
-            <a class="btn btn-primary" href="<?= base_url('user/login'); ?>">Daftarkan</a>
-         </div>
-      </form>
-      </div>
-   </div>
-</div>
