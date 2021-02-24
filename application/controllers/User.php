@@ -104,10 +104,20 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('passwordR2', 'Password2', 'required|trim|matches[passwordR]');
 	
 		if ($this->form_validation->run() == false) {
-			redirect('user');
+			echo "kesalahan";
+			// redirect('user');
 		} else {
-			$this->UserModel->register();
-			redirect('user');	
+			// $token = base64_encode(random_bytes(32));
+			// $user_token = [
+			// 	'EMAIL_TOKEN' =>  htmlspecialchars($this->input->post('EmailU', true)),
+			// 	'TOKEN' => $token
+
+			// ];
+
+			// $this->UserModel->register();
+			// $this->db->insert('user_token', $user_token);
+			$this->sendEmail();
+			// redirect('user');	
 		}
 	}
 
@@ -122,5 +132,71 @@ class User extends CI_Controller {
 
 		
 	}
+
+	public function sendEmail(){
+		$config = Array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'radiosuarakotaprobolinggo@gmail.com',
+			'smtp_pass' => 'suarakotajos',
+			'mailtype'  => 'html', 
+			'charset'   => 'utf-8',
+			'newline'   => "\r\n"
+		);
+		$this->load->library('email', $config);
+		$this->email->initialize($config);
+		$this->email->from('radiosuarakotaprobolinggo@gmail.com', 'RSKP TEAM');
+		$this->email->to($this->input->post('EmailU'));
+
+		$this->email->subject('Account Verification');
+		$this->email->message('Hello World');
+
+		// if($type == 'verify') {
+		// 	$this->email->subject('Account Verification');
+		// 	$this->email->message('Click this link to verify your account : <a href="'. base_url() .'auth/verify?email=' . $this->input->post('email') .'&token=' . urlencode($token) . '">Activate</a>');
+		
+		// } else{
+
+		// }
+
+		if($this->email->send()){
+			return true;
+		} else{
+			echo $this->email->printing_debugger();
+			die;
+		}
+
+	}
+
+	// public function verify(){
+		
+	// 	$email = $this->input->get('email');
+	// 	$token = $this->input->get('token');
+		
+	// 	$user = $this->db->get_where('user', ['email' => $email])->row_array();
+		
+	// 	if ($user) {
+	// 		$user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+	// 		if ($user_token) {
+	// 			$this->db->set('is_active', 1);
+	// 			$this->db->where('email', $email);
+	// 			$this->db->update('user');
+				
+	// 			$this->db->delete('user_token', ['email' => $email]);
+				
+	// 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">'. $email .' has been activated! please login.</div>');
+	// 			redirect('auth');
+	// 		} else {
+	// 			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Account Activation Failed!! Wrong Token</div>');
+	// 			redirect('auth');
+	
+	// 		}
+	// 	} else {
+	// 		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Account Activation Failed!! Wrong Email</div>');
+	// 		redirect('auth');
+	// 	}
+		
+	// }
 
 }

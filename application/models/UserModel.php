@@ -72,14 +72,16 @@ class UserModel extends CI_Model
 
     // Mengambil Menu User
     public function getMenu(){
-    $querySubMenu = " SELECT * FROM `user_sub_menu` JOIN `user_menu` ON `user_sub_menu`.`id_menu` = `user_menu`.`id_menu` WHERE `user_sub_menu`.`id_menu` = {$m['id_menu']} AND `user_sub_menu`.`sub_active` = 1 AND `user_sub_menu`.`id_menu` != 1 AND `user_sub_menu`.`id_menu` != 2 ";
-    $menu = $this->db->query($querySubMenu)->result_array();
+        
+        $querySubMenu = " SELECT * FROM `user_sub_menu` JOIN `user_menu` ON `user_sub_menu`.`id_menu` = `user_menu`.`id_menu` WHERE `user_sub_menu`.`id_menu` = {$m['id_menu']} AND `user_sub_menu`.`sub_active` = 1 AND `user_sub_menu`.`id_menu` != 1 AND `user_sub_menu`.`id_menu` != 2 ";
+        $menu = $this->db->query($querySubMenu)->result_array();
 
-    return $menu;
+        return $menu;
     }
 
     // Register Akun User
     public function register(){
+
         $data = [
             
             'ID_ROLE' => 3,
@@ -94,7 +96,20 @@ class UserModel extends CI_Model
 
         var_dump($data);
         $this->db->insert('user', $data);
-        }
+    }
+
+    // public function getToken(){
+
+    //     $token = base64_encode(random_bytes(32));
+	// 		$user_token = [
+	// 			'EMAIL_TOKEN' =>  htmlspecialchars($this->input->post('EmailU', true)),
+	// 			'TOKEN' => $token
+
+	// 		];
+
+    //     $this->db->insert('user_token', $user_token);
+    //     return $token;
+    // }
 
 }
 ?>
