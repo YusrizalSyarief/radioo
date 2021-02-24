@@ -31,7 +31,7 @@ class AdminModel extends CI_Model
          ];
         $this->db->insert('galeri', $data);
     }
-    public function tambahGaleriYt()
+    public function tambahGaleriYt($namaBerkas)
     {
         $data = [
             
@@ -42,6 +42,7 @@ class AdminModel extends CI_Model
             "DESCK_GALERI" => $this->input->post('DeskripsiGaleriYt', true),
             //"TGL_REV_PENGAJUAN" => date("y-m-d"),
             "TANGGAL" => date("y-m-d"),
+            "GAMBAR_GALERI" => $namaBerkas,
          ];
         $this->db->insert('galeri', $data);
     }
@@ -117,7 +118,7 @@ class AdminModel extends CI_Model
    {
       return $this->db->get('jadwal')->num_rows();
    }
-    public function tambahJadwal()
+    public function tambahJadwal($namaBerkas)
     {
         $data = [
             
@@ -126,6 +127,7 @@ class AdminModel extends CI_Model
             "TANGGAL_JADWAL" => $this->input->post('Tanggal', true),
             "WAKTU" => $this->input->post('Waktu', true),
             "DESCK_JADWAL" => $this->input->post('DeskripsiJadwal', true),
+            "GAMBAR_JADWAL" => $namaBerkas,
             
          ];
         $this->db->insert('jadwal', $data);

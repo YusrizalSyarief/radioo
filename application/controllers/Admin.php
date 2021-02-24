@@ -274,8 +274,10 @@ class Admin extends CI_Controller {
 			redirect('admin/galeri');	
 		} else {
 			if(!$this->upload->do_upload('UploadFile')) {
-				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Periksa Lagi File Upload</div>');
-				redirect('admin/galeri');	
+				 $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Periksa Lagi File Upload</div>');
+				 redirect('admin/galeri');	
+				// $error = array('error' => $this->upload->display_errors());
+            	// print_r($error);
 			} else {
 				$namaBerkas = $this->upload->data("file_name");
 				$this->AdminModel->tambahGaleri($namaBerkas);
@@ -288,6 +290,14 @@ class Admin extends CI_Controller {
 	}
 	public function tambahGaleriYt()
 	{
+		$config['upload_path']          = './uploads/img';
+		$config['allowed_types']        = 'png|jpg';
+		$config['max_size']             = 10000;
+		$config['max_width'] 			= '1920';
+		$config['max_height'] 			= '1080';
+		
+
+		$this->upload->initialize($config);
 		$this->form_validation->set_rules('UrlYt', 'Url Youtube', 'trim|required');
 		$this->form_validation->set_rules('JudulGaleriYt', 'Judul Galeri', 'trim|required');
 		$this->form_validation->set_rules('DeskripsiGaleriYt', 'Deskripsi Galeri', 'trim|required');
@@ -298,11 +308,19 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Ditambahkan Pastikan Data Terisi Dengan Benar</div>');
 			redirect('admin/galeri');	
 		} else {
-			
-				//$namaBerkas = $this->upload->data("file_name");
-				$this->AdminModel->tambahGaleriYt();
-				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Ditambahkan</div>');
+			if(!$this->upload->do_upload('UploadFoto')) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Periksa Lagi File Upload</div>');
 				redirect('admin/galeri');	
+			//    $error = array('error' => $this->upload->display_errors());
+			//    print_r($error);
+		   } else {
+			   $namaBerkas = $this->upload->data("file_name");
+			   $this->AdminModel->tambahGaleriYt($namaBerkas);
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Ditambahkan</div>');
+				redirect('admin/galeri');
+		   }
+				//$namaBerkas = $this->upload->data("file_name");
+					
 			
 		}
 	}
@@ -328,6 +346,14 @@ class Admin extends CI_Controller {
 	 
 	public function tambahJadwal()
 	{
+		$config['upload_path']          = './uploads/img';
+		$config['allowed_types']        = 'png|jpg';
+		$config['max_size']             = 10000;
+		$config['max_width'] 			= '1000';
+		$config['max_height'] 			= '1000';
+		
+
+		$this->upload->initialize($config);
 		$this->form_validation->set_rules('Judul', 'Judul', 'trim|required');
 		$this->form_validation->set_rules('Tanggal', 'Tanggal', 'trim|required');
 		$this->form_validation->set_rules('DeskripsiJadwal', 'Deskripsi Jadwal', 'trim|required');
@@ -338,11 +364,20 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Ditambahkan Pastikan Data Terisi Dengan Benar</div>');
 			redirect('admin/jadwal');	
 		} else {
-			
-				//$namaBerkas = $this->upload->data("file_name");
-				$this->AdminModel->tambahJadwal();
+
+			if(!$this->upload->do_upload('UploadFoto')) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Periksa Lagi File Upload</div>');
+				redirect('admin/jadwal');	
+			//    $error = array('error' => $this->upload->display_errors());
+			//    print_r($error);
+		   } else {
+			   $namaBerkas = $this->upload->data("file_name");
+				$this->AdminModel->tambahJadwal($namaBerkas);
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Ditambahkan</div>');
 				redirect('admin/jadwal');	
+		   }
+			
+				
 			
 		}
 	}
@@ -351,8 +386,8 @@ class Admin extends CI_Controller {
 		$config['upload_path']          = './uploads/img';
 		$config['allowed_types']        = 'png|jpg';
 		$config['max_size']             = 10000;
-		$config['max_width'] 			= '500';
-		$config['max_height'] 			= '500';
+		$config['max_width'] 			= '1000';
+		$config['max_height'] 			= '1000';
 		
 
 		$this->upload->initialize($config);
@@ -384,8 +419,8 @@ class Admin extends CI_Controller {
 		$config['upload_path']          = './uploads/img';
 		$config['allowed_types']        = 'png|jpg';
 		$config['max_size']             = 10000;
-		$config['max_width'] 			= '500';
-		$config['max_height'] 			= '500';
+		$config['max_width'] 			= '1000';
+		$config['max_height'] 			= '1000';
 		
 
 		$this->upload->initialize($config);

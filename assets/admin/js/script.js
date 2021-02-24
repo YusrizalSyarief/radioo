@@ -28,7 +28,7 @@ $(function() {
 
     $('.ModalTambahJadwal').on('click', function() {
 
-        $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
+        $('.modal-header h5[id=exampleModalLabel]').html('Tambah Jadwal');
         $('.modal-footer button[type=submit]').html('Tambah Data');
         $('.modal-body form').attr('action', './tambahJadwal');
         $('#Judul').val("");

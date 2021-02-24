@@ -86,22 +86,22 @@
                <div class="form-group ">
                   <img src="<?= base_url()?>assets/user/img/blank.png" alt="..."  id="outputUser" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
                   <label for="exampleFormControlFile1">Upload Foto</label><br>
-                  <small class="form-text text-danger">Ukuran maksimal Foto 500x500 pixel, Berformat JPG atau PNG</small>
-                  <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)">
+                  <small class="form-text text-danger">Ukuran maksimal Foto 1000x1000 pixel potrait, Berformat JPG atau PNG</small>
+                  <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" required>
                </div>
                <div class="form-group">
-                  <input type="text" class="form-control " id="Nama" name="Nama" placeholder="Nama">
+                  <input type="text" class="form-control " id="Nama" name="Nama" placeholder="Nama" required>
                </div>
                <div class="form-group row">
                <div class="col-sm-11 mb-3 mb-sm-0">
-                  <input type="email" class="form-control " id="Email" name="Email" placeholder="Alamat email">
+                  <input type="email" class="form-control " id="Email" name="Email" placeholder="Alamat email" required>
                </div>
                <div class="col-sm-1 validasiEmail">
                
                </div>
                </div>
                <div class="form-group">
-                  <input type="number" class="form-control " id="NoTlpUser" name="NoTlpUser" placeholder="No TLp">
+                  <input type="number" class="form-control " id="NoTlpUser" name="NoTlpUser" placeholder="No TLp" required>
                </div>
                <div class="form-group">
                   <select class="custom-select custom-select-sm " style="  height: 40px;" name="KategoriUser">
@@ -112,10 +112,10 @@
                </div>
                <div class="form-group row">
                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="password" class="form-control " id="Password" name="Password" placeholder="Password">
+                        <input type="password" class="form-control " id="Password" name="Password" placeholder="Password" required>
                      </div>
                   <div class="col-sm-6">
-                     <input type="password" class="form-control " id="Password2" name="Password2" placeholder="Ulangi Password">
+                     <input type="password" class="form-control " id="Password2" name="Password2" placeholder="Ulangi Password" required>
                   </div>
                </div>
             </div>
@@ -142,10 +142,10 @@
          <input type="hidden" name='idGantiPass' id='idGantiPass' value="1">
                <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                     <input type="password" class="form-control " id="Ubahpassword" name="Ubahpassword" placeholder="Password">
+                     <input type="password" class="form-control " id="Ubahpassword" name="Ubahpassword" placeholder="Password" required>
                   </div>
                <div class="col-sm-6">
-                  <input type="password" class="form-control " id="Ubahpassword2" name="Ubahpassword2" placeholder="Ulangi Password">
+                  <input type="password" class="form-control " id="Ubahpassword2" name="Ubahpassword2" placeholder="Ulangi Password" required>
                </div>
             </div>
          </div>
