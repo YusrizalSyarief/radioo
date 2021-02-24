@@ -184,22 +184,22 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="user" method="post" action="<?php echo base_url(); ?>admin/tambahGaleriYt">
+                <form class="user" method="post" action="<?php echo base_url(); ?>admin/tambahGaleriYt" enctype="multipart/form-data">
                 <input type="hidden" name='idYt' id='idYt' value="1">
                 <div class="form-group ">
-                    <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputGaleri" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
+                    <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputGaleri" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 400px; height: 200px;"><br>
                     <label for="exampleFormControlFile1">Upload Foto</label><br>    
-                    <small class="form-text text-danger">Ukuran maksimal Foto 500x500 pixel, Berformat JPG atau PNG</small>
-                    <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" >
+                    <small class="form-text text-danger">Ukuran maksimal Foto 1920x1080 pixel landscape, Berformat JPG atau PNG</small>
+                    <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" required>
                 </div>
                 <div class="form-group ">
-                    <input type="text" class="form-control " id="UrlYt" name="UrlYt" placeholder="Url Youtube">
+                    <input type="text" class="form-control " id="UrlYt" name="UrlYt" placeholder="Url Youtube" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control " id="JudulGaleriYt" name="JudulGaleriYt" placeholder="Judul">
+                    <input type="text" class="form-control " id="JudulGaleriYt" name="JudulGaleriYt" placeholder="Judul" required>
                 </div>
                 <div class="form-group">
-                    <select class="custom-select custom-select-sm " style="  height: 40px;" name="KategoriYt">
+                    <select class="custom-select custom-select-sm " style="  height: 40px;" name="KategoriYt" required>
                         <?php foreach($z['1'] as $kg): ?>
                         <option value="<?= $kg['ID_KATEGORI']?>"><?= $kg['NAMA_KATEGORI']?></option>
                         <?php endforeach; ?>
@@ -207,7 +207,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Deskripsi Galeri</label>
-                    <textarea class="form-control " id="DeskripsiGaleriYt" name="DeskripsiGaleriYt" rows="5" ></textarea>
+                    <textarea class="form-control " id="DeskripsiGaleriYt" name="DeskripsiGaleriYt" rows="5"  required></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -245,10 +245,10 @@
                 <div class="form-group ">
                     <label for="exampleFormControlFile1">Upload file </label>
                     <small class="form-text text-danger">Harus berformat Mp3</small>
-                    <input type="file" class="form-control-file" id="UploadFile" accept="audio/*" name="UploadFile" > 
+                    <input type="file" class="form-control-file" id="UploadFile" accept="audio/*" name="UploadFile" required> 
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="Judul">
+                    <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="Judul" required>
                 </div>
                 <div class="form-group">
                     <select class="custom-select custom-select-sm " style="  height: 40px;" name="Kategori">
@@ -259,7 +259,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Deskripsi Galeri</label>
-                    <textarea class="form-control " id="DeskripsiGaleri" name="DeskripsiGaleri" rows="3" ></textarea>
+                    <textarea class="form-control " id="DeskripsiGaleri" name="DeskripsiGaleri" rows="3" required></textarea>
                 </div>
             </div>
             <div class="modal-footer">  

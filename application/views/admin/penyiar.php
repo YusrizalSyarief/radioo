@@ -140,18 +140,27 @@
             <div class="form-group ">
                 <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputPenyiar" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
                 <label for="exampleFormControlFile1">Upload Foto</label><br>    
-                <small class="form-text text-danger">Ukuran maksimal Foto 500x500 pixel, Berformat JPG atau PNG</small>
-                <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" >
+                <small class="form-text text-danger">Ukuran maksimal Foto 1000x1000 pixel potrait, Berformat JPG atau PNG</small>
+                <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control " id="Nama" name="Nama" placeholder="Nama" >
+                <input type="text" class="form-control " id="Nama" name="Nama" placeholder="Nama" required>
+                <div class="invalid-feedback">
+                    Harus terisi.
+                 </div>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control " id="NoTlp" name="NoTlp" placeholder="No Tlp" >
+                <input type="number" class="form-control " id="NoTlp" name="NoTlp" placeholder="No Tlp" required>
+                <div class="invalid-feedback">
+                    Harus terisi.
+                </div>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Biografi</label>
-                    <textarea class="form-control " id="Biogafi" name="Biografi" rows="3" ></textarea>
+                    <textarea class="form-control " id="Biogafi" name="Biografi" rows="3" required></textarea>
+                <div class="invalid-feedback">
+                    Harus terisi.
+                </div>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control " id="fb" name="fb" placeholder="Url Facebook" ><br>
