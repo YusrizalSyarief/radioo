@@ -108,7 +108,7 @@
             </div>
             <div class="form-group">
                     <label for="exampleFormControlTextarea1">Biografi</label>
-                        <textarea class="form-control " id="BiografiInfo" name="BiografiInfo" rows="3" readonly></textarea>
+                        <textarea class="form-control " id="BiografiInfo" name="BiografiInfo" rows="10" readonly></textarea>
             </div>
             <div class="form-group">
                 <i class="fab fa-facebook" style="font-size: 50px"></i><a href="" id="fbInfo" target="_blank"></a><br>
@@ -137,30 +137,25 @@
             <div class="modal-body">
             <form class="user"method="post" action="<?php echo base_url(); ?>admin/tambahPenyiar" enctype="multipart/form-data">
             <input type="hidden" name='idPenyiar' id='idPenyiar' value="1">
+            <input type="hidden" name='GambarPenyiar' id='GambarPenyiar' value="1">
             <div class="form-group ">
                 <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputPenyiar" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
                 <label for="exampleFormControlFile1">Upload Foto</label><br>    
                 <small class="form-text text-danger">Ukuran maksimal Foto 1000x1000 pixel potrait, Berformat JPG atau PNG</small>
-                <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" required>
+                <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" >
             </div>
             <div class="form-group">
-                <input type="text" class="form-control " id="Nama" name="Nama" placeholder="Nama" required>
-                <div class="invalid-feedback">
-                    Harus terisi.
-                 </div>
+                <input type="text" class="form-control " id="Nama" name="Nama" placeholder="Nama" maxlength="128" required>
+                
             </div>
             <div class="form-group">
-                <input type="number" class="form-control " id="NoTlp" name="NoTlp" placeholder="No Tlp" required>
-                <div class="invalid-feedback">
-                    Harus terisi.
-                </div>
+                <input type="number" class="form-control " id="NoTlp" name="NoTlp" placeholder="No Tlp" maxlength="15" required>
+                
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Biografi</label>
-                    <textarea class="form-control " id="Biogafi" name="Biografi" rows="3" required></textarea>
-                <div class="invalid-feedback">
-                    Harus terisi.
-                </div>
+                    <textarea class="form-control " id="Biogafi" name="Biografi" rows="10" required></textarea>
+                
             </div>
             <div class="form-group">
                 <input type="text" class="form-control " id="fb" name="fb" placeholder="Url Facebook" ><br>

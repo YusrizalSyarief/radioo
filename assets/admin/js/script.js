@@ -218,6 +218,7 @@ function req() {
             success: function(data) {
                 console.log(data);
                 $('#id').val(data.ID_GALERI);
+                $('#AudioGaleri').val(data.NAMA_FILE);
                 $('#JudulGaleri').val(data.JUDUL);
                 $('#Kategori').val(data.ID_KATEGORI);
                 $('#DeskripsiGaleri').val(data.DESCK_GALERI);
@@ -244,6 +245,8 @@ function req() {
             success: function(data) {
                 console.log(data);
                 $('#idYt').val(data.ID_GALERI);
+                $('#outputGaleri').attr('src', '../uploads/img/'+data.GAMBAR_GALERI);
+                $('#GambarYt').val(data.GAMBAR_GALERI);
                 $('#UrlYt').val(data.NAMA_FILE);
                 $('#JudulGaleriYt').val(data.JUDUL);
                 $('#KategoriYt').val(data.ID_KATEGORI);
@@ -255,9 +258,9 @@ function req() {
     });
 
 
-    $('.ModalInfoGaleri').on('click', function() {
+    $('.ModalInfoGaleriYt').on('click', function() {
         
-
+        $('.thumnail').show();
         const id = $(this).data('id');
         
         $.ajax({
@@ -267,7 +270,28 @@ function req() {
             dataType: 'json',
             success: function(data) {
                 console.log(data);
+                $('#outputGaleriInfo').attr('src', '../uploads/img/'+data.GAMBAR_GALERI);
+                $('#JudulGaleriInfo').val(data.JUDUL);
+                $('#TanggalUploadInfo').val(data.TANGGAL);
+                $('#DeskripsiGaleriInfo').val(data.DESCK_GALERI);
                 
+            }
+        });
+        
+    });
+    $('.ModalInfoGaleri').on('click', function() {
+        
+        $('.thumnail').hide();
+        const id = $(this).data('id');
+        
+        $.ajax({
+            url: './getInfoGaleri',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+
                 $('#JudulGaleriInfo').val(data.JUDUL);
                 $('#TanggalUploadInfo').val(data.TANGGAL);
                 $('#DeskripsiGaleriInfo').val(data.DESCK_GALERI);
@@ -315,7 +339,8 @@ function req() {
             success: function(data) {
                 console.log(data);
                 $('#idJadwal').val(data.ID_JADWAL);
-                $('#outputPenyiar').attr('src', '../uploads/img/'+data.GAMBAR_PENYIAR);
+                $('#outputJadwal').attr('src', '../uploads/img/'+data.GAMBAR_JADWAL);
+                $('#GambarJadwal').val(data.GAMBAR_JADWAL);
                 $('#Judul').val(data.JUDUL_JADWAL);
                 $('#Waktu').val(data.WAKTU);
                 $('#Tanggal').val(data.TANGGAL_JADWAL);
@@ -330,6 +355,7 @@ function req() {
         $('.modal-header h5[id=exampleModalLabel]').html('Ubah Penyiar');
         $('.modal-footer button[type=submit]').html('Ubah Data');
         $('.modal-body form').attr('action', './ubahPenyiar');
+        
 
         const id = $(this).data('id');
         
@@ -342,6 +368,7 @@ function req() {
                 console.log(data);
                 $('#idPenyiar').val(data.ID_PENYIAR);
                 $('#outputPenyiar').attr('src', '../uploads/img/'+data.GAMBAR_PENYIAR);
+                $('#GambarPenyiar').val(data.GAMBAR_PENYIAR);
                 $('#Nama').val(data.NAMA_PENYIAR);
                 $('#NoTlp').val(data.NO_TLP_PENYIAR);
                 $('#Biogafi').val(data.DESCK);

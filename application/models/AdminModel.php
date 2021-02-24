@@ -64,13 +64,14 @@ class AdminModel extends CI_Model
        return $this->db->get_where('galeri', ['ID_GALERI' => $id])->row_array();
    }
 
-   public function ubahGaleriYt()
+   public function ubahGaleriYt($namaBerkas)
     {
         $data = [
             "ID_KATEGORI" => $this->input->post('KategoriYt', true),
             "NAMA_FILE" => $this->input->post('UrlYt', true),
             "JUDUL" => $this->input->post('JudulGaleriYt', true),
             "DESCK_GALERI" => $this->input->post('DeskripsiGaleriYt', true),
+            "GAMBAR_GALERI" => $namaBerkas,
             
         ];
 
@@ -141,7 +142,7 @@ class AdminModel extends CI_Model
    {
        return $this->db->get_where('jadwal', ['ID_JADWAL' => $id])->row_array();
    }
-   public function ubahJadwal()
+   public function ubahJadwal($namaBerkas)
     {
         $data = [
             "ID_PENYIAR" => $this->input->post('Penyiar', true),
@@ -149,6 +150,7 @@ class AdminModel extends CI_Model
             "TANGGAL_JADWAL" => $this->input->post('Tanggal', true),
             "WAKTU" => $this->input->post('Waktu', true),
             "DESCK_JADWAL" => $this->input->post('DeskripsiJadwal', true),
+            "GAMBAR_JADWAL" => $namaBerkas,
             
         ];
 

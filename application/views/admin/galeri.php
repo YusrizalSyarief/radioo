@@ -68,11 +68,14 @@
                             <td><?= $g['NAMA_FILE']?></td>
                             
                             <td>
-                                <a href="<?=base_url(); ?>uploads/<?= $g['NAMA_FILE']; ?>"  class="btn btn-success  ml-1 ModalInfoGaleri" data-toggle="modal"
-                                        data-target="#formInfoGaleri" data-id="<?= $g['ID_GALERI']; ?>"><i class="fas fa-info-circle"></i> Detail</a>
+                                
                                 <?php if ($g['KATEGORI'] == 'youtube') : ?>
+                                    <a href="<?=base_url(); ?>uploads/<?= $g['NAMA_FILE']; ?>"  class="btn btn-success  ml-1 ModalInfoGaleriYt" data-toggle="modal"
+                                        data-target="#formInfoGaleri" data-id="<?= $g['ID_GALERI']; ?>"><i class="fas fa-info-circle"></i> Detail</a>
                                     <a href="<?= $g['NAMA_FILE']; ?>"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>
                                 <?php else: ?>
+                                    <a href="<?=base_url(); ?>uploads/<?= $g['NAMA_FILE']; ?>"  class="btn btn-success  ml-1 ModalInfoGaleri" data-toggle="modal"
+                                        data-target="#formInfoGaleri" data-id="<?= $g['ID_GALERI']; ?>"><i class="fas fa-info-circle"></i> Detail</a>
                                     <a href="<?=base_url(); ?>uploads/<?= $g['NAMA_FILE']; ?>"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>
                                 <?php endif; ?>
                             </td>
@@ -110,7 +113,10 @@
             </div>
             <div class="modal-body">
                 <form class="user"method="post" action="">
-            
+                    <div class="form-group thumnail">
+                        <h6>Thumnail</h6>
+                        <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputGaleriInfo" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 400px; height: 200px;">
+                    </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Judul</label>
                         <input type="text" class="form-control " id="JudulGaleriInfo" name="JudulGaleriInfo" placeholder="" readonly>
@@ -123,7 +129,7 @@
                     
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Deskripsi Galeri</label>
-                        <textarea class="form-control " id="DeskripsiGaleriInfo" name="DeskripsiGaleriInfo" rows="3" readonly></textarea>
+                        <textarea class="form-control " id="DeskripsiGaleriInfo" name="DeskripsiGaleriInfo" rows="10" readonly></textarea>
                     </div>
                     
             </div>
@@ -186,11 +192,12 @@
             <div class="modal-body">
                 <form class="user" method="post" action="<?php echo base_url(); ?>admin/tambahGaleriYt" enctype="multipart/form-data">
                 <input type="hidden" name='idYt' id='idYt' value="1">
+                <input type="hidden" name='GambarYt' id='GambarYt' value="1">
                 <div class="form-group ">
                     <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputGaleri" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 400px; height: 200px;"><br>
                     <label for="exampleFormControlFile1">Upload Foto</label><br>    
                     <small class="form-text text-danger">Ukuran maksimal Foto 1920x1080 pixel landscape, Berformat JPG atau PNG</small>
-                    <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" required>
+                    <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" >
                 </div>
                 <div class="form-group ">
                     <input type="text" class="form-control " id="UrlYt" name="UrlYt" placeholder="Url Youtube" required>
@@ -207,7 +214,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Deskripsi Galeri</label>
-                    <textarea class="form-control " id="DeskripsiGaleriYt" name="DeskripsiGaleriYt" rows="5"  required></textarea>
+                    <textarea class="form-control " id="DeskripsiGaleriYt" name="DeskripsiGaleriYt" rows="10"  required></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -241,11 +248,11 @@
             <div class="modal-body">
                 <form class="user" method="post" action="<?php echo base_url(); ?>admin/tambahGaleri" enctype="multipart/form-data">
                 <input type="hidden" name='id' id='id' value="1">
-    
+                <input type="hidden" name='AudioGaleri' id='AudioGaleri' value="1">
                 <div class="form-group ">
                     <label for="exampleFormControlFile1">Upload file </label>
                     <small class="form-text text-danger">Harus berformat Mp3</small>
-                    <input type="file" class="form-control-file" id="UploadFile" accept="audio/*" name="UploadFile" required> 
+                    <input type="file" class="form-control-file" id="UploadFile" accept="audio/*" name="UploadFile" > 
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="Judul" required>
@@ -259,7 +266,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Deskripsi Galeri</label>
-                    <textarea class="form-control " id="DeskripsiGaleri" name="DeskripsiGaleri" rows="3" required></textarea>
+                    <textarea class="form-control " id="DeskripsiGaleri" name="DeskripsiGaleri" rows="10" required></textarea>
                 </div>
             </div>
             <div class="modal-footer">  
