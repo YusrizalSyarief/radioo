@@ -108,6 +108,12 @@
             <div class="modal-body">
                 <form class="user"method="post" action="<?php echo base_url(); ?>admin/tambahJadwal">
                 <input type="hidden" name='idJadwal' id='idJadwal' value="1">
+                    <div class="form-group ">
+                        <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputJadwal" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
+                        <label for="exampleFormControlFile1">Upload Foto</label><br>    
+                        <small class="form-text text-danger">Ukuran maksimal Foto 500x500 pixel, Berformat JPG atau PNG</small>
+                        <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" >
+                    </div>
                     <div class="form-group">
                         <input type="text" class="form-control " id="Judul" name="Judul" placeholder="Judul">
                     </div>
@@ -182,3 +188,13 @@
         </div>
     </div>
 </div>
+<script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('outputJadwal');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script>

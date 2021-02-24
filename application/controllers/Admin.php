@@ -486,6 +486,10 @@ class Admin extends CI_Controller {
    {
       echo json_encode($this->AdminModel->cariPenyiar($_POST['nilai']));
    }
+   public function pencarianGaleri()
+   {
+      echo json_encode($this->AdminModel->cariGaleri($_POST['nilai']));
+   }
    
    public function ubahGaleriYt()
    {
