@@ -268,16 +268,14 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('DeskripsiGaleri', 'Deskripsi Galeri', 'trim|required');
 	
 		
-		//$this->upload->initialize($config);
+		//$this-gitgit>upload->initialize($config);
 		if ($this->form_validation->run() == false) {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Ditambahkan Pastikan Data Terisi Dengan Benar</div>');
 			redirect('admin/galeri');	
 		} else {
 			if(!$this->upload->do_upload('UploadFile')) {
-				// $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Periksa Lagi File Upload</div>');
-				// redirect('admin/galeri');	
-				$error = array('error' => $this->upload->display_errors());
-            	print_r($error);
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Periksa Lagi File Upload</div>');
+				redirect('admin/galeri');	
 			} else {
 				$namaBerkas = $this->upload->data("file_name");
 				$this->AdminModel->tambahGaleri($namaBerkas);
@@ -487,10 +485,6 @@ class Admin extends CI_Controller {
    public function pencarianPenyiar()
    {
       echo json_encode($this->AdminModel->cariPenyiar($_POST['nilai']));
-   }
-   public function pencarianGaleri()
-   {
-      echo json_encode($this->AdminModel->cariGaleri($_POST['nilai']));
    }
    
    public function ubahGaleriYt()

@@ -17,3 +17,8 @@ Command penting git
 <koneksi akun github>
 1. git config --global user.name "(username)"
 2. git config --global user.email "(email)"
+
+<koneksi smtp>
+1. copy file "curl-ca-bundle.crt"
+2. pindahkan ke directori C:\xampp\apache\bin
+3. selesai
