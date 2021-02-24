@@ -241,12 +241,7 @@
             <div class="modal-body">
                 <form class="user" method="post" action="<?php echo base_url(); ?>admin/tambahGaleri" enctype="multipart/form-data">
                 <input type="hidden" name='id' id='id' value="1">
-                <div class="form-group ">
-                    <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputGaleri" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
-                    <label for="exampleFormControlFile1">Upload Foto</label><br>    
-                    <small class="form-text text-danger">Ukuran maksimal Foto 500x500 pixel, Berformat JPG atau PNG</small>
-                    <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" >
-                </div>
+    
                 <div class="form-group ">
                     <label for="exampleFormControlFile1">Upload file </label>
                     <small class="form-text text-danger">Harus berformat Mp3</small>
