@@ -624,8 +624,8 @@ public function ubahGaleri()
 		$config['upload_path']          = './uploads/img';
 		$config['allowed_types']        = 'png|jpg';
 		$config['max_size']             = 10000;
-		$config['max_width'] 			= '500';
-		$config['max_height'] 			= '500';
+		$config['max_width'] 			= '1000';
+		$config['max_height'] 			= '1000';
 		
 
 		$this->upload->initialize($config);
