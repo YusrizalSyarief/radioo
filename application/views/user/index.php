@@ -172,9 +172,9 @@
                 <?php foreach($audio as $a) : ?>
                     <div class="single_player_container">
                         <h4><?= $a['JUDUL']; ?></h4>
-                        <div class="jp-jplayer jplayer" data-ancestor=".jp_container_1" data-url="<?= base_url('uploads/'); ?><?=$a['NAMA_FILE']; ?>">
+                        <div class="jp-jplayer jplayer" data-ancestor=".jp_container_<?=$a['ID_GALERI']; ?>" id="jp_jplayer_<?=$a['ID_GALERI']; ?>" data-url="<?= base_url('uploads/'); ?><?=$a['NAMA_FILE']; ?>">
                         </div>
-                        <div class="jp-audio jp_container_1" role="application" aria-label="media player">
+                        <div class="jp-audio jp_container_<?=$a['ID_GALERI']; ?>" role="application" aria-label="media player">
                             <div class="jp-gui jp-interface">
                                 <!-- Player Controls -->
                                 <div class="player_controls_box">
