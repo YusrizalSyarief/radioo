@@ -106,7 +106,16 @@ class User extends CI_Controller {
 		if ($this->form_validation->run() == false) {
 			redirect('user');
 		} else {
+			$token = base64_encode(random_bytes(32));
+			$user_token = [
+				'EMAIL_TOKEN' =>  htmlspecialchars($this->input->post('EmailU', true)),
+				'TOKEN' => $token
+
+			];
+
 			$this->UserModel->register();
+			$this->db->insert('user_token', $user_token);
+			$this->sendEmail($token, 'verify');
 			redirect('user');	
 		}
 	}
@@ -120,6 +129,68 @@ class User extends CI_Controller {
 	public function ratingAcara()
 	{
 
+		
+	}
+
+	public function sendEmail($token, $type){
+		$config = Array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'radiosuarakotaprobolinggo@gmail.com',
+			'smtp_pass' => 'suarakotajos',
+			'mailtype'  => 'html', 
+			'charset'   => 'utf-8',
+			'newline'   => "\r\n"
+		);
+		$this->load->library('email', $config);
+		$this->email->initialize($config);
+		$this->email->from('radiosuarakotaprobolinggo@gmail.com', 'RSKP TEAM');
+		$this->email->to($this->input->post('EmailU'));
+
+		$this->email->subject('Account Verification');
+
+		if($type == 'verify') {
+			$this->email->subject('Account Verification');
+			$this->email->message('Click this link to verify your account : <a href="'. base_url() .'user/verify?email=' . $this->input->post('EmailU') .'&token=' . urlencode($token) . '">Activate</a>');
+		
+		} else{
+
+		}
+
+		if($this->email->send()){
+			return true;
+		} else{
+			echo $this->email->printing_debugger();
+			die;
+		}
+
+	}
+
+	public function verify(){
+		
+		$email = $this->input->get('email');
+		$token = $this->input->get('token');
+		$subToken = substr($token,0,32);
+		
+		$user = $this->db->get_where('user', ['EMAIL' => $email])->row_array();
+		
+		if ($user) {
+			$user_token = $this->db->get_where('user_token', ['TOKEN' => $subToken])->row_array();
+			if ($user_token) {
+				$this->db->set('USER_ACTIVE', 1);
+				$this->db->where('EMAIL', $email);
+				$this->db->update('user');
+				
+				$this->db->delete('user_token', ['EMAIL_TOKEN' => $email]);
+				
+				echo "verifikasi berhasil";
+			} else {
+				echo "Gagal verifikasi token";
+			}
+		} else {
+			echo "Gagal verifikasi email";
+		}
 		
 	}
 
