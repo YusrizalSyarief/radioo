@@ -8,12 +8,12 @@
                             <li>
                                 <i class="fa fa-phone"></i>
                                 <p>No Telp.</p>
-                                <h6>1-677-124-44227</h6>
+                                <h6>0813-3646-0000</h6>
                             </li>
                             <li>
                                 <i class="fa fa-envelope"></i>
                                 <p>Email</p>
-                                <h6>DJ.Music@gmail.com</h6>
+                                <h6>suarakota@yahoo.co.id</h6>
                             </li>
                         </ul>
                     </div>
@@ -22,20 +22,20 @@
                     <div class="footer__social">
                         <h2>Sosial Media</h2>
                         <div class="footer__social__links">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-youtube"></i></a>
+                            <a href="https://www.facebook.com/pg/suarakotaprobolinggo/about/?ref=page_internal"><i class="fa fa-facebook" style="color: #4000D9"></i></a>
+                            <a href="https://twitter.com/suarakotaprob"><i class="fa fa-twitter" style="color: #7DFAE0;"></i></a>
+                            <a href="https://www.instagram.com/suarakota1017fm/"><i class="fa fa-instagram" style="color: #ED7796;"></i></a>
+                            <a href="https://www.youtube.com/channel/UC-O2M5ys3FpHskzTUp8WGKQ"><i class="fa fa-youtube" style="color: #F0130B;"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1 col-md-6">
                     <div class="footer__newslatter">
-                        <h4>Stay With me</h4>
+                        <!-- <h4>Stay With me</h4>
                         <form action="#">
                             <input type="text" placeholder="Email">
                             <button type="submit"><i class="fa fa-send-o"></i></button>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </div>

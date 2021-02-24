@@ -260,7 +260,7 @@ class Admin extends CI_Controller {
 	{
 		$config['upload_path']          = './uploads/';
 		$config['allowed_types']        = 'mp3';
-		$config['max_size']             = 0;
+		$config['max_size']             = '0';
 
 		$this->upload->initialize($config);
 		//$this->form_validation->set_rules('UrlYt', 'Url Youtube', 'trim|required');
@@ -274,8 +274,10 @@ class Admin extends CI_Controller {
 			redirect('admin/galeri');	
 		} else {
 			if(!$this->upload->do_upload('UploadFile')) {
-				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Periksa Lagi File Upload</div>');
-				redirect('admin/galeri');	
+				// $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Periksa Lagi File Upload</div>');
+				// redirect('admin/galeri');	
+				$error = array('error' => $this->upload->display_errors());
+            	print_r($error);
 			} else {
 				$namaBerkas = $this->upload->data("file_name");
 				$this->AdminModel->tambahGaleri($namaBerkas);
