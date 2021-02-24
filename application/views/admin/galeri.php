@@ -12,7 +12,7 @@
 <label for="exampleFormControlInput1">Cari Galeri</label>
     <div class="row">
         <div class="form-group col-md-6">
-            <input type="email" class="form-control" id="cariTransaksi" placeholder="Ketikan disini...">
+            <input type="email" class="form-control" id="cariGaleri" placeholder="Ketikan disini...">
         </div>
         <div class="form-group col-md-2">
             <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">
@@ -173,8 +173,6 @@
     </div>
 </div>
 
-
-
 <!-- Tambah Galeri yt-->
 <div class="modal fade" id="formTambahGaleriYt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -186,100 +184,117 @@
                 </button>
             </div>
             <div class="modal-body">
-            <form class="user"method="post" action="<?php echo base_url(); ?>admin/tambahGaleriYt">
-            <input type="hidden" name='idYt' id='idYt' value="1">
+                <form class="user" method="post" action="<?php echo base_url(); ?>admin/tambahGaleriYt">
+                <input type="hidden" name='idYt' id='idYt' value="1">
                 <div class="form-group ">
-                <input type="text" class="form-control " id="UrlYt" name="UrlYt" placeholder="Url Youtube">
+                    <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputGaleri" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
+                    <label for="exampleFormControlFile1">Upload Foto</label><br>    
+                    <small class="form-text text-danger">Ukuran maksimal Foto 500x500 pixel, Berformat JPG atau PNG</small>
+                    <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" >
+                </div>
+                <div class="form-group ">
+                    <input type="text" class="form-control " id="UrlYt" name="UrlYt" placeholder="Url Youtube">
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control " id="JudulGaleriYt" name="JudulGaleriYt" placeholder="Judul">
                 </div>
                 <div class="form-group">
                     <select class="custom-select custom-select-sm " style="  height: 40px;" name="KategoriYt">
-                        
-                            <?php foreach($z['1'] as $kg): ?>
-                            <option value="<?= $kg['ID_KATEGORI']?>"><?= $kg['NAMA_KATEGORI']?></option>
-                            <?php endforeach; ?>
+                        <?php foreach($z['1'] as $kg): ?>
+                        <option value="<?= $kg['ID_KATEGORI']?>"><?= $kg['NAMA_KATEGORI']?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Deskripsi Galeri</label>
-                    <textarea class="form-control " id="DeskripsiGaleriYt" name="DeskripsiGaleriYt" rows="3" ></textarea>
+                    <textarea class="form-control " id="DeskripsiGaleriYt" name="DeskripsiGaleriYt" rows="5" ></textarea>
                 </div>
             </div>
             <div class="modal-footer">
-                    
                 <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
                 <div class="dropdown float-left">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Kategori
-                        </button>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Kategori
+                    </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#" >Youtube</a>
-                        <a class="dropdown-item ModalTambahGaleri" href="#" data-dismiss="modal" data-toggle="modal"  data-target="#formTambahGaleri">Audio</a>
-                        
+                        <a class="dropdown-item ModalTambahGaleri" href="#" data-dismiss="modal" data-toggle="modal" data-target="#formTambahGaleri">Audio</a>
                     </div>
-                <button type="submit" class="btn btn-primary">Tambah Data</button>
+                    <button type="submit" class="btn btn-primary">Tambah Data</button>
+                </div>
             </div>
         </form>
         </div>
     </div>
 </div>
-</div>
+
 <!-- Tambah Galeri -->
 <div class="modal fade" id="formTambahGaleri" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Galeri</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
+                    <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form class="user" method="post" action="<?php echo base_url(); ?>admin/tambahGaleri" enctype="multipart/form-data">
                 <input type="hidden" name='id' id='id' value="1">
-                    <div class="form-group ">
-                        <label for="exampleFormControlFile1">Upload file </label>
-                        <small class="form-text text-danger">Harus berformat Mp3</small>
-                        <input type="file" class="form-control-file" id="UploadFile"  name="UploadFile" > 
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="Judul">
-                    </div>
-                    <div class="form-group">
-                    
-                        <select class="custom-select custom-select-sm " style="  height: 40px;" name="Kategori">
-                            <?php foreach($z['1'] as $kg): ?>
-                            <option value="<?= $kg['ID_KATEGORI']?>"><?= $kg['NAMA_KATEGORI']?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Deskripsi Galeri</label>
-                        <textarea class="form-control " id="DeskripsiGaleri" name="DeskripsiGaleri" rows="3" ></textarea>
-                    </div>
+                <div class="form-group ">
+                    <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputGaleri" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
+                    <label for="exampleFormControlFile1">Upload Foto</label><br>    
+                    <small class="form-text text-danger">Ukuran maksimal Foto 500x500 pixel, Berformat JPG atau PNG</small>
+                    <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" >
                 </div>
-                <div class="modal-footer">
-                        
-                    <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
-                    <div class="dropdown float-left">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Kategori
-                            </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item ModalTambahGaleriYt" href="#" data-dismiss="modal" data-toggle="modal"  data-target="#formTambahGaleriYt">Youtube</a>
-                            <a class="dropdown-item" href="#">Audio</a>
-                            
-                    </div>
-                        <button type="submit" class="btn btn-primary">Tambah Data</button>
+                <div class="form-group ">
+                    <label for="exampleFormControlFile1">Upload file </label>
+                    <small class="form-text text-danger">Harus berformat Mp3</small>
+                    <input type="file" class="form-control-file" id="UploadFile" accept="audio/*" name="UploadFile" > 
                 </div>
+                <div class="form-group">
+                    <input type="text" class="form-control " id="JudulGaleri" name="JudulGaleri" placeholder="Judul">
+                </div>
+                <div class="form-group">
+                    <select class="custom-select custom-select-sm " style="  height: 40px;" name="Kategori">
+                        <?php foreach($z['1'] as $kg): ?>
+                        <option value="<?= $kg['ID_KATEGORI']?>"><?= $kg['NAMA_KATEGORI']?></option>
+                        <?php endforeach; ?>
+                    </select>    
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Deskripsi Galeri</label>
+                    <textarea class="form-control " id="DeskripsiGaleri" name="DeskripsiGaleri" rows="3" ></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">  
+                <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
+                <div class="dropdown float-left">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Kategori
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item ModalTambahGaleriYt" href="#" data-dismiss="modal" data-toggle="modal" data-target="#formTambahGaleriYt">Youtube</a>
+                        <a class="dropdown-item" href="#">Audio</a>    
+                    </div>
+                    <button type="submit" class="btn btn-primary">Tambah Data</button>
+                </div>
+            </div>    
             </form>
         </div>
     </div>
 </div>
-</div>
+
+<script>
+var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+    var output = document.getElementById('outputGaleri');
+    output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+};
+</script>
+
 
 

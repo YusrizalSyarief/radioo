@@ -98,7 +98,59 @@ $(function() {
     });
 
 });
-    
+//pencarian galeri
+$("#cariGaleri").keyup(function() {
+    const nilai = $(this).val();
+    $.post("./pencarianGaleri", {
+       nilai: nilai
+    }, function(data) {
+       let output = '';
+       let btnAksi = '';
+      let btnInfo = '';
+
+   
+       $("#tBodyGaleri").empty();
+       data.map((data) => {
+        
+        if (data.KATEGORI === 'youtube') {
+            btnAksi = `<a href=""  class="btn btn-warning ml-1 ModalUbahGaleriYt" data-toggle="modal"
+                        data-target="#formTambahGaleriYt" data-id="${data.ID_GALERI}"><i class="fas fa-pen"></i> Edit</a>
+                        <a href="../hapusGaleri/${data.ID_GALERI}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`;
+            btnInfo = `<a href=""  class="btn btn-success  ml-1 ModalInfoGaleri" data-toggle="modal"
+                        data-target="#formInfoGaleri" data-id="${data.ID_GALERI}"><i class="fas fa-info-circle"></i> Detail</a>
+                        <a href="${data.NAMA_FILE}"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>`
+         } else {
+            btnAksi = `<a href=""  class="btn btn-warning ml-1 ModalUbahGaleri" data-toggle="modal"
+                        data-target="#formTambahGaleri" data-id="${data.ID_GALERI}" ><i class="fas fa-pen"></i> Edit</a>
+                        <a href="../hapusGaleri/${data.ID_GALERI}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`;
+            btnInfo = `<a href=""  class="btn btn-success  ml-1 ModalInfoGaleri" data-toggle="modal"
+                        data-target="#formInfoGaleri" data-id="${data.ID_GALERI}"><i class="fas fa-info-circle"></i> Detail</a>
+                        <a href="../uploads/${data.NAMA_FILE}"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>`; 
+         }
+      
+        output += `
+               <tr>
+                  <td>${data.JUDUL}</td>
+                  <td>${data.TANGGAL}</td>
+                  <td>${data.NAMA_KATEGORI}</td>
+                  <td>${data.NAMA_FILE}</td>
+                  <td>${btnInfo}</td>
+                  <td>${btnAksi}</td>
+              </tr>
+            `;
+        
+            console.log(output); 
+
+         
+      })
+   $("#tBodyGaleri").append(output);
+   }, "json").done(function(){
+       req();
+   });
+
+});
+
+//pencarian penyiar 
 $("#cariPenyiar").keyup(function() {
     const nilai = $(this).val();
     $.post("./pencarianPenyiar", {
@@ -143,11 +195,6 @@ $("#cariPenyiar").keyup(function() {
    }, "json").done(function(){
        req();
    });
-
-   
-
-
-
 
 });
 
@@ -268,6 +315,7 @@ function req() {
             success: function(data) {
                 console.log(data);
                 $('#idJadwal').val(data.ID_JADWAL);
+                $('#outputPenyiar').attr('src', '../uploads/img/'+data.GAMBAR_PENYIAR);
                 $('#Judul').val(data.JUDUL_JADWAL);
                 $('#Waktu').val(data.WAKTU);
                 $('#Tanggal').val(data.TANGGAL_JADWAL);

@@ -90,6 +90,15 @@ class AdminModel extends CI_Model
         $this->db->where('ID_GALERI', $this->input->post('id'));
         $this->db->update('galeri', $data);
     }
+    public function cariGaleri($nilai)
+   {
+      return $this->db->select('*')->from('galeri')
+         ->join('kategori_galeri', 'galeri.ID_KATEGORI = kategori_galeri.ID_KATEGORI')
+         ->like('JUDUL', $nilai, 'both')
+         ->or_like('NAMA_KATEGORI', $nilai, 'both')
+         ->order_by('galeri.ID_GALERI', 'DESC')
+         ->get()->result();
+   }
     // jadwal 
     public function getDataJadwal($limit, $start) 
     {
