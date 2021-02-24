@@ -4,32 +4,32 @@
 </section>
 
 <!-- Breadcrumb Begin -->
-    <div class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__links">
-                        <a href="<?= base_url('user'); ?>"><i class="fa fa-home"></i> Beranda</a>
-                        <span>Galeri RSKP</span> 
-                    </div>
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="<?= base_url('user'); ?>"><i class="fa fa-home"></i> Beranda</a>
+                    <span>Galeri RSKP</span> 
                 </div>
-                <div class="col-lg-8">
-					<br>
-                    <!-- Looping Kategori dalam Select -->
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Pilih Format File
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item coba1" id="coba1" href="#">Youtube</a>
-                            <a class="dropdown-item coba" id="coba" href="#">Audio</a>
-                        </div>
-                        <input type="text" id="fie" name="fie" value="" hidden>
+            </div>
+            <div class="col-lg-8">
+				<br>
+                <!-- Looping Kategori dalam Select -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Pilih Format File
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item coba1" id="coba1" href="#">Youtube</a>
+                        <a class="dropdown-item coba" id="coba" href="#">Audio</a>
                     </div>
+                    <input type="text" id="fie" name="fie" value="" hidden>
                 </div>
             </div>
         </div>
     </div>
+</div>
 <!-- Breadcrumb End -->
 
 <!-- Discography Section Begin -->
@@ -55,12 +55,11 @@
             </div>
         </div>   
         <div class="row">
-
             <?php 
                 foreach ($format as $f) :
                 $kate = $f['KATEGORI'];
                 $id = $f['ID_KATEGORI'];
-                
+    
                     switch(isset($kate)){
                         case $kate == 'youtube' :
                             // if($id)

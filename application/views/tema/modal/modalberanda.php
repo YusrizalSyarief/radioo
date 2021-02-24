@@ -14,8 +14,9 @@
          <form class="user"method="post" action="">
             <div class="form-group">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-thumbs-up"></i></a> 
-                <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-down"></i></a>
+                    <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-thumbs-up fa-2x"></i></a>
+                    &emsp; 
+                    <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-down fa-2x"></i></a>
                 </div>
             </div>
             <div class="form-group">
@@ -50,8 +51,9 @@
                 <form class="user"method="post" action="<?= base_url('user/ratingWeb'); ?>">
                 <div class="form-group">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-up"></i></a> 
-                        <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-down"></i></a>
+                        <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-up fa-2x"></i></a> 
+                        &emsp;
+                        <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-down fa-2x"></i></a>
                         <br>
                     </div>
                 </div>
@@ -87,8 +89,9 @@
                 <form class="user"method="post" action="<?= base_url('user/ratingAcara'); ?>">
                 <div class="form-group">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-up"></i></a> 
-                        <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-down"></i></a>
+                        <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-up fa-2x"></i></a> 
+                        &emsp;
+                        <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-down fa-2x"></i></a>
                         <br>
                     </div>
                 </div>

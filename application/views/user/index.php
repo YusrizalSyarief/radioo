@@ -82,17 +82,17 @@
                     <?php switch($p['NAMA_PENYIAR'] != null){
                             case $p['INSTAGRAM'] != null :
                     ?>
-                    <a href="<?= base_url($p['INSTAGRAM']); ?>"><i class="fa fa-instagram fa-3x"></i></a>
+                    <a href="<?= base_url($p['INSTAGRAM']); ?>"><i class="fa fa-instagram fa-3x" style="color: #ED7796;"></i></a>
                     &emsp;
                     <?php   
                             case $p['FACEBOOK'] != null :
                     ?>
-                    <a href="<?= base_url($p['FACEBOOK']); ?>"><i class="fa fa-facebook fa-3x"></i></a>
+                    <a href="<?= base_url($p['FACEBOOK']); ?>"><i class="fa fa-facebook fa-3x" style="color: #4000D9"></i></a>
                     &emsp;
                     <?php   
                             case $p['TWITTER'] != null :
                     ?>
-                    <a href="<?= base_url($p['TWITTER']); ?>"><i class="fa fa-twitter fa-3x"></i></a>
+                    <a href="<?= base_url($p['TWITTER']); ?>"><i class="fa fa-twitter fa-3x" style="color: #7DFAE0;"></i></a>
                     <?php   break;
                         }
                     ?>
@@ -172,9 +172,9 @@
                 <?php foreach($audio as $a) : ?>
                     <div class="single_player_container">
                         <h4><?= $a['JUDUL']; ?></h4>
-                        <div class="jp-jplayer jplayer" data-ancestor=".jp_container_1" data-url="<?= base_url('uploads/'); ?><?=$a['NAMA_FILE']; ?>">
+                        <div class="jp-jplayer jplayer" data-ancestor=".jp_container_<?=$a['ID_GALERI']; ?>" id="jp_jplayer_<?=$a['ID_GALERI']; ?>" data-url="<?= base_url('uploads/'); ?><?=$a['NAMA_FILE']; ?>">
                         </div>
-                        <div class="jp-audio jp_container_1" role="application" aria-label="media player">
+                        <div class="jp-audio jp_container_<?=$a['ID_GALERI']; ?>" role="application" aria-label="media player">
                             <div class="jp-gui jp-interface">
                                 <!-- Player Controls -->
                                 <div class="player_controls_box">
@@ -234,20 +234,20 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="youtube__item">
                     <div class="youtube__item__pic set-bg" data-setbg="<?= base_url()?>assets/user/img/youtube/youtube-1.jpg">
-                        <a href="https://www.youtube.com/watch?v=yJg-Y5byMMw?autoplay=1" class="play-btn video-popup"><i class="fa fa-play"></i></a>
+                        <a href="https://www.youtube.com/watch?v=7R-RQFp_wEo" class="play-btn video-popup"><i class="fa fa-play"></i></a>
                     </div>
                     <div class="youtube__item__text">
-                        <h4>David Guetta Miami Ultra Music Festival 2019</h4>
+                        <h4>Profil Kota Probolinggo</h4>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="youtube__item">
                     <div class="youtube__item__pic set-bg" data-setbg="<?= base_url()?>assets/user/img/youtube/youtube-2.jpg">
-                        <a href="https://www.youtube.com/watch?v=K4DyBUG242c?autoplay=1" class="play-btn video-popup"><i class="fa fa-play"></i></a>
+                        <a href="https://www.youtube.com/watch?v=nX54gCTdfQE" class="play-btn video-popup"><i class="fa fa-play"></i></a>
                     </div>
                     <div class="youtube__item__text">
-                        <h4>Martin Garrix (Full live-set) | SLAM!Koningsdag</h4>
+                        <h4>Profil Suara Kota Probolinggo</h4>
                     </div>
                 </div>
             </div>
