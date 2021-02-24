@@ -89,7 +89,7 @@ class UserModel extends CI_Model
             'NAMA' => htmlspecialchars($this->input->post('NamaU', true)),
             'PASSWORD' => password_hash($this->input->post('passwordR'),PASSWORD_DEFAULT),
             'NO_TLP' => ' ',
-			'USER_ACTIVE' => 1,
+			'USER_ACTIVE' => 0,
 			'GAMBAR' => 'default.jpg'
 
         ];

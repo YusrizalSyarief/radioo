@@ -104,20 +104,19 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('passwordR2', 'Password2', 'required|trim|matches[passwordR]');
 	
 		if ($this->form_validation->run() == false) {
-			echo "kesalahan";
-			// redirect('user');
+			redirect('user');
 		} else {
-			// $token = base64_encode(random_bytes(32));
-			// $user_token = [
-			// 	'EMAIL_TOKEN' =>  htmlspecialchars($this->input->post('EmailU', true)),
-			// 	'TOKEN' => $token
+			$token = base64_encode(random_bytes(32));
+			$user_token = [
+				'EMAIL_TOKEN' =>  htmlspecialchars($this->input->post('EmailU', true)),
+				'TOKEN' => $token
 
-			// ];
+			];
 
-			// $this->UserModel->register();
-			// $this->db->insert('user_token', $user_token);
-			$this->sendEmail();
-			// redirect('user');	
+			$this->UserModel->register();
+			$this->db->insert('user_token', $user_token);
+			$this->sendEmail($token, 'verify');
+			redirect('user');	
 		}
 	}
 
@@ -133,7 +132,7 @@ class User extends CI_Controller {
 		
 	}
 
-	public function sendEmail(){
+	public function sendEmail($token, $type){
 		$config = Array(
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -150,15 +149,14 @@ class User extends CI_Controller {
 		$this->email->to($this->input->post('EmailU'));
 
 		$this->email->subject('Account Verification');
-		$this->email->message('Hello World');
 
-		// if($type == 'verify') {
-		// 	$this->email->subject('Account Verification');
-		// 	$this->email->message('Click this link to verify your account : <a href="'. base_url() .'auth/verify?email=' . $this->input->post('email') .'&token=' . urlencode($token) . '">Activate</a>');
+		if($type == 'verify') {
+			$this->email->subject('Account Verification');
+			$this->email->message('Click this link to verify your account : <a href="'. base_url() .'user/verify?email=' . $this->input->post('EmailU') .'&token=' . urlencode($token) . '">Activate</a>');
 		
-		// } else{
+		} else{
 
-		// }
+		}
 
 		if($this->email->send()){
 			return true;
@@ -169,34 +167,31 @@ class User extends CI_Controller {
 
 	}
 
-	// public function verify(){
+	public function verify(){
 		
-	// 	$email = $this->input->get('email');
-	// 	$token = $this->input->get('token');
+		$email = $this->input->get('email');
+		$token = $this->input->get('token');
+		$subToken = substr($token,0,32);
 		
-	// 	$user = $this->db->get_where('user', ['email' => $email])->row_array();
+		$user = $this->db->get_where('user', ['EMAIL' => $email])->row_array();
 		
-	// 	if ($user) {
-	// 		$user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
-	// 		if ($user_token) {
-	// 			$this->db->set('is_active', 1);
-	// 			$this->db->where('email', $email);
-	// 			$this->db->update('user');
+		if ($user) {
+			$user_token = $this->db->get_where('user_token', ['TOKEN' => $subToken])->row_array();
+			if ($user_token) {
+				$this->db->set('USER_ACTIVE', 1);
+				$this->db->where('EMAIL', $email);
+				$this->db->update('user');
 				
-	// 			$this->db->delete('user_token', ['email' => $email]);
+				$this->db->delete('user_token', ['EMAIL_TOKEN' => $email]);
 				
-	// 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">'. $email .' has been activated! please login.</div>');
-	// 			redirect('auth');
-	// 		} else {
-	// 			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Account Activation Failed!! Wrong Token</div>');
-	// 			redirect('auth');
-	
-	// 		}
-	// 	} else {
-	// 		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Account Activation Failed!! Wrong Email</div>');
-	// 		redirect('auth');
-	// 	}
+				echo "verifikasi berhasil";
+			} else {
+				echo "Gagal verifikasi token";
+			}
+		} else {
+			echo "Gagal verifikasi email";
+		}
 		
-	// }
+	}
 
 }
