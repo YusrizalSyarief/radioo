@@ -195,8 +195,8 @@
                 <input type="hidden" name='GambarYt' id='GambarYt' value="1">
                 <div class="form-group ">
                     <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputGaleri" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 400px; height: 200px;"><br>
-                    <label for="exampleFormControlFile1">Upload Foto</label><br>    
-                    <small class="form-text text-danger">Ukuran maksimal Foto 1920x1080 pixel landscape, Berformat JPG atau PNG</small>
+                    <label for="exampleFormControlFile1">Upload Foto Thumnail</label><br>    
+                    <small class="form-text text-danger">Ukuran maksimal Foto 1920x1080 pixel landscape, Berformat JPG atau PNG, 10MB</small>
                     <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" >
                 </div>
                 <div class="form-group ">

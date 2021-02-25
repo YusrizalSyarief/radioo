@@ -293,6 +293,16 @@ class AdminModel extends CI_Model
         $this->db->where('ID_USER', $this->input->post('idGantiPass'));
         $this->db->update('user', $data);
     }
+    public function cariUser($nilai)
+    {
+       return $this->db->select('*')->from('user')
+          ->join('user_role', 'user.ID_ROLE = user_role.ID_ROLE')
+          ->like('NAMA', $nilai, 'both')
+          ->or_like('EMAIL', $nilai, 'both')
+          ->or_like('NO_TLP', $nilai, 'both')
+          ->order_by('user.ID_USER', 'DESC')
+          ->get()->result();
+    }
 
     //buku tamu
     public function getDataTamu($limit, $start) 

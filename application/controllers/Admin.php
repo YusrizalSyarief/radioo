@@ -521,6 +521,14 @@ class Admin extends CI_Controller {
    {
       echo json_encode($this->AdminModel->cariPenyiar($_POST['nilai']));
    }
+   public function pencarianUser()
+   {
+      echo json_encode($this->AdminModel->cariUser($_POST['nilai']));
+   }
+   public function pencarianGaleri()
+   {
+      echo json_encode($this->AdminModel->cariGaleri($_POST['nilai']));
+   }
    
    public function ubahGaleriYt()
    {
@@ -613,20 +621,21 @@ public function ubahGaleri()
 			redirect('admin/jadwal');	
 		} else {
 			if($this->upload->do_upload('UploadFoto')) {
+				
 				$namaBerkas = $this->upload->data("file_name");
 				$this->AdminModel->ubahJadwal($namaBerkas);
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
+				
 				redirect('admin/jadwal');
-			} else {
+				
+				
+			}else {
 				$namaBerkas = $this->input->post('GambarJadwal', true);
 				$this->AdminModel->ubahJadwal($namaBerkas);
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
 				redirect('admin/jadwal');
 			}
-				//$namaBerkas = $this->upload->data("file_name");
-				$this->AdminModel->ubahJadwal();
-				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Ditambahkan</div>');
-				redirect('admin/jadwal');	
+				
 			
 		}
 	}
@@ -674,6 +683,7 @@ public function ubahGaleri()
 				$namaBerkas = $this->upload->data("file_name");
 				$this->AdminModel->ubahPenyiar($namaBerkas);
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
+				
 				redirect('admin/penyiar');
 			} else {
 				$namaBerkas = $this->input->post('GambarPenyiar', true);

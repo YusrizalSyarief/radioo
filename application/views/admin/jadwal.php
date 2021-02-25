@@ -112,8 +112,8 @@
                 
                     <div class="form-group ">
                         <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputJadwal" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
-                        <label for="exampleFormControlFile1">Upload Foto</label><br>    
-                        <small class="form-text text-danger">Ukuran maksimal Foto 500x500 pixel, Berformat JPG atau PNG</small>
+                        <label for="exampleFormControlFile1">Upload Foto Thumnail</label><br>    
+                        <small class="form-text text-danger">Ukuran maksimal Foto 1000x1000 pixel potrait, Berformat JPG atau PNG, 10MB</small>
                         <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" >
                     </div>
                     <div class="form-group">
@@ -163,6 +163,10 @@
             </div>
             <div class="modal-body">
                 <form class="user"method="post" action="">
+                    <div class="form-group">
+                        <small class="form-text text-dark">Thumnail</small>
+                        <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="FotoJadwal" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
+                    </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Judul</label>
                         <input type="text" class="form-control " id="JudulInfo" name="JudulInfo"  readonly>

@@ -73,7 +73,7 @@ $(function() {
             
         btnAksi = `<button href=""  class="btn btn-warning ml-1 ModalUbahJadwal" id="ModalUbahJadwal" data-toggle="modal"
             data-target="#formJadwal" data-id="${data.ID_JADWAL}"><i class="fas fa-pen"></i> Edit</button>
-          <a href="../hapusJadwal/${data.ID_JADWAL}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
+          <a href="./hapusJadwal/${data.ID_JADWAL}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
 
       btnInfo = `<button href=""  class="btn btn-success ml-1 ModalInfoJadwal" data-toggle="modal"
            data-target="#formInfoJadwal" data-id="${data.ID_JADWAL}"><i class="fas fa-info-circle"></i> Detail</button>`
@@ -115,14 +115,14 @@ $("#cariGaleri").keyup(function() {
         if (data.KATEGORI === 'youtube') {
             btnAksi = `<a href=""  class="btn btn-warning ml-1 ModalUbahGaleriYt" data-toggle="modal"
                         data-target="#formTambahGaleriYt" data-id="${data.ID_GALERI}"><i class="fas fa-pen"></i> Edit</a>
-                        <a href="../hapusGaleri/${data.ID_GALERI}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`;
-            btnInfo = `<a href=""  class="btn btn-success  ml-1 ModalInfoGaleri" data-toggle="modal"
+                        <a href="./hapusGaleri/${data.ID_GALERI}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`;
+            btnInfo = `<a href=""  class="btn btn-success  ml-1 ModalInfoGaleriYt" data-toggle="modal"
                         data-target="#formInfoGaleri" data-id="${data.ID_GALERI}"><i class="fas fa-info-circle"></i> Detail</a>
                         <a href="${data.NAMA_FILE}"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>`
          } else {
             btnAksi = `<a href=""  class="btn btn-warning ml-1 ModalUbahGaleri" data-toggle="modal"
                         data-target="#formTambahGaleri" data-id="${data.ID_GALERI}" ><i class="fas fa-pen"></i> Edit</a>
-                        <a href="../hapusGaleri/${data.ID_GALERI}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`;
+                        <a href="./hapusGaleri/${data.ID_GALERI}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`;
             btnInfo = `<a href=""  class="btn btn-success  ml-1 ModalInfoGaleri" data-toggle="modal"
                         data-target="#formInfoGaleri" data-id="${data.ID_GALERI}"><i class="fas fa-info-circle"></i> Detail</a>
                         <a href="../uploads/${data.NAMA_FILE}"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>`; 
@@ -167,7 +167,7 @@ $("#cariPenyiar").keyup(function() {
            
        btnAksi = `<button href=""  class="btn btn-warning ml-1 ModalUbahPenyiar" data-toggle="modal"
                     data-target="#formTambahPenyiar" data-id="${data.ID_PENYIAR}"><i class="fas fa-pen"></i> Edit</button>
-                    <a href="../hapusPenyiar/${data.ID_PENYIAR}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus penyiar ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
+                    <a href="./hapusPenyiar/${data.ID_PENYIAR}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus penyiar ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
 
      btnInfo = `<button href=""  class="btn btn-success ml-1 ModalInfoPenyiar" data-toggle="modal"
      data-target="#formInfoPenyiar"  data-id="${data.ID_PENYIAR}"><i class="fas fa-info-circle"></i> Detail</button>`
@@ -192,6 +192,44 @@ $("#cariPenyiar").keyup(function() {
          
       })
    $("#tBodyPenyiar").append(output);
+   }, "json").done(function(){
+       req();
+   });
+
+});
+//pencarian User
+$("#cariUser").keyup(function() {
+    const nilai = $(this).val();
+    $.post("./pencarianUser", {
+       nilai: nilai
+    }, function(data) {
+       let output = '';
+       let btnAksi = '';
+      
+   
+       $("#tBodyUser").empty();
+       data.map((data) => {
+        
+           
+       btnAksi = `<button href=""  class="btn btn-warning ml-1 ModalGantiPass" data-toggle="modal"
+                     data-target="#formGantiPassword" data-id="${data.ID_USER}"><i class="fas fa-pen"></i> Ganti Password</button>
+                    <a href="./hapusUser/${data.ID_USER}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"></i> Hapus</button>`
+
+     output += `
+               <tr>
+                  <td>${data.NAMA}</td>
+                  <td>${data.ROLE}</td>
+                  <td>${data.EMAIL}</td>
+                  <td>${data.NO_TLP}</td>    
+                  <td>${btnAksi}</td>
+              </tr>
+            `;
+        
+            console.log(output);
+
+         
+      })
+   $("#tBodyUser").append(output);
    }, "json").done(function(){
        req();
    });
@@ -476,6 +514,7 @@ function req() {
             dataType: 'json',
             success: function(data) {
                 console.log(data);
+                $('#FotoJadwal').attr('src', '../uploads/img/'+data.GAMBAR_JADWAL);
                 $('#JudulInfo').val(data.JUDUL_JADWAL);
                 $('#WaktuInfo').val(data.WAKTU);
                 $('#TanggalInfo').val(data.TANGGAL_JADWAL);
