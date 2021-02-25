@@ -16,6 +16,7 @@ class User extends CI_Controller {
 		
       	$this->load->view('tema/user/header', $data);
         $this->load->view('user/index', $data);
+		$this->load->view('tema/modal/modalprofile');
 		$this->load->view('tema/modal/modalberanda');
       	$this->load->view('tema/user/footer');
    
@@ -30,6 +31,7 @@ class User extends CI_Controller {
 		
       	$this->load->view('tema/user/header', $data);
         $this->load->view('user/galeri', $data);
+		$this->load->view('tema/modal/modalprofile');
       	$this->load->view('tema/user/footer');
 		
 		// $this->UserModel->getDataFormat();
@@ -42,6 +44,7 @@ class User extends CI_Controller {
 		
       	$this->load->view('tema/user/header', $data);
         $this->load->view('user/bukutamu');
+		$this->load->view('tema/modal/modalprofile');
       	$this->load->view('tema/user/footer');
    
 	}
@@ -110,9 +113,7 @@ class User extends CI_Controller {
 			$user_token = [
 				'EMAIL_TOKEN' =>  htmlspecialchars($this->input->post('EmailU', true)),
 				'TOKEN' => $token
-
 			];
-
 			$this->UserModel->register();
 			$this->db->insert('user_token', $user_token);
 			$this->sendEmail($token, 'verify');
@@ -192,6 +193,49 @@ class User extends CI_Controller {
 			echo "Gagal verifikasi email";
 		}
 		
+	}
+
+	public function login(){
+		$email = $this->input->post('emailL');
+		$password = $this->input->post('passwordL');
+		
+		$user = $this->db->get_where('user', ['EMAIL' => $email])->row_array();
+		
+		// jika user ada
+		if($user) {
+			// jika user aktif
+			if($user['USER_ACTIVE'] == 1){
+				// cek password
+				if($password == $user['PASSWORD']){
+
+					// $data = [
+					// 	'EMAIL' => $user['EMAIL'],
+					// 	'ID_ROLE' => $user['ID_ROLE'],
+					// 	'ID_USER' => $user['ID_USER']
+					// ];
+					// $this->session->set_userdata('ID_USER', $user['ID_USER']);
+					// $this->session->set_userdata($data);
+
+					// cek role
+					if($user['ID_ROLE'] == 1){
+						redirect('admin');
+					} else if($user['ID_ROLE'] == 2) {
+						redirect('admin');
+					} else {
+						echo "Password Benar!";
+						// redirect('user');
+					}
+				
+				} else {
+					echo "Password Salah!";
+				}
+				
+			} else {
+				echo "Akun Belum Aktif!";
+			}
+		} else{
+			echo "Tidak Ada Akun !";
+		}
 	}
 
 }

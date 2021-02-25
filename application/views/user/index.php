@@ -40,7 +40,7 @@
             <?php foreach($jadwal as $j) : ?>
                 <div class="col-lg-4">
                     <div class="event__item">
-                        <div class="event__item__pic set-bg" data-setbg="<?= base_url()?>assets/user/img/events/event-1.jpg">
+                        <div class="event__item__pic set-bg" data-setbg="<?= base_url()?>uploads/img/<?= $j['GAMBAR_JADWAL']; ?>">
                             <div class="tag-date">
                                 <a data-toggle="modal" data-target="#ratingAcara">
                                 <span>Rating Acara</span>

@@ -74,7 +74,39 @@
                             <li>
                                 <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalLogin">Login</button>
                             </li>
-                        </ul>    
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img class="img-profile rounded-circle"
+                                        src="<?= base_url(); ?>uploads/img/default.jpg" style="height:45px; weight:15px;">
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu"
+                                    aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="#" data-toggle="modal"
+                                        data-target="#Profil">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                    <a class="dropdown-item" href="#"data-toggle="modal"
+                                        data-target="#ubahPro">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Ubah Profile
+                                    </a>
+                                    <a class="dropdown-item" href="#"data-toggle="modal"
+                                        data-target="#ubahPass">
+                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Ubah Password
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
                         </nav>
                     </div>
                 </div>
@@ -84,3 +116,73 @@
         </div>
     </header>
     <!-- Header Section End -->
+
+    <!-- Modal Login -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form class="user"method="post" action="<?= base_url('user/login'); ?>">
+                    <div class="form-group">
+                    <input type="text" class="form-control form-control-user" id="emailL" name="emailL" placeholder="Alamat email">
+                    </div>
+                    <div class="form-group">
+                    <input type="password" class="form-control form-control-user" id="passwordL" name="passwordL" placeholder="Password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#modalRegister">Buat Akun Baru</button>
+                    <button class="btn btn-primary" type="submit" >Masuk</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Register -->
+    <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Register Akun Baru</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form class="user"method="post" action="<?= base_url('user/register'); ?>">
+                    <div class="form-group">
+                        <small class="form-text text-danger">*Harus di isi!*</small>
+                        <input type="text" class="form-control form-control-user" id="NamaU" name="NamaU" placeholder="Nama" value="<?= set_value('NamaU'); ?>">
+                    </div>
+                    <div class="form-group">
+                        <small class="form-text text-danger">*Harus di isi!*</small>
+                        <input type="text" class="form-control form-control-user" id="EmailU" name="EmailU" placeholder="Alamat Email" value="<?= set_value('EmailU'); ?>">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <small class="form-text text-danger">*Minimal 8 Karakter!*</small>
+                            <input type="password" class="form-control form-control-user" id="passwordR" name="passwordR" placeholder="Password">
+                        </div>
+                        <div class="col-sm-6">
+                            <small class="form-text text-danger">*Harus Sama dengan Password!*</small>
+                            <input type="password" class="form-control form-control-user" id="passwordR2" name="passwordR2" placeholder="Ulangi Password">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#modalLogin" >Kembali ke Login</button>
+                    <button class="btn btn-primary" type="submit" >Buat Akun</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
