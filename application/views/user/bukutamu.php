@@ -13,11 +13,13 @@
                         <i class="fa fa-home"></i> 
                         Beranda
                     </a>
-                    <span>Buku Tamu</span>
+                    <span>Buku Tamu</span> 
                 </div>
             </div>
         </div>
-    <h2>Layanan Pengaduan</h2>
+        <div class="section-title center-title" >
+            <br> <h2>Layanan Pengaduan</h2>
+        </div>
     </div>
 </div>
 <!-- Judul -->
@@ -31,7 +33,7 @@
                     <div class="section-title">
                         <h3>Informasi Situs</h3>
                     </div>
-                    &emsp;
+                    <!-- &emsp; -->
                     <!-- Map Begin -->
                     <div class="map">
                         <div class="container">
