@@ -196,16 +196,11 @@ class AdminModel extends CI_Model
    }
    public function hapusDataPenyiar($id)
     {
-        try {
-			// init bootstrapping phase
-            $this->db->trans_start(FALSE);
-			$this->db->delete('penyiar', ['ID_PENYIAR' => $id]);
-            $this->db->trans_complete();
-            
-		} catch (Exception $e) {
-			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">gagal hapus</div>');
-			redirect('admin/penyiar');	
-		}
+    
+        if (!$this->db->delete('penyiar', ['ID_PENYIAR' => $id])) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Hapus Penyiar Masih Digunakan</div>');
+            redirect('admin/penyiar');
+        }
         
     }
     public function getPenyiarById($id)

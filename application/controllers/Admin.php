@@ -551,16 +551,24 @@ class Admin extends CI_Controller {
 		$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dirubah Pastikan Data Terisi Dengan Benar</div>');
 		redirect('admin/galeri');	
 	} else {
-		if($this->upload->do_upload('UploadFoto')) {
-			$namaBerkas = $this->upload->data("file_name");
-			$this->AdminModel->ubahGaleriYt($namaBerkas);
-			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
-			redirect('admin/galeri');	
-		} else {
+		if(empty($_FILES['UploadFoto']['name'])) {
 			$namaBerkas = $this->input->post('GambarYt', true);
 			$this->AdminModel->ubahGaleriYt($namaBerkas);
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
 			redirect('admin/galeri');	
+			
+		} else {
+			if (!$this->upload->do_upload('UploadFoto')) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dirubah Periksa Kembali File Upload</div>');
+				redirect('admin/galeri');	
+			} else {
+				$namaBerkas = $this->upload->data("file_name");
+				$this->AdminModel->ubahGaleriYt($namaBerkas);
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
+				redirect('admin/galeri');	
+			}
+			
+			
 		}
 			//$namaBerkas = $this->upload->data("file_name");
 			
@@ -585,16 +593,24 @@ public function ubahGaleri()
 			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dirubah Pastikan Data Terisi Dengan Benar</div>');
 			redirect('admin/galeri');	
 		} else {
-			if($this->upload->do_upload('UploadFile')) {
-				$namaBerkas = $this->upload->data("file_name");
-				$this->AdminModel->ubahGaleri($namaBerkas);
-				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
-				redirect('admin/galeri');	
-			} else {
+			if(empty($_FILES['UploadFile']['name'])) {
 				$namaBerkas = $this->input->post('AudioGaleri', true);
 				$this->AdminModel->ubahGaleri($namaBerkas);
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
 				redirect('admin/galeri');
+				
+			} else {
+				if (!$this->upload->do_upload('UploadFile')) {
+					$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dirubah Periksa Kembali File Upload</div>');
+					redirect('admin/galeri');	
+				} else {
+					$namaBerkas = $this->upload->data("file_name");
+					$this->AdminModel->ubahGaleri($namaBerkas);
+					$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
+					redirect('admin/galeri');	
+				}
+				
+				
 			}
 					
 			
@@ -620,20 +636,26 @@ public function ubahGaleri()
 			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Ditambahkan Pastikan Data Terisi Dengan Benar</div>');
 			redirect('admin/jadwal');	
 		} else {
-			if($this->upload->do_upload('UploadFoto')) {
+			if(empty($_FILES['UploadFoto']['name'])) {
 				
-				$namaBerkas = $this->upload->data("file_name");
-				$this->AdminModel->ubahJadwal($namaBerkas);
-				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
-				
-				redirect('admin/jadwal');
-				
-				
-			}else {
 				$namaBerkas = $this->input->post('GambarJadwal', true);
 				$this->AdminModel->ubahJadwal($namaBerkas);
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
 				redirect('admin/jadwal');
+				
+			}else {
+				if (!$this->upload->do_upload('UploadFoto')) {
+					$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dirubah Periksa Kembali File Upload</div>');
+					redirect('admin/jadwal');	
+				} else {
+					$namaBerkas = $this->upload->data("file_name");
+					$this->AdminModel->ubahJadwal($namaBerkas);
+					$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
+				
+					redirect('admin/jadwal');
+				}
+				
+				
 			}
 				
 			
@@ -679,17 +701,24 @@ public function ubahGaleri()
 			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Ditambahkan Pastikan Data Terisi Dengan Benar</div>');
 			redirect('admin/penyiar');	
 		} else {
-			if($this->upload->do_upload('UploadFoto')) {
-				$namaBerkas = $this->upload->data("file_name");
-				$this->AdminModel->ubahPenyiar($namaBerkas);
-				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
-				
-				redirect('admin/penyiar');
-			} else {
+			if(empty($_FILES['UploadFoto']['name'])) {
 				$namaBerkas = $this->input->post('GambarPenyiar', true);
 				$this->AdminModel->ubahPenyiar($namaBerkas);
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
 				redirect('admin/penyiar');
+			} else {
+				if (!$this->upload->do_upload('UploadFoto')) {
+					$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dirubah Periksa Kembali File Upload</div>');
+					redirect('admin/penyiar');
+				} else {
+					$namaBerkas = $this->upload->data("file_name");
+					$this->AdminModel->ubahPenyiar($namaBerkas);
+					$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
+				
+					redirect('admin/penyiar');
+				}
+				
+				
 			}
 					
 			
