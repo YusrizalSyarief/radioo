@@ -1,11 +1,12 @@
 $(function() {
     req();
+    tgl();
     $('.ModalTambahGaleri').on('click', function() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
         $('.modal-footer button[type=submit]').html('Tambah Data');
         $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'btn btn-secondary dropdown-toggle');
-        $('.modal-body form').attr('action', './tambahGaleri');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahGaleri');
         $('#JudulGaleri').val("");
         $('#Kategori').val("");
         $('#DeskripsiGaleri').val("");
@@ -17,7 +18,7 @@ $(function() {
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
         $('.modal-footer button[type=submit]').html('Tambah Data');
         $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'btn btn-secondary dropdown-toggle');
-        $('.modal-body form').attr('action', './tambahGaleriYt');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahGaleriYt');
         $('#UrlYt').val("");
         $('#JudulGaleriYt').val("");
         $('#KategoriYt').val("");
@@ -30,7 +31,7 @@ $(function() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Jadwal');
         $('.modal-footer button[type=submit]').html('Tambah Data');
-        $('.modal-body form').attr('action', './tambahJadwal');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahJadwal');
         $('#Judul').val("");
         $('#Waktu').val("");
         $('#Tanggal').val("");
@@ -42,8 +43,8 @@ $(function() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Penyiar');
         $('.modal-footer button[type=submit]').html('Tambah Data');
-        $('#outputPenyiar').attr('src', '../uploads/img/blank.png');
-        $('.modal-body form').attr('action', './tambahPenyiar');
+        $('#outputPenyiar').attr('src', 'https://localhost/radioo/uploads/img/blank.png');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahPenyiar');
         $('#Nama').val("");
         $('#NoTlp').val("");
         $('#Biografi').val("");
@@ -59,7 +60,7 @@ $(function() {
     // pencarian jadwal
     $("#cariJadwal").keyup(function() {
      const nilai = $(this).val();
-     $.post("./pencarianJadwal", {
+     $.post("https://localhost/radioo/admin/pencarianJadwal", {
         nilai: nilai
      }, function(data) {
         let output = '';
@@ -68,12 +69,14 @@ $(function() {
 
     
         $("#tBodyJadwal").empty();
+        $('#tanggalAwal').val("");
+        $('#tanggalAkhir').val("");
         data.map((data) => {
          
             
         btnAksi = `<button href=""  class="btn btn-warning ml-1 ModalUbahJadwal" id="ModalUbahJadwal" data-toggle="modal"
             data-target="#formJadwal" data-id="${data.ID_JADWAL}"><i class="fas fa-pen"></i> Edit</button>
-          <a href="./hapusJadwal/${data.ID_JADWAL}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
+          <a href="https://localhost/radioo/admin/hapusJadwal/${data.ID_JADWAL}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
 
       btnInfo = `<button href=""  class="btn btn-success ml-1 ModalInfoJadwal" data-toggle="modal"
            data-target="#formInfoJadwal" data-id="${data.ID_JADWAL}"><i class="fas fa-info-circle"></i> Detail</button>`
@@ -95,13 +98,15 @@ $(function() {
     $("#tBodyJadwal").append(output);
     }, "json").done(function(){
         req();
+        //tgl();
     });
 
 });
+
 //pencarian galeri
 $("#cariGaleri").keyup(function() {
     const nilai = $(this).val();
-    $.post("./pencarianGaleri", {
+    $.post("https://localhost/radioo/admin/pencarianGaleri", {
        nilai: nilai
     }, function(data) {
        let output = '';
@@ -110,22 +115,24 @@ $("#cariGaleri").keyup(function() {
 
    
        $("#tBodyGaleri").empty();
+       $('#tanggalAwal').val("");
+        $('#tanggalAkhir').val("");
        data.map((data) => {
         
         if (data.KATEGORI === 'youtube') {
             btnAksi = `<a href=""  class="btn btn-warning ml-1 ModalUbahGaleriYt" data-toggle="modal"
                         data-target="#formTambahGaleriYt" data-id="${data.ID_GALERI}"><i class="fas fa-pen"></i> Edit</a>
-                        <a href="./hapusGaleri/${data.ID_GALERI}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`;
+                        <a href="https://localhost/radioo/admin/hapusGaleri/${data.ID_GALERI}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`;
             btnInfo = `<a href=""  class="btn btn-success  ml-1 ModalInfoGaleriYt" data-toggle="modal"
                         data-target="#formInfoGaleri" data-id="${data.ID_GALERI}"><i class="fas fa-info-circle"></i> Detail</a>
                         <a href="${data.NAMA_FILE}"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>`
          } else {
             btnAksi = `<a href=""  class="btn btn-warning ml-1 ModalUbahGaleri" data-toggle="modal"
                         data-target="#formTambahGaleri" data-id="${data.ID_GALERI}" ><i class="fas fa-pen"></i> Edit</a>
-                        <a href="./hapusGaleri/${data.ID_GALERI}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`;
+                        <a href="https://localhost/radioo/admin/hapusGaleri/${data.ID_GALERI}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`;
             btnInfo = `<a href=""  class="btn btn-success  ml-1 ModalInfoGaleri" data-toggle="modal"
                         data-target="#formInfoGaleri" data-id="${data.ID_GALERI}"><i class="fas fa-info-circle"></i> Detail</a>
-                        <a href="../uploads/${data.NAMA_FILE}"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>`; 
+                        <a href="https://localhost/radioo/uploads/${data.NAMA_FILE}"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>`; 
          }
       
         output += `
@@ -146,6 +153,7 @@ $("#cariGaleri").keyup(function() {
    $("#tBodyGaleri").append(output);
    }, "json").done(function(){
        req();
+       //tgl();
    });
 
 });
@@ -153,7 +161,7 @@ $("#cariGaleri").keyup(function() {
 //pencarian penyiar 
 $("#cariPenyiar").keyup(function() {
     const nilai = $(this).val();
-    $.post("./pencarianPenyiar", {
+    $.post("https://localhost/radioo/admin/pencarianPenyiar", {
        nilai: nilai
     }, function(data) {
        let output = '';
@@ -167,7 +175,7 @@ $("#cariPenyiar").keyup(function() {
            
        btnAksi = `<button href=""  class="btn btn-warning ml-1 ModalUbahPenyiar" data-toggle="modal"
                     data-target="#formTambahPenyiar" data-id="${data.ID_PENYIAR}"><i class="fas fa-pen"></i> Edit</button>
-                    <a href="./hapusPenyiar/${data.ID_PENYIAR}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus penyiar ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
+                    <a href="https://localhost/radioo/admin/hapusPenyiar/${data.ID_PENYIAR}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus penyiar ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
 
      btnInfo = `<button href=""  class="btn btn-success ml-1 ModalInfoPenyiar" data-toggle="modal"
      data-target="#formInfoPenyiar"  data-id="${data.ID_PENYIAR}"><i class="fas fa-info-circle"></i> Detail</button>`
@@ -194,13 +202,14 @@ $("#cariPenyiar").keyup(function() {
    $("#tBodyPenyiar").append(output);
    }, "json").done(function(){
        req();
+       //tgl();
    });
 
 });
 //pencarian User
 $("#cariUser").keyup(function() {
     const nilai = $(this).val();
-    $.post("./pencarianUser", {
+    $.post("https://localhost/radioo/admin/pencarianUser", {
        nilai: nilai
     }, function(data) {
        let output = '';
@@ -213,7 +222,7 @@ $("#cariUser").keyup(function() {
            
        btnAksi = `<button href=""  class="btn btn-warning ml-1 ModalGantiPass" data-toggle="modal"
                      data-target="#formGantiPassword" data-id="${data.ID_USER}"><i class="fas fa-pen"></i> Ganti Password</button>
-                    <a href="./hapusUser/${data.ID_USER}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"></i> Hapus</button>`
+                    <a href="https://localhost/radioo/admin/hapusUser/${data.ID_USER}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"></i> Hapus</button>`
 
      output += `
                <tr>
@@ -237,6 +246,108 @@ $("#cariUser").keyup(function() {
 });
 
 });
+function tgl(){
+    $('#tanggalAkhir').on('change', function() {
+        
+
+        const awal = $('#tanggalAwal').val();
+        const akhir = $(this).val();
+        console.log(awal+" "+akhir);
+        $.post("https://localhost/radioo/admin/pencarianJadwalTgl", {
+            awal: awal,
+            akhir: akhir 
+         }, function(data) {
+            let output = '';
+            let btnAksi = '';
+           let btnInfo = '';
+    
+        
+            $("#tBodyJadwal").empty();
+            data.map((data) => {
+             
+             
+            btnAksi = `<button href=""  class="btn btn-warning ml-1 ModalUbahJadwal" id="ModalUbahJadwal" data-toggle="modal"
+                data-target="#formJadwal" data-id="${data.ID_JADWAL}"><i class="fas fa-pen"></i> Edit</button>
+              <a href="https://localhost/radioo/admin/hapusJadwal/${data.ID_JADWAL}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`
+    
+          btnInfo = `<button href=""  class="btn btn-success ml-1 ModalInfoJadwal" data-toggle="modal"
+               data-target="#formInfoJadwal" data-id="${data.ID_JADWAL}"><i class="fas fa-info-circle"></i> Detail</button>`
+          output += `
+                    <tr>
+                       <td>${data.JUDUL_JADWAL}</td>
+                       <td>${data.NAMA_PENYIAR}</td>
+                       <td>${data.TANGGAL_JADWAL}</td>
+                       <td>${data.WAKTU}</td>
+                       <td>${btnInfo}</td>
+                       <td>${btnAksi}</td>
+                   </tr>
+                 `;
+             
+                 //console.log(output);
+    
+              
+           })
+        $("#tBodyJadwal").append(output);
+        }, "json").done(function(){
+            req();
+        });
+        
+    });
+
+    $("#tanggalAkhir").on('change',function() {
+        const awal = $('#tanggalAwal').val();
+        const akhir = $(this).val();
+        $.post("https://localhost/radioo/admin/pencarianGaleriTgl", {
+           awal: awal,
+           akhir: akhir
+        }, function(data) {
+           let output = '';
+           let btnAksi = '';
+          let btnInfo = '';
+    
+       
+           $("#tBodyGaleri").empty();
+           data.map((data) => {
+            
+            if (data.KATEGORI === 'youtube') {
+                btnAksi = `<a href=""  class="btn btn-warning ml-1 ModalUbahGaleriYt" data-toggle="modal"
+                            data-target="#formTambahGaleriYt" data-id="${data.ID_GALERI}"><i class="fas fa-pen"></i> Edit</a>
+                            <a href="https://localhost/radioo/admin/hapusGaleri/${data.ID_GALERI}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`;
+                btnInfo = `<a href=""  class="btn btn-success  ml-1 ModalInfoGaleriYt" data-toggle="modal"
+                            data-target="#formInfoGaleri" data-id="${data.ID_GALERI}"><i class="fas fa-info-circle"></i> Detail</a>
+                            <a href="${data.NAMA_FILE}"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>`
+             } else {
+                btnAksi = `<a href=""  class="btn btn-warning ml-1 ModalUbahGaleri" data-toggle="modal"
+                            data-target="#formTambahGaleri" data-id="${data.ID_GALERI}" ><i class="fas fa-pen"></i> Edit</a>
+                            <a href="https://localhost/radioo/admin/hapusGaleri/${data.ID_GALERI}"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus galeri ini');"><i class="fas fa-trash-alt"></i> Hapus</a>`;
+                btnInfo = `<a href=""  class="btn btn-success  ml-1 ModalInfoGaleri" data-toggle="modal"
+                            data-target="#formInfoGaleri" data-id="${data.ID_GALERI}"><i class="fas fa-info-circle"></i> Detail</a>
+                            <a href="https://localhost/radioo/uploads/${data.NAMA_FILE}"  class="btn btn-primary ml-1 " target="_blank">Lihat Konten</a>`; 
+             }
+          
+            output += `
+                   <tr>
+                      <td>${data.JUDUL}</td>
+                      <td>${data.TANGGAL}</td>
+                      <td>${data.NAMA_KATEGORI}</td>
+                      <td>${data.NAMA_FILE}</td>
+                      <td>${btnInfo}</td>
+                      <td>${btnAksi}</td>
+                  </tr>
+                `;
+            
+                //console.log(output); 
+    
+             
+          })
+       $("#tBodyGaleri").append(output);
+       }, "json").done(function(){
+           req();
+       });
+    
+    });
+    
+}
 
 function req() {
     $('.ModalUbahGaleri').on('click', function() {
@@ -244,12 +355,12 @@ function req() {
         $('.modal-header h5[id=exampleModalLabel]').html('Ubah Galeri');
         $('.modal-footer button[type=submit]').html('Ubah Data');
         $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'invisible');
-        $('.modal-body form').attr('action', './ubahGaleri');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahGaleri');
         
         const id = $(this).data('id');
-        
+        console.log(id);
         $.ajax({
-            url: './getInfoGaleri',
+            url: 'https://localhost/radioo/admin/getInfoGaleri',
             data: {id : id},
             method: 'post',
             dataType: 'json',
@@ -271,19 +382,19 @@ function req() {
         $('.modal-header h5[id=exampleModalLabel]').html('Ubah Galeri');
         $('.modal-footer button[type=submit]').html('Ubah Data');
         $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'invisible');
-        $('.modal-body form').attr('action', './ubahGaleriYt');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahGaleriYt');
         
         const id = $(this).data('id');
         
         $.ajax({
-            url: './getInfoGaleri',
+            url: 'https://localhost/radioo/admin/getInfoGaleri',
             data: {id : id},
             method: 'post',
             dataType: 'json',
             success: function(data) {
                 console.log(data);
                 $('#idYt').val(data.ID_GALERI);
-                $('#outputGaleri').attr('src', '../uploads/img/'+data.GAMBAR_GALERI);
+                $('#outputGaleri').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_GALERI);
                 $('#GambarYt').val(data.GAMBAR_GALERI);
                 $('#UrlYt').val(data.NAMA_FILE);
                 $('#JudulGaleriYt').val(data.JUDUL);
@@ -302,13 +413,13 @@ function req() {
         const id = $(this).data('id');
         
         $.ajax({
-            url: './getInfoGaleri',
+            url: 'https://localhost/radioo/admin/getInfoGaleri',
             data: {id : id},
             method: 'post',
             dataType: 'json',
             success: function(data) {
                 console.log(data);
-                $('#outputGaleriInfo').attr('src', '../uploads/img/'+data.GAMBAR_GALERI);
+                $('#outputGaleriInfo').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_GALERI);
                 $('#JudulGaleriInfo').val(data.JUDUL);
                 $('#TanggalUploadInfo').val(data.TANGGAL);
                 $('#DeskripsiGaleriInfo').val(data.DESCK_GALERI);
@@ -323,7 +434,7 @@ function req() {
         const id = $(this).data('id');
         
         $.ajax({
-            url: './getInfoGaleri',
+            url: 'https://localhost/radioo/admin/getInfoGaleri',
             data: {id : id},
             method: 'post',
             dataType: 'json',
@@ -344,7 +455,7 @@ function req() {
         const id = $(this).data('id');
         
         $.ajax({
-            url: './getInfoTamu',
+            url: 'https://localhost/radioo/admin/getInfoTamu',
             data: {id : id},
             method: 'post',
             dataType: 'json',
@@ -365,19 +476,19 @@ function req() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Ubah Jadwal');
         $('.modal-footer button[type=submit]').html('Ubah Data');
-        $('.modal-body form').attr('action', './ubahJadwal');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahJadwal');
 
         const id = $(this).data('id');
         
         $.ajax({
-            url: './getInfoJadwal',
+            url: 'https://localhost/radioo/admin/getInfoJadwal',
             data: {id : id},
             method: 'post',
             dataType: 'json',
             success: function(data) {
                 console.log(data);
                 $('#idJadwal').val(data.ID_JADWAL);
-                $('#outputJadwal').attr('src', '../uploads/img/'+data.GAMBAR_JADWAL);
+                $('#outputJadwal').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_JADWAL);
                 $('#GambarJadwal').val(data.GAMBAR_JADWAL);
                 $('#Judul').val(data.JUDUL_JADWAL);
                 $('#Waktu').val(data.WAKTU);
@@ -392,20 +503,20 @@ function req() {
     $('.ModalUbahPenyiar').on('click', function() {
         $('.modal-header h5[id=exampleModalLabel]').html('Ubah Penyiar');
         $('.modal-footer button[type=submit]').html('Ubah Data');
-        $('.modal-body form').attr('action', './ubahPenyiar');
+        $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahPenyiar');
         
 
         const id = $(this).data('id');
         
         $.ajax({
-            url: './getInfoPenyiar',
+            url: 'https://localhost/radioo/admin/getInfoPenyiar',
             data: {id : id},
             method: 'post',
             dataType: 'json',
             success: function(data) {
                 console.log(data);
                 $('#idPenyiar').val(data.ID_PENYIAR);
-                $('#outputPenyiar').attr('src', '../uploads/img/'+data.GAMBAR_PENYIAR);
+                $('#outputPenyiar').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_PENYIAR);
                 $('#GambarPenyiar').val(data.GAMBAR_PENYIAR);
                 $('#Nama').val(data.NAMA_PENYIAR);
                 $('#NoTlp').val(data.NO_TLP_PENYIAR);
@@ -418,20 +529,45 @@ function req() {
         });
         
     });
+    $('.ModalUbahProfile').on('click', function() {
+
+        
+
+        const id = $(this).data('id');
+        //console.log(id);
+        $.ajax({
+            url: 'https://localhost/radioo/admin/getInfoUser',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                $('#idProfile').val(data.ID_USER);
+                $('#outputProfile').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR);
+                $('#gambarProfile').val(data.GAMBAR);
+                $('#hakAkses').val(data.ROLE);
+                $('#namaProfile').val(data.NAMA);
+                $('#noTlpProfile').val(data.NO_TLP);
+                
+                
+            }
+        });
+        
+    });
     $('.ModalInfoPenyiar').on('click', function() {
         
 
         const id = $(this).data('id');
         
         $.ajax({
-            url: './getInfoPenyiar',
+            url: 'https://localhost/radioo/admin/getInfoPenyiar',
             data: {id : id},
             method: 'post',
             dataType: 'json',
             success: function(data) {
                 console.log(data);
                 //https://localhost/radioo/assets/user/img/events/event-2.jpg
-                $('#FotoInfo').attr('src', '../uploads/img/'+data.GAMBAR_PENYIAR);
+                $('#FotoInfo').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_PENYIAR);
                 $('#NamaInfo').val(data.NAMA_PENYIAR);
                 $('#NoTlpInfo').val(data.NO_TLP_PENYIAR);
                 $('#BiografiInfo').val(data.DESCK);
@@ -452,7 +588,7 @@ function req() {
         const id = $(this).data('id');
         
         $.ajax({
-            url: './getInfoUser',
+            url: 'https://localhost/radioo/admin/getInfoUser',
             data: {id : id},
             method: 'post',
             dataType: 'json',
@@ -479,7 +615,7 @@ function req() {
         //
         $.ajax({
 
-            url: './getCountUser',
+            url: 'https://localhost/radioo/admin/getCountUser',
             data: {nilai : nilai},
             method: 'post',
             dataType: 'json',
@@ -508,13 +644,13 @@ function req() {
         const id = $(this).data('id');
         
         $.ajax({
-            url: './getInfoJadwal',
+            url: 'https://localhost/radioo/admin/getInfoJadwal',
             data: {id : id},
             method: 'post',
             dataType: 'json',
             success: function(data) {
                 console.log(data);
-                $('#FotoJadwal').attr('src', '../uploads/img/'+data.GAMBAR_JADWAL);
+                $('#FotoJadwal').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_JADWAL);
                 $('#JudulInfo').val(data.JUDUL_JADWAL);
                 $('#WaktuInfo').val(data.WAKTU);
                 $('#TanggalInfo').val(data.TANGGAL_JADWAL);
@@ -524,4 +660,5 @@ function req() {
         });
         
     });
+    
 }

@@ -29,7 +29,17 @@
    <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800"><?= $title; ?></h1>
    </div>
+<!-- pesan error -->
+<?php if ($this->session->flashdata('pesan')):?>
 
+<div class="row mt-3">
+    <div class="col-md-6">
+        
+        <?= $this->session->flashdata('pesan'); ?>
+
+    </div>
+</div>
+<?php endif; ?>
 <!-- Area Chart -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">

@@ -149,6 +149,7 @@
                 
             </div>
             <div class="form-group">
+            <small class="form-text text-danger">Min 9, Max 13</small>
                 <input type="number" class="form-control " id="NoTlp" name="NoTlp" placeholder="No Tlp" maxlength="15" required>
                 
             </div>

@@ -12,13 +12,13 @@
 <label for="exampleFormControlInput1">Cari Galeri</label>
     <div class="row">
         <div class="form-group col-md-6">
-            <input type="email" class="form-control" id="cariGaleri" placeholder="Ketikan disini...">
+            <input type="email" class="form-control" id="cariGaleri" placeholder="Cari Berdasarkan Judul & Kategori">
         </div>
         <div class="form-group col-md-2">
-            <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">
+            <input type="date" class="form-control" placeholder="Tanggal" id="tanggalAwal">
         </div>
         <div class="form-group col-md-2">
-            <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">
+            <input type="date" class="form-control" placeholder="Tanggal" id="tanggalAkhir">
         </div>
     </div>
     <!-- pesan error -->
@@ -26,7 +26,7 @@
 
     <div class="row mt-3">
         <div class="col-md-6">
-
+            
             <?= $this->session->flashdata('pesan'); ?>
 
         </div>
@@ -155,7 +155,7 @@
                 <form class="user" method="post" action="<?php echo base_url(); ?>admin/tambahKetegoriGaleri">
             
                     <div class="form-group">
-                    <small class="form-text text-danger">Pastikan data benar, data tidak dapat dihapus dan dirubah</small>
+                    <small class="form-text text-danger">Pastikan data benar, data tidak dapat dihapus dan dirubah, Max 30</small>
                         <input type="text" class="form-control " id="NamaKategori" name="NamaKategori" placeholder="Nama Ketegori" >
                     </div>
 

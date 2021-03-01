@@ -128,7 +128,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                <form class="user"method="post" action="<?= base_url('user/login'); ?>">
+                <form class="user"method="post" action="<?= base_url('login'); ?>">
                     <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="emailL" name="emailL" placeholder="Alamat email">
                     </div>

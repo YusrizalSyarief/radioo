@@ -23,10 +23,10 @@
         <input type="text" class="form-control" id="cariJadwal" placeholder="Berdasarkan Nama Acara & Penyiar">
     </div>
     <div class="form-group col-md-2">
-        <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">
+        <input type="date" class="form-control" placeholder="Tanggal" id="tanggalAwal">
     </div>
     <div class="form-group col-md-2">
-        <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">
+        <input type="date" class="form-control" placeholder="Tanggal" id="tanggalAkhir">
     </div>
 </div>
 <!-- pesan error -->
@@ -84,10 +84,11 @@
                             </td>
                         </tr>
                     <?php endforeach; ?>
+                    
                     </tbody>
                     
                     </table>
-                    <?= $this->pagination->create_links(); ?>
+                <?= $this->pagination->create_links(); ?>
                 </div>
             </div>
         </div>

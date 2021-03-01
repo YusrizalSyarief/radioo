@@ -2,20 +2,27 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
+	
 	function __construct(){
 		header('Access-Control-Allow-Origin: *');
     	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+		
 		parent::__construct();
 		$this->load->helper('download');
+		if( $this->session->userdata('ID_ROLE') !== "1"){
+			$this->session->sess_destroy();
+			   redirect('login');
+		}
 		
 		
 	}
-
+	
 	public function index()
 	{
 		$data['title'] = 'Dashboard';
-		$this->load->view('tema/admin/sidebar');
-      	$this->load->view('tema/admin/topbar');
+		$user['u'] = $this->AdminModel->getUserById($this->session->userdata('ID_USER'));
+		$this->load->view('tema/admin/sidebar',$data);
+      	$this->load->view('tema/admin/topbar', $user);
       	$this->load->view('admin/index', $data);
       	$this->load->view('tema/admin/footer');
    
@@ -62,9 +69,10 @@ class Admin extends CI_Controller {
 		$data['start'] = $this->uri->segment(3);
 		
 		$data['z'] = $this->AdminModel->getDataGaleri($config['per_page'],$data['start']);
+		$user['u'] = $this->AdminModel->getUserById($this->session->userdata('ID_USER'));
 		//$data['z'] = $this->AdminModel->getDataGaleri();
-		$this->load->view('tema/admin/sidebar');
-      	$this->load->view('tema/admin/topbar');
+		$this->load->view('tema/admin/sidebar',$data);
+      	$this->load->view('tema/admin/topbar',$user);
       	$this->load->view('admin/galeri', $data);
       	$this->load->view('tema/admin/footer');
    
@@ -110,8 +118,9 @@ class Admin extends CI_Controller {
 		$data['start'] = $this->uri->segment(3);
 
 		$data['z'] = $this->AdminModel->getDataPenyiar($config['per_page'],$data['start']);
-		$this->load->view('tema/admin/sidebar');
-      	$this->load->view('tema/admin/topbar');
+		$user['u'] = $this->AdminModel->getUserById($this->session->userdata('ID_USER'));
+		$this->load->view('tema/admin/sidebar',$data);
+      	$this->load->view('tema/admin/topbar',$user);
       	$this->load->view('admin/penyiar', $data);
       	$this->load->view('tema/admin/footer');
    
@@ -157,8 +166,9 @@ class Admin extends CI_Controller {
 		$data['start'] = $this->uri->segment(3);
 
 		$data['z'] = $this->AdminModel->getDataJadwal($config['per_page'],$data['start']);
-		$this->load->view('tema/admin/sidebar');
-      	$this->load->view('tema/admin/topbar');
+		$user['u'] = $this->AdminModel->getUserById($this->session->userdata('ID_USER'));
+		$this->load->view('tema/admin/sidebar',$data);
+      	$this->load->view('tema/admin/topbar',$user);
       	$this->load->view('admin/jadwal', $data);
       	$this->load->view('tema/admin/footer');
    
@@ -203,8 +213,9 @@ class Admin extends CI_Controller {
 		$data['start'] = $this->uri->segment(3);
 
 		$data['z'] = $this->AdminModel->getDataTamu($config['per_page'],$data['start']);
-		$this->load->view('tema/admin/sidebar');
-      	$this->load->view('tema/admin/topbar');
+		$user['u'] = $this->AdminModel->getUserById($this->session->userdata('ID_USER'));
+		$this->load->view('tema/admin/sidebar',$data);
+      	$this->load->view('tema/admin/topbar',$user);
       	$this->load->view('admin/buku_tamu', $data);
       	$this->load->view('tema/admin/footer');
    
@@ -250,8 +261,9 @@ class Admin extends CI_Controller {
 		$data['start'] = $this->uri->segment(3);
 
 		$data['z'] = $this->AdminModel->getDataUser($config['per_page'],$data['start']);
-		$this->load->view('tema/admin/sidebar');
-      	$this->load->view('tema/admin/topbar');
+		$user['u'] = $this->AdminModel->getUserById($this->session->userdata('ID_USER'));
+		$this->load->view('tema/admin/sidebar',$data);
+      	$this->load->view('tema/admin/topbar',$user);
       	$this->load->view('admin/user', $data);
       	$this->load->view('tema/admin/footer');
    
@@ -327,7 +339,7 @@ class Admin extends CI_Controller {
 	public function tambahKetegoriGaleri()
 	{
 		
-		$this->form_validation->set_rules('NamaKategori', 'Nama Kategori', 'trim|required');
+		$this->form_validation->set_rules('NamaKategori', 'Nama Kategori', 'trim|required|max_length[30]');
 	
 		
 		//$this->upload->initialize($config);
@@ -391,8 +403,8 @@ class Admin extends CI_Controller {
 		
 
 		$this->upload->initialize($config);
-		$this->form_validation->set_rules('Nama', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('NoTlp', 'No Telfon', 'trim|required');
+		$this->form_validation->set_rules('Nama', 'Nama', 'trim|required|max_length[128]');
+		$this->form_validation->set_rules('NoTlp', 'No Telfon', 'trim|required|min_length[9]|max_length[13]');
 		$this->form_validation->set_rules('Biografi', 'Biografi', 'trim|required');
 	
 		
@@ -424,11 +436,11 @@ class Admin extends CI_Controller {
 		
 
 		$this->upload->initialize($config);
-		$this->form_validation->set_rules('Nama', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('Email', 'Email', 'trim|required');
-		$this->form_validation->set_rules('NoTlpUser', 'No Tlp', 'trim|required');
-		$this->form_validation->set_rules('Password', 'Password', 'trim|required');
-		$this->form_validation->set_rules('Password2', 'Konfirmasi', 'required|matches[Password]');
+		$this->form_validation->set_rules('Nama', 'Nama', 'trim|required|max_length[128]');
+		$this->form_validation->set_rules('Email', 'Email', 'trim|required|max_length[128]');
+		$this->form_validation->set_rules('NoTlpUser', 'No Tlp', 'trim|required|min_length[9]|max_length[13]');
+		$this->form_validation->set_rules('Password', 'Password', 'trim|required|min_length[8]|max_length[50]');
+		$this->form_validation->set_rules('Password2', 'Konfirmasi', 'required|matches[Password]|min_length[8]|max_length[50]');
 	
 		
 		//$this->upload->initialize($config);
@@ -517,6 +529,10 @@ class Admin extends CI_Controller {
    {
       echo json_encode($this->AdminModel->cariJadwal($_POST['nilai']));
    }
+   public function pencarianJadwalTgl()
+   {
+      echo json_encode($this->AdminModel->cariJadwalTgl($_POST['awal'],$_POST['akhir']));
+   }
    public function pencarianPenyiar()
    {
       echo json_encode($this->AdminModel->cariPenyiar($_POST['nilai']));
@@ -528,6 +544,10 @@ class Admin extends CI_Controller {
    public function pencarianGaleri()
    {
       echo json_encode($this->AdminModel->cariGaleri($_POST['nilai']));
+   }
+   public function pencarianGaleriTgl()
+   {
+      echo json_encode($this->AdminModel->cariGalerilTgl($_POST['awal'],$_POST['akhir']));
    }
    
    public function ubahGaleriYt()
@@ -661,23 +681,68 @@ public function ubahGaleri()
 			
 		}
 	}
-	public function ubahPass()
+	public function ubahProfile()
 	{
-		$this->form_validation->set_rules('Ubahpassword', 'Judul', 'trim|required');
-		$this->form_validation->set_rules('Ubahpassword2', 'Konfirmasi', 'required|matches[Ubahpassword]');
+		$config['upload_path']          = './uploads/img';
+		$config['allowed_types']        = 'png|jpg';
+		$config['max_size']             = 10000;
+		$config['max_width'] 			= '1000';
+		$config['max_height'] 			= '1000';
+		
+
+		$this->upload->initialize($config);
+		$this->form_validation->set_rules('namaProfile', 'Nama ', 'trim|required|max_length[128]');
+		$this->form_validation->set_rules('noTlpProfile', 'Tanggal', 'trim|required|min_length[9]|max_length[13]');
 		
 	
 		
 		//$this->upload->initialize($config);
 		if ($this->form_validation->run() == false) {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dirubah Pastikan Data Terisi Dengan Benar</div>');
-			redirect('admin/user');	
+			redirect('admin');	
+		} else {
+			if(empty($_FILES['UbahFotoProfile']['name'])) {
+				
+				$namaBerkas = $this->input->post('gambarProfile', true);
+				$this->AdminModel->ubahProfile($namaBerkas);
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
+				redirect('admin');
+				
+			}else {
+				if (!$this->upload->do_upload('UbahFotoProfile')) {
+					$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dirubah Periksa Kembali File Upload</div>');
+					redirect('admin');	
+				} else {
+					$namaBerkas = $this->upload->data("file_name");
+					$this->AdminModel->ubahProfile($namaBerkas);
+					$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
+				
+					redirect('admin');
+				}
+				
+				
+			}
+				
+			
+		}
+	}
+	public function ubahPass()
+	{
+		$this->form_validation->set_rules('Ubahpassword', 'Judul', 'trim|required|min_length[8]|max_length[50]');
+		$this->form_validation->set_rules('Ubahpassword2', 'Konfirmasi', 'required|matches[Ubahpassword]|min_length[8]|max_length[50]');
+		
+	
+		
+		//$this->upload->initialize($config);
+		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dirubah Pastikan Data Terisi Dengan Benar</div>');
+			redirect('admin');	
 		} else {
 			
 				//$namaBerkas = $this->upload->data("file_name");
 				$this->AdminModel->ubahPass();
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dirubah</div>');
-				redirect('admin/user');	
+				redirect('admin');	
 			
 		}
 	}
@@ -691,8 +756,8 @@ public function ubahGaleri()
 		
 
 		$this->upload->initialize($config);
-		$this->form_validation->set_rules('Nama', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('NoTlp', 'No Telfon', 'trim|required');
+		$this->form_validation->set_rules('Nama', 'Nama', 'trim|required|max_length[128]');
+		$this->form_validation->set_rules('NoTlp', 'No Telfon', 'trim|required|min_length[9]|max_length[13]');
 		$this->form_validation->set_rules('Biografi', 'Biografi', 'trim|required');
 	
 		

@@ -101,6 +101,14 @@ class AdminModel extends CI_Model
          ->order_by('galeri.ID_GALERI', 'DESC')
          ->get()->result();
    }
+   public function cariGalerilTgl($awal,$akhir)
+   {
+      return $this->db->select('*')->from('galeri')
+        ->join('kategori_galeri', 'galeri.ID_KATEGORI = kategori_galeri.ID_KATEGORI')
+         ->where('TANGGAL >=', $awal)
+         ->where('TANGGAL <=', $akhir)
+         ->get()->result();
+   }
     // jadwal 
     public function getDataJadwal($limit, $start) 
     {
@@ -164,6 +172,14 @@ class AdminModel extends CI_Model
          ->like('JUDUL_JADWAL', $nilai, 'both')
          ->or_like('NAMA_PENYIAR', $nilai, 'both')
          ->order_by('jadwal.ID_JADWAL', 'DESC')
+         ->get()->result();
+   }
+   public function cariJadwalTgl($awal,$akhir)
+   {
+      return $this->db->select('*')->from('jadwal')
+         ->join('penyiar', 'jadwal.ID_PENYIAR = penyiar.ID_PENYIAR')
+         ->where('TANGGAL_JADWAL >=', $awal)
+         ->where('TANGGAL_JADWAL <=', $akhir)
          ->get()->result();
    }
     //penyiar
@@ -276,7 +292,10 @@ class AdminModel extends CI_Model
    }
    public function getUserById($id)
    {
-       return $this->db->get_where('user', ['ID_USER' => $id])->row_array();
+    return $this->db->select('*')->from('user')
+    ->join('user_role', 'user.ID_ROLE = user_role.ID_ROLE')
+    ->where('ID_USER', $id)
+    ->get()->row_array();
    }
    public function ubahPass()
     {
@@ -286,6 +305,17 @@ class AdminModel extends CI_Model
         ];
 
         $this->db->where('ID_USER', $this->input->post('idGantiPass'));
+        $this->db->update('user', $data);
+    }
+   public function ubahProfile($namaBerkas)
+    {
+        $data = [
+            "NAMA" => $this->input->post('namaProfile', true),
+            "NO_TLP" => $this->input->post('noTlpProfile', true),
+            "GAMBAR" => $namaBerkas
+        ];
+
+        $this->db->where('ID_USER', $this->input->post('idProfile'));
         $this->db->update('user', $data);
     }
     public function cariUser($nilai)

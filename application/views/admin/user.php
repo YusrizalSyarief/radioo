@@ -8,7 +8,7 @@
 <label for="exampleFormControlInput1">Cari Akun</label>
 <div class="row">
    <div class="form-group col-md-6">
-      <input type="email" class="form-control" id="cariUser" placeholder="Ketikan disini...">
+      <input type="email" class="form-control" id="cariUser" placeholder="Cari Berdasarkan Nama,Email & No Tlp">
    </div>
 
 </div>
@@ -101,6 +101,7 @@
                </div>
                </div>
                <div class="form-group">
+               <small class="form-text text-danger">Min 9, Max 13</small>
                   <input type="number" class="form-control " id="NoTlpUser" name="NoTlpUser" placeholder="No TLp" maxlength="15" required>
                </div>
                <div class="form-group">
@@ -111,10 +112,12 @@
                   </select>
                </div>
                <div class="form-group row">
-                     <div class="col-sm-6 mb-3 mb-sm-0">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                     <small class="form-text text-danger">Min 8</small>
                         <input type="password" class="form-control " id="Password" name="Password" placeholder="Password" maxlength="50" required>
                      </div>
                   <div class="col-sm-6">
+                  <small class="invisible">s</small>
                      <input type="password" class="form-control " id="Password2" name="Password2" placeholder="Ulangi Password" maxlength="50" required>
                   </div>
                </div>
@@ -127,36 +130,7 @@
       </div>
    </div>
 </div>
-<!-- merubah password user -->
-<div class="modal fade" id="formGantiPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ganti Password</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">×</span>
-            </button>
-         </div>
-         <div class="modal-body">
-         <form class="user"method="post" action="<?php echo base_url(); ?>admin/ubahPass">
-         <input type="hidden" name='idGantiPass' id='idGantiPass' value="1">
-               <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                     <input type="password" class="form-control " id="Ubahpassword" name="Ubahpassword" placeholder="Password" required>
-                  </div>
-               <div class="col-sm-6">
-                  <input type="password" class="form-control " id="Ubahpassword2" name="Ubahpassword2" placeholder="Ulangi Password" required>
-               </div>
-            </div>
-         </div>
-         <div class="modal-footer">
-            <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
-            <button class="btn btn-primary" type="submit">Ubah Password</button>
-         </div>
-      </form>
-      </div>
-   </div>
-</div>
+
 <script>
   var loadFile = function(event) {
     var reader = new FileReader();
