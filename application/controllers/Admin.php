@@ -260,7 +260,7 @@ class Admin extends CI_Controller {
 		
 		$data['start'] = $this->uri->segment(3);
 
-		$data['z'] = $this->AdminModel->getDataUser($config['per_page'],$data['start']);
+		$data['z'] = $this->AdminModel->getDataUser($this->session->userdata('ID_USER'),$config['per_page'],$data['start']);
 		$user['u'] = $this->AdminModel->getUserById($this->session->userdata('ID_USER'));
 		$this->load->view('tema/admin/sidebar',$data);
       	$this->load->view('tema/admin/topbar',$user);

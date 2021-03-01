@@ -51,21 +51,14 @@ class Login extends CI_Controller {
 			}
 		} else{
             $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Tidak Ada Akun !</div>');
-			        redirect('user');
+			redirect('user');
 			//echo "Tidak Ada Akun !";
 		}
 	}
 	public function logout()
     {
         $this->session->sess_destroy();
-        redirect('user');
-        /*if($this->session->userdata('STATUS') == TRUE) {
-            $data = array('ID_USER','NAMA_USER','NIP','NIM','LEVEL','STATUS');
-            $this->session->unset_userdata($data);
-            redirect('login');
-        } else {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Login terlebih dahulu</div>');
-            redirect('login');
-        }*/
+        redirect('radioo');
+        
     }
 }

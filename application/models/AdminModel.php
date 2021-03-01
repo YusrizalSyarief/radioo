@@ -250,11 +250,12 @@ class AdminModel extends CI_Model
    }
 
     //admin 
-    public function getDataUser($limit, $start) 
+    public function getDataUser($id,$limit, $start) 
     {
      //$x = $this->db->get('kategori_galeri')->result_array();
      $x = $this->db->select('*')->from('user')
      ->join('user_role', ' user.ID_ROLE = user_role.ID_ROLE ' )
+     ->where('ID_USER !=', $id)
      ->limit($limit, $start)
      ->order_by('user.ID_USER', 'DESC')->get()->result_array();
      $z = array($x, $this->db->get('user_role')->result_array()) ;
