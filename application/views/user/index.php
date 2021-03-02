@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <div class="event__slider owl-carousel">
-            <?php foreach($jadwal as $j) : ?>
+                 <?php foreach($jadwal as $j) : ?> 
                 <div class="col-lg-4">
                     <div class="event__item">
                         <div class="event__item__pic set-bg" data-setbg="<?= base_url()?>uploads/img/<?= $j['GAMBAR_JADWAL']; ?>">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

@@ -103,10 +103,14 @@ class UserModel extends CI_Model
 
         $data = [
 
-            'IP' => $ip
+            'IP' => $ip,
+            'TANGGAL_IP' => date("y-m-d")
+
         ];
-        var_dump($data);
+        // var_dump($data);
         $this->db->insert('user_ip', $data);
+        
+        
     }
 
 }
