@@ -105,7 +105,7 @@
                   <input type="number" class="form-control " id="NoTlpUser" name="NoTlpUser" placeholder="No TLp" maxlength="15" required>
                </div>
                <div class="form-group">
-                  <select class="custom-select custom-select-sm " style="  height: 40px;" name="KategoriUser">
+                  <select class="custom-select custom-select-sm " style="  height: 40px;" name="KategoriUser" required>
                         <?php foreach($z['1'] as $u): ?>
                            <option value="<?= $u['ID_ROLE']?>"><?= $u['ROLE']?></option>
                         <?php endforeach; ?>

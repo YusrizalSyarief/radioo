@@ -121,7 +121,7 @@
                         <input type="text" class="form-control " id="Judul" name="Judul" placeholder="Judul" required>
                     </div>
                     <div class="form-group">
-                    <select class="custom-select custom-select-sm " style="  height: 40px;" name="Penyiar">
+                    <select class="custom-select custom-select-sm " style="  height: 40px;" name="Penyiar" required>
                         
                             <?php foreach($z['1'] as $kg): ?>
                             <option value="<?= $kg['ID_PENYIAR']?>"><?= $kg['NAMA_PENYIAR']?></option>

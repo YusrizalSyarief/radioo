@@ -161,7 +161,7 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Kategori Yang Telah Ditambahkan</label>
-                        <select class="custom-select custom-select-sm " style="  height: 40px;" >
+                        <select class="custom-select custom-select-sm " style="  height: 40px;" required>
                             
                                 <?php foreach($z['1'] as $kg): ?>
                                 <option value="<?= $kg['ID_KATEGORI']?>"><?= $kg['NAMA_KATEGORI']?></option>

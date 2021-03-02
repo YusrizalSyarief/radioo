@@ -37,9 +37,11 @@
         </div>
         <div class="row">
             <div class="event__slider owl-carousel">
-            <?php foreach($jadwal as $j) : ?>
+            
                 <div class="col-lg-4">
+                
                     <div class="event__item">
+                    <?php foreach($jadwal as $j) : ?>
                         <div class="event__item__pic set-bg" data-setbg="<?= base_url()?>uploads/img/<?= $j['GAMBAR_JADWAL']; ?>">
                             <div class="tag-date">
                                 <a data-toggle="modal" data-target="#ratingAcara">
@@ -51,9 +53,11 @@
                             <h4><?= $j['JUDUL_JADWAL']; ?></h4>
                             <p><i class="fas fa-clock"></i><?= $j['TANGGAL_JADWAL']; ?>  <?= $j['WAKTU']; ?></p>
                         </div>
+                        <?php endforeach; ?>
                     </div>
+                    
                 </div>
-            <?php endforeach; ?>
+            
             </div>
         </div>
     </div>
