@@ -198,6 +198,7 @@ class User extends CI_Controller {
 	public function login(){
 		$email = $this->input->post('emailL');
 		$password = $this->input->post('passwordL');
+		$ip = $_SERVER['REMOTE_ADDR'];
 		
 		$user = $this->db->get_where('user', ['EMAIL' => $email])->row_array();
 		
@@ -223,6 +224,7 @@ class User extends CI_Controller {
 						redirect('admin');
 					} else {
 						echo "Password Benar!";
+						$this->UserModel->ipAdd($ip);
 						// redirect('user');
 					}
 				

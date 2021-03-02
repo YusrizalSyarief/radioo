@@ -98,18 +98,16 @@ class UserModel extends CI_Model
         $this->db->insert('user', $data);
     }
 
-    // public function getToken(){
+    // Mendapatkan IP Pengunjung
+    public function ipAdd($ip){
 
-    //     $token = base64_encode(random_bytes(32));
-	// 		$user_token = [
-	// 			'EMAIL_TOKEN' =>  htmlspecialchars($this->input->post('EmailU', true)),
-	// 			'TOKEN' => $token
+        $data = [
 
-	// 		];
-
-    //     $this->db->insert('user_token', $user_token);
-    //     return $token;
-    // }
+            'IP' => $ip
+        ];
+        var_dump($data);
+        $this->db->insert('user_ip', $data);
+    }
 
 }
 ?>

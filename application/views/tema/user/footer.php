@@ -29,6 +29,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6">
+                    <div class="footer__newslatter">
+                        <?php
+                        $waktu = time();
+                            
+                        $format_waktu = date('d-m-Y H:i:s', $waktu);
+                        echo $format_waktu;
+                        ?>
+                    </div>
+                </div>
             </div>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 			<div class="footer__copyright__text">

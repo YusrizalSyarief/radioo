@@ -55,6 +55,7 @@
             </div>
         </div>   
         <div class="row">
+
             <?php 
                 foreach ($format as $f) :
                 $kate = $f['KATEGORI'];
