@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white">
    <div class="container my-auto">
       <div class="copyright text-center my-auto">
-         <span>Copyright &copy; Your Website 2020</span>
+         <span>Copyright &copy; Radio Suara Kota 2021</span>
       </div>
    </div>
 </footer>
@@ -29,11 +29,13 @@
                      <span aria-hidden="true">×</span>
                   </button>
                </div>
+               <form class="user"method="post" action="<?php echo base_url(); ?>login/logout">
                <div class="modal-body">Apabila Anda Keluar Anda Akan Mengakhiri Semua Sesi Admin.</div>
                <div class="modal-footer">
                   <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                  <a class="btn btn-primary" href="user">Keluar</a>
+                  <button class="btn btn-primary" type="sumbit">Keluar</button>
                </div>
+               </form>
          </div>
       </div>
    </div>

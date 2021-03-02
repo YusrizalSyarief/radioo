@@ -29,7 +29,7 @@
     <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('property'); ?>">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin'); ?>">
   <div class="sidebar-brand-icon">
     <!-- Icon -->
    <!--<i class="fas fa-laugh-wink"></i>    -->
@@ -44,8 +44,8 @@
 
 <!-- Querry menu -->
 <?php
-// $role_id = $this->session->userdata('role_id');
-$queryMenu = " SELECT `user_menu`.`id_menu`, `nama_menu` FROM `user_menu` JOIN `user_access_menu` ON `user_menu`.`id_menu` = `user_access_menu`.`id_menu` WHERE `user_access_menu`.`id_role` = 1 ORDER BY `user_access_menu`.`id_menu` ASC ";
+$role_id = $this->session->userdata('ID_ROLE');
+$queryMenu = " SELECT `user_menu`.`id_menu`, `nama_menu` FROM `user_menu` JOIN `user_access_menu` ON `user_menu`.`id_menu` = `user_access_menu`.`id_menu` WHERE `user_access_menu`.`id_role` = $role_id ORDER BY `user_access_menu`.`id_menu` ASC ";
 
 $menu = $this->db->query($queryMenu)->result_array();
 ?>

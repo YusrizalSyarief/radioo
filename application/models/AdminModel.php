@@ -203,7 +203,7 @@ class AdminModel extends CI_Model
             "INSTAGRAM" => $this->input->post('ig', true),
             "TWITTER" => $this->input->post('twt', true),
          ];
-         var_dump($data);
+         //var_dump($data);
         $this->db->insert('penyiar', $data);
     }
     public function getCountDataPenyiar() 
@@ -346,6 +346,15 @@ class AdminModel extends CI_Model
    public function getTamuById($id)
    {
        return $this->db->get_where('buku_tamu', ['ID_TAMU' => $id])->row_array();
+   }
+   //tambah stream 
+   public function tambahStream()
+   {
+      $data = [
+        "LINK" => $this->input->post('linkStream', true),
+        "TANGGAL_STREAM" => date("y-m-d"),
+      ];
+      $this->db->insert('link_stream', $data);
    }
 }
 

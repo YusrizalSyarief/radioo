@@ -69,7 +69,7 @@
                         <tr>
                             <td><?= $j['JUDUL_JADWAL']?></td>
                             <td><?= $j['NAMA_PENYIAR']?></td>
-                            <td><?= $j['TANGGAL_JADWAL']?></td>
+                            <td><?= $j['TANGGAL_JADWAL'] ?></td>
                             <td><?= $j['WAKTU']?></td>
                             
                             <td>

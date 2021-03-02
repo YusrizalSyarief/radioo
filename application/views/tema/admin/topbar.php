@@ -13,7 +13,7 @@
         </button>
 
         <!-- Topbar Navbar -->
-        <marquee class="navbar-nav navbar-dark" scrolldelay="70" title="Ini Muncul Saat Hover">Selamat Datang <?=$u['NAMA']?> </marquee>
+        <marquee class="navbar-nav navbar-dark" scrolldelay="70" title="Semoga Harimu Menyenangkan">Selamat Datang <?=$u['NAMA']?> </marquee>
         <ul class="navbar-nav ml-auto">
 
             
@@ -49,7 +49,7 @@
                     </a>
                     
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?= base_url()?>login/logout" data-toggle="modal" data-target="#logoutModal">
+                    <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Logout
                     </a>

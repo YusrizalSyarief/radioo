@@ -9,7 +9,7 @@ class Admin extends CI_Controller {
 		
 		parent::__construct();
 		$this->load->helper('download');
-		if( $this->session->userdata('ID_ROLE') !== "1"){
+		if( $this->session->userdata('ID_ROLE') !== "1" AND $this->session->userdata('ID_ROLE') !== "2"){
 			$this->session->sess_destroy();
 			   redirect('login');
 		}
@@ -460,6 +460,18 @@ class Admin extends CI_Controller {
 			
 					
 			
+		}
+	}
+	public function tambahLinkStream()
+	{
+		$this->form_validation->set_rules('linkStream', 'Link Stream', 'trim|required');
+		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Ditambahkan Pastikan Data Terisi Dengan Benar</div>');
+			redirect('admin');	
+		}else {
+			$this->AdminModel->tambahStream();
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Ditambahkan</div>');
+			redirect('admin');
 		}
 	}	
 	public function hapusGaleri($id)
