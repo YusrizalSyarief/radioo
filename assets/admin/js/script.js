@@ -118,7 +118,7 @@ $("#cariGaleri").keyup(function() {
        $('#tanggalAwal').val("");
         $('#tanggalAkhir').val("");
        data.map((data) => {
-        
+        console.log(data); 
         if (data.KATEGORI === 'youtube') {
             btnAksi = `<a href=""  class="btn btn-warning ml-1 ModalUbahGaleriYt" data-toggle="modal"
                         data-target="#formTambahGaleriYt" data-id="${data.ID_GALERI}"><i class="fas fa-pen"></i> Edit</a>
@@ -146,7 +146,7 @@ $("#cariGaleri").keyup(function() {
               </tr>
             `;
         
-            console.log(output); 
+            //console.log(output); 
 
          
       })

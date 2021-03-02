@@ -57,11 +57,7 @@
                     </div>
                     
                 </div>
-<<<<<<< HEAD
-            
-=======
                 <?php endforeach; ?>
->>>>>>> b8ba88db7b74f1786bcc107ad7f6d607069534a4
             </div>
         </div>
     </div>

@@ -46,8 +46,8 @@
                     <div class="kategori">
                         <br>
                         <?php foreach ($kategori as $k) : ?>
-                        <label for="<? $k['NAMA_KATEGORI']; ?>"><?= $k['NAMA_KATEGORI']; ?></label> 
-                        <input type="checkbox" id="<? $k['ID_KATEGORI']; ?>" onclick="kategori()">
+                        <label for="<?= $k['NAMA_KATEGORI']; ?>"><?= $k['NAMA_KATEGORI']; ?></label> 
+                        <input type="radio" id="cbx" name="cbx" data-id="<?= $k['ID_KATEGORI']; ?>" >
                         &emsp;
                         <?php endforeach; ?>
                     </div>
