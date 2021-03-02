@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
     
     <!-- Css Styles -->
+    <link rel="stylesheet" href="<?= base_url()?>assets/user/css/jam.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url()?>assets/user/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url()?>assets/user/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url()?>assets/user/css/barfiller.css" type="text/css">
@@ -43,6 +44,7 @@
                         <img src="<?= base_url()?>assets/logo/logoo.png" alt="Logo_RSKP" style="width:120px;height:75px;">
                     </div>
                 </div>
+                    
                 <div class="col-lg-10 col-md-10">
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
@@ -137,9 +139,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#modalRegister" style="float:left;">Buat Akun Baru</button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#modalRegister">Buat Akun Baru</button>
                     <button class="btn btn-primary" type="submit" >Masuk</button>
+                    
+                    
                 </div>
             </form>
             </div>

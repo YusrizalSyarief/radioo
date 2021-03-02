@@ -33,14 +33,13 @@ class Login extends CI_Controller {
 					// cek role
 					if($user['ID_ROLE'] == 1){
                         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Login Berhasil</div>');
-			            
 						redirect('admin');
 					} else if($user['ID_ROLE'] == 2) {
                         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Login Berhasil </div>');
 						redirect('admin');
 					} else {
 						echo "Password Benar!";
-						// redirect('user');
+						redirect('user');
 					}
 				
 				} else {
