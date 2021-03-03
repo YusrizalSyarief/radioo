@@ -9,34 +9,38 @@ class User extends CI_Controller {
 
 	public function index()
 	{
+
+		
 		// Ambil IP
 		$ip = $_SERVER['REMOTE_ADDR'];
 		$this->UserModel->ipAdd($ip);
 
 		// Isi Beranda
 		$data['title'] = 'Beranda';
+		$data['u'] = $this->UserModel->getUserById($this->session->userdata('ID_USER'));
 		$data['jadwal'] = $this->UserModel->getJadwal();
 		$data['penyiar'] = $this->UserModel->getPenyiar();
 		$data['audio'] = $this->UserModel->getAudio();
 		
       	$this->load->view('tema/user/header', $data);
         $this->load->view('user/index', $data);
-		$this->load->view('tema/modal/modalprofile');
-		$this->load->view('tema/modal/modalberanda');
+		$this->load->view('tema/modal/modalprofile', $data);
+		$this->load->view('tema/modal/modalberanda', $data);
       	$this->load->view('tema/user/footer');
    
 	}
 
 	public function galeri()
 	{
+		
 		// $a = $this->input->post('email', true);
 		$data['title'] = 'Galeri';
-		$data['format'] = $this->UserModel->getDataFormat();
-		$data['kategori'] = $this->UserModel->getKategori();
+		$data['u'] = $this->UserModel->getUserById($this->session->userdata('ID_USER'));
+		$data['kategori'] = $this->UserModel->getKategori0();
 		
       	$this->load->view('tema/user/header', $data);
         $this->load->view('user/galeri', $data);
-		$this->load->view('tema/modal/modalprofile');
+		$this->load->view('tema/modal/modalprofile', $data);
       	$this->load->view('tema/user/footer');
 		
 		// $this->UserModel->getDataFormat();
@@ -45,11 +49,14 @@ class User extends CI_Controller {
 
 	public function bukutamu()
 	{
+		
+
 		$data['title'] = 'Buku Tamu';
+		$data['u'] = $this->UserModel->getUserById($this->session->userdata('ID_USER'));
 		
       	$this->load->view('tema/user/header', $data);
-        $this->load->view('user/bukutamu');
-		$this->load->view('tema/modal/modalprofile');
+        $this->load->view('user/bukutamu', $data);
+		$this->load->view('tema/modal/modalprofile', $data);
       	$this->load->view('tema/user/footer');
    
 	}
@@ -200,49 +207,46 @@ class User extends CI_Controller {
 		
 	}
 
-	public function login(){
-		$email = $this->input->post('emailL');
-		$password = $this->input->post('passwordL');
+	public function ubahPro(){
+		$config['upload_path']          = './uploads/img';
+		$config['allowed_types']        = 'png|jpg';
+		$config['max_size']             = 10000;
+		$config['max_width'] 			= '1920';
+		$config['max_height'] 			= '1080';
 		
-		
-		$user = $this->db->get_where('user', ['EMAIL' => $email])->row_array();
-		
-		// jika user ada
-		if($user) {
-			// jika user aktif
-			if($user['USER_ACTIVE'] == 1){
-				// cek password
-				if($password == $user['PASSWORD']){
+		$this->upload->initialize($config);
+		$this->form_validation->set_rules('namaR', 'Nama', 'trim|required');
+		$this->form_validation->set_rules('emailR', 'Email', 'trim|required');
+		$this->form_validation->set_rules('notlpR', 'Nomor Telp ', 'trim|required');
 
-					// $data = [
-					// 	'EMAIL' => $user['EMAIL'],
-					// 	'ID_ROLE' => $user['ID_ROLE'],
-					// 	'ID_USER' => $user['ID_USER']
-					// ];
-					// $this->session->set_userdata('ID_USER', $user['ID_USER']);
-					// $this->session->set_userdata($data);
-
-					// cek role
-					if($user['ID_ROLE'] == 1){
-						redirect('admin');
-					} else if($user['ID_ROLE'] == 2) {
-						redirect('admin');
-					} else {
-						echo "Password Benar!";
-						
-						// redirect('user');
-					}
-				
-				} else {
-					echo "Password Salah!";
-				}
+		
+		//$this->upload->initialize($config);
+		if ($this->form_validation->run() == false) {
+			echo "File Tidak Dapat Di Update";
+		} else {
+			if(empty($_FILES['UpdateFoto']['name'])) {
+				$namaBerkas = $this->input->post('UpdateFoto', true);
+				$this->UserModel->ubahProfil($namaBerkas);
+				echo "Berhasil Di Upload Tanpa Gambar";
 				
 			} else {
-				echo "Akun Belum Aktif!";
+				if (!$this->upload->do_upload('UpdateFoto')) {
+					echo "Terdapat Kesalahan dalam Update";	
+				} else {
+					$namaBerkas = $this->upload->data("file_name");
+					$this->AdminModel->ubahProfil($namaBerkas);
+					echo "Berhasil Di Upload Keseluruhan";
+				}
 			}
-		} else{
-			echo "Tidak Ada Akun !";
 		}
 	}
+
+	public function getKategori(){
+		echo json_encode($this->UserModel->getKategori($_POST['kategori']));
+	}
+	
+	// public function getProfil(){
+	// 	echo json_encode($this->UserModel->getUserById($_POST['id']));
+	// }
 
 }

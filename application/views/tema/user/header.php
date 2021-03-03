@@ -12,12 +12,14 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="<?= base_url('assets/admin/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
+    
     <link
       href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
       rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
     
     <!-- Css Styles -->
+    <link href="<?= base_url()?>assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url()?>assets/user/css/jam.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url()?>assets/user/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url()?>assets/user/css/font-awesome.min.css" type="text/css">
@@ -37,14 +39,13 @@
     </div>
     <!-- Header Section Begin -->
     <header class="header">
-        <div class="container">
+        <div class="container" id="navbar">
             <div class="row">
                 <div class="col-lg-2 col-md-2">
                     <div class="header__logo">
                         <img src="<?= base_url()?>assets/logo/logoo.png" alt="Logo_RSKP" style="width:120px;height:75px;">
                     </div>
                 </div>
-                    
                 <div class="col-lg-10 col-md-10">
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
@@ -73,41 +74,52 @@
                             </li>
                         <?php endforeach; ?>
                         <?php endforeach; ?>
-                            <li>
-                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalLogin">Login</button>
-                            </li>
-                            <!-- Nav Item - User Information -->
+                        
+                        <?php 
+                            if($this->session->userdata('ID_ROLE')){
+                        ?>
+                                <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img class="img-profile rounded-circle"
-                                        src="<?= base_url(); ?>uploads/img/default.jpg" style="height:45px; weight:15px;">
+                                        src="<?= base_url(); ?>uploads/img/<?= $u['GAMBAR']; ?>" style="height:45px; weight:15px;">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu"
                                     aria-labelledby="userDropdown">
                                     <a class="dropdown-item" href="#" data-toggle="modal"
-                                        data-target="#Profil">
+                                        data-target="#Profil" style="color: gray;">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Profile
                                     </a>
-                                    <a class="dropdown-item" href="#"data-toggle="modal"
-                                        data-target="#ubahPro">
+                                    <a class="dropdown-item ModalUbahProfil" href="#"data-toggle="modal"
+                                        data-target="#ubahPro" data-id="<?= $u['ID_USER']; ?>" style="color: gray;">
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Ubah Profile
                                     </a>
                                     <a class="dropdown-item" href="#"data-toggle="modal"
-                                        data-target="#ubahPass">
+                                        data-target="#ubahPass" style="color: gray;">
                                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Ubah Password
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <a class="dropdown-item" href="#" data-toggle="modal" 
+                                        data-target="#logoutModal" style="color: red;">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>
                                 </div>
                             </li>
+                        <?php    
+                            } else{
+                        ?>
+                            <li>
+                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalLogin">Login</button>
+                            </li>
+                        <?php    
+                            } 
+                        ?>
                         </ul>
                         </nav>
                     </div>

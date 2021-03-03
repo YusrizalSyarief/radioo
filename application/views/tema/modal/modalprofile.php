@@ -13,7 +13,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-primary" href="<?= base_url('auth/logout'); ?>">Yakin</a>
+                <a class="btn btn-primary" href="<?= base_url('login/logout'); ?>">Yakin</a>
             </div>
         </div>
     </div>
@@ -32,16 +32,16 @@
             <div class="modal-body">
                 <div class="section-title center-title" >
                     <img class="img-profile rounded-circle center"
-                        src="<?= base_url(); ?>uploads/img/default.jpg" style="height:180px; weight:180px;"> <br> <br>
+                        src="<?= base_url(); ?>uploads/img/<?= $u['GAMBAR']; ?>" style="height:180px; weight:180px;"> <br> <br>
                 </div>    
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="namaP" name="namaP" placeholder="Nama User" readonly>
+                    <input type="text" class="form-control form-control-user" id="namaP" name="namaP" placeholder="Nama User" value="<?= $u['NAMA']; ?>" readonly>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="emailP" name="emailP" placeholder="Email User" readonly>
+                    <input type="text" class="form-control form-control-user" id="emailP" name="emailP" placeholder="Email User" value="<?= $u['EMAIL']; ?>" readonly>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="notlpP" name="nptlpP" placeholder="Nomor User" readonly>
+                    <input type="text" class="form-control form-control-user" id="notlpP" name="nptlpP" placeholder="Nomor User" value="<?= $u['NO_TLP']; ?>" readonly>
                 </div>
             </div>
             <div class="modal-footer">
@@ -61,24 +61,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="user"method="post" action="<?= base_url('user/ratingAcara'); ?>">
+                <form class="user"method="post" action="<?= base_url('user/ubahPro'); ?>">
+                <input type="hidden" name='idPro' id='idPro' value="1">
+                <input type="hidden" name='GambarPro' id='GambarPro' value="1">
                 <div class="section-title center-title" >
                     <img class="img-profile rounded-circle center"
-                        src="<?= base_url(); ?>uploads/img/default.jpg" style="height:180px; weight:180px;"> <br> <br>
+                        src="<?= base_url(); ?>uploads/img/<?= $u['GAMBAR']; ?>" id="outputProfil" alt="..." style="height:180px; weight:180px;"> <br> <br>
                     <div class="form-group ">
                         <label for="exampleFormControlFile1">Upload Foto</label><br>    
                         <small class="form-text text-danger">Ukuran maksimal Foto 1000x1000 pixel potrait, Berformat JPG atau PNG</small>
-                        <input type="file" class="form-control-file" id="UpdateFoto" name="UpdateFoto" accept="image/*" onchange="loadFile(event)" required>
+                        <input type="file" class="form-control-file" id="UpdateFoto" name="UpdateFoto" accept="image/*" onchange="loadFile(event)">
                     </div>
                 </div>    
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="namaR" name="namaR" placeholder="Nama User">
+                    <input type="text" class="form-control form-control-user" id="namaR" name="namaR" placeholder="Nama User" value="<?= $u['NAMA']; ?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="emailR" name="emailR" placeholder="Email User">
+                    <input type="text" class="form-control form-control-user" id="emailR" name="emailR" placeholder="Email User" value="<?= $u['EMAIL']; ?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="notlpR" name="nptlpR" placeholder="Nomor User">
+                    <input type="text" class="form-control form-control-user" id="notlpR" name="nptlpR" placeholder="Nomor User" value="<?= $u['NO_TLP']; ?>">
                 </div>
             </div>
             <div class="modal-footer">

@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="form-group">
-               <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email" readonly>
+               <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email" value="<?= $u['EMAIL']; ?>" readonly>
             </div>
             <div class="form-floating">
                 <label for="floatingTextarea">Komentar</label>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             <div class="form-group">
-                <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email" readonly>
+                <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email" value="<?= $u['EMAIL']; ?>" readonly>
             </div>
             <div class="form-floating">
                 <label for="floatingTextarea">Komentar</label>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
             <div class="form-group">
-                <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email" readonly>
+                <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat email" value="<?= $u['EMAIL']; ?>" readonly>
             </div>
             <div class="form-floating">
                 <label for="floatingTextarea">Komentar</label>

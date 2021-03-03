@@ -7,9 +7,34 @@
                     <span>Selamat datang</span>
                     <h1>Radio Suara Kota Probolinggo</h1>
                     <p>Now Streaming</p>
-                    <a href="<?= base_url(); ?>assets/stream/stream.m3u" class="play-btn video-popup"><i class="fa fa-play"></i></a> <br> <br>
+                    <a href="https://s7.alhastream.com/radio/8450/radio" class="play-btn video-popup"><i class="fa fa-play"></i></a> <br> <br>
                     <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ratingWeb">Rating Web</button>
                 </div> 
+                <!-- <div class="stations nowplaying"><div class="radio-player-widget" stationname="Radio Suara Kota Probolinggo" downloadplaylisturi="/public/46/playlist.pls" requestlisturi="/api/station/46/requests" customfields=""> 
+                <div class="now-playing-details">
+                <div class="now-playing-art">
+                <a href="http://alhastream.my.id/logo/RadioSuaraKotaProbolinggo.jpeg" data-fancybox="" target="_blank">
+                <img src="http://alhastream.my.id/logo/RadioSuaraKotaProbolinggo.jpeg" alt="Album Art"></a>
+                </div> 
+                <div class="now-playing-main"> 
+                <div>
+                <h4 class="now-playing-title">Stream Offline</h4> 
+                <h5 class="now-playing-artist"></h5>
+                </div> </div></div> <hr> 
+                <div class="radio-controls"><
+                    div class="radio-control-play-button">
+                    <a href="#" role="button" title="Play" aria-label="Play"><i aria-hidden="true" class="material-icons lg">play_circle_filled</i></a>
+                    </div> <div class="radio-control-select-stream"></div> 
+                    <div class="radio-control-mute-button"><a href="#" title="Mute" class="text-secondary"><i aria-hidden="true" class="material-icons">volume_mute</i></a>
+                    </div> 
+                    <div class="radio-control-volume-slider">
+                    <input type="range" title="Volume" min="0" max="100" step="1" class="custom-range"></div> 
+                    <div class="radio-control-max-volume-button"><a href="#" title="Full Volume" class="text-secondary"><i aria-hidden="true" class="material-icons">volume_up</i></a>
+                    </div>
+                    </div>
+                    </div>
+                    </div>  -->
+
             </div>   
         </div>
     </div>
@@ -41,7 +66,7 @@
                 <div class="col-lg-4">
                 
                     <div class="event__item">
-                    <?php foreach($jadwal as $j) : ?>
+                    
                         <div class="event__item__pic set-bg" data-setbg="<?= base_url()?>uploads/img/<?= $j['GAMBAR_JADWAL']; ?>">
                             <div class="tag-date">
                                 <a data-toggle="modal" data-target="#ratingAcara">
@@ -53,15 +78,11 @@
                             <h4><?= $j['JUDUL_JADWAL']; ?></h4>
                             <p><i class="fas fa-clock"></i><?= $j['TANGGAL_JADWAL']; ?>  <?= $j['WAKTU']; ?></p>
                         </div>
-                        <?php endforeach; ?>
+                        
                     </div>
                     
                 </div>
-<<<<<<< HEAD
-            
-=======
                 <?php endforeach; ?>
->>>>>>> b8ba88db7b74f1786bcc107ad7f6d607069534a4
             </div>
         </div>
     </div>
@@ -76,7 +97,7 @@
             
             <div class="col-lg-6">
                 <div class="about__pic">
-                    <img src="<?= base_url('uploads/img/')?><?= $p['GAMBAR_PENYIAR']; ?>" alt="penyiar<?= $p['ID_PENYIAR']; ?>" style="border-radius: 50%;"><br> <br> <br>
+                    <img src="<?= base_url('uploads/img/')?><?= $p['GAMBAR_PENYIAR']; ?>" alt="penyiar<?= $p['ID_PENYIAR']; ?>" style="border-radius: 50%; weight: 400px; height: 400px;"><br> <br> <br>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -241,7 +262,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="youtube__item">
-                    <div class="youtube__item__pic set-bg" data-setbg="<?= base_url()?>assets/user/img/youtube/youtube-1.jpg">
+                    <div class="youtube__item__pic set-bg" data-setbg="<?= base_url()?>assets/user/img/thumbs01.jpg">
                         <a href="https://www.youtube.com/watch?v=7R-RQFp_wEo" class="play-btn video-popup"><i class="fa fa-play"></i></a>
                     </div>
                     <div class="youtube__item__text">
@@ -251,21 +272,11 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="youtube__item">
-                    <div class="youtube__item__pic set-bg" data-setbg="<?= base_url()?>assets/user/img/youtube/youtube-2.jpg">
+                    <div class="youtube__item__pic set-bg" data-setbg="<?= base_url()?>assets/user/img/thumbs02.jpg">
                         <a href="https://www.youtube.com/watch?v=nX54gCTdfQE" class="play-btn video-popup"><i class="fa fa-play"></i></a>
                     </div>
                     <div class="youtube__item__text">
                         <h4>Profil Suara Kota Probolinggo</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="youtube__item">
-                    <div class="youtube__item__pic set-bg" data-setbg="<?= base_url()?>assets/user/img/youtube/youtube-3.jpg">
-                        <a href="https://www.youtube.com/watch?v=S19UcWdOA-I?autoplay=1" class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                    </div>
-                    <div class="youtube__item__text">
-                        <h4>Dimitri Vegas, Steve Aoki & Like Mike’s “3 Are Legend”</h4>
                     </div>
                 </div>
             </div>

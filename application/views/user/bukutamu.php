@@ -76,8 +76,8 @@
                     </p>
                     <form method="post" action="<?php echo base_url(); ?>user/pengajuan">
                     <div class="input__list">
-                        <input type="text" id="namaTamu" name="namaTamu" placeholder="Nama">
-                        <input type="text" id="emailTamu" name="emailTamu" placeholder="Email">
+                        <input type="text" id="namaTamu" name="namaTamu" value="<?= $u['NAMA']; ?>" readonly>
+                        <input type="text" id="emailTamu" name="emailTamu" value="<?= $u['EMAIL']; ?>" readonly>
                     </div>
                     <textarea id="isiTamu" name="isiTamu" placeholder="Isi Pengaduan"></textarea>
                     <?= form_error('isiTamu', '<small class="text-danger pl-3">', '</small>'); ?>

@@ -38,7 +38,7 @@ class Login extends CI_Controller {
                         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Login Berhasil </div>');
 						redirect('admin');
 					} else {
-						echo "Password Benar!";
+					
 						redirect('user');
 					}
 				

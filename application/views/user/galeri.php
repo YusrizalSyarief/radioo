@@ -21,8 +21,8 @@
                         Pilih Format File
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item coba1" id="coba1" href="#">Youtube</a>
-                        <a class="dropdown-item coba" id="coba" href="#">Audio</a>
+                        <a class="dropdown-item coba1" id="coba1" data-kategori="youtube" href="#">Youtube</a>
+                        <a class="dropdown-item coba" id="coba" data-kategori="audio" href="#">Audio</a>
                     </div>
                     <input type="text" id="fie" name="fie" value="" hidden>
                 </div>
@@ -43,21 +43,13 @@
                         <h2 id="judulKategori">Galeri</h2>
                         <h1 id="judulKategori2">Galeri</h1>
                     </div>
-                    <div class="kategori">
-                        <br>
-                        <?php foreach ($kategori as $k) : ?>
-                        <label for="<? $k['NAMA_KATEGORI']; ?>"><?= $k['NAMA_KATEGORI']; ?></label> 
-                        <input type="checkbox" id="<? $k['ID_KATEGORI']; ?>" onclick="kategori()">
-                        &emsp;
-                        <?php endforeach; ?>
-                    </div>
                 </div>
             </div>
         </div>   
         <div class="row">
 
             <?php 
-                foreach ($format as $f) :
+                foreach ($kategori as $f) :
                 $kate = $f['KATEGORI'];
                 $id = $f['ID_KATEGORI'];
     
@@ -80,9 +72,10 @@
                         break;
                         case $kate == 'audio' :
             ?>
+            
             <div class="col-lg-7 p-0">
-                <div class="track__content nice-scroll">
-                <div class="single_player_container">
+                    <div class="single_player_container">
+                        <br>
                         <h4><?= $f['JUDUL']; ?></h4>
                         <div class="jp-jplayer jplayer" data-ancestor=".jp_container_<?=$f['ID_GALERI']; ?>" id="jp_jplayer_<?=$f['ID_GALERI']; ?>" data-url="<?= base_url('uploads/'); ?><?=$f['NAMA_FILE']; ?>">
                         </div>
@@ -118,8 +111,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
+            <br>
             <?php
                         break;
                         };

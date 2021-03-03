@@ -3,17 +3,17 @@ class UserModel extends CI_Model
 {
 
     // Mengambil Format File
-    public function getDataFormat(){
+    public function getKategori0(){
 
         // $jenis = 'youtube';
-        $queryFormat = " SELECT * FROM `galeri` WHERE `KATEGORI` LIKE 'youtube' ";
-        $format = $this->db->query($queryFormat)->result_array();
+        $queryKategori0 = " SELECT * FROM `galeri` WHERE `KATEGORI` LIKE 'audio' ";
+        $kategori = $this->db->query($queryKategori0)->result_array();
 
-        return $format;
+        return $kategori;
     }
 
     // Mengambil Data Kategori Galeri
-    public function getKategori(){
+    public function getFormat(){
 
         $queryKategori = " SELECT * FROM `kategori_galeri` ";
         $kategori = $this->db->query($queryKategori)->result_array(); 
@@ -109,8 +109,36 @@ class UserModel extends CI_Model
         ];
         // var_dump($data);
         $this->db->insert('user_ip', $data);
-        
-        
+    }
+
+    public function getKategori($kat){
+        $queryKategori = " SELECT * FROM `galeri` JOIN `kategori_galeri` ON `galeri`.`ID_KATEGORI` = `kategori_galeri`.`ID_KATEGORI` where `KATEGORI` = $kat ";
+        $kategori = $this->db->query($queryKategori)->result_array();
+
+        return $kategori;
+    }
+
+    public function getUserById($id)
+   {
+        return $this->db->select('*')->from('user')
+        ->join('user_role', 'user.ID_ROLE = user_role.ID_ROLE')
+        ->where('ID_USER', $id)
+        ->get()->row_array();
+   }
+
+   public function ubahProfil($namaBerkas)
+    {
+        $data = [
+            
+            "EMAIL" => $this->input->post('emailR', true),
+            "NAMA" => $this->input->post('namaR', true),
+            "NO_TLP" => $this->input->post('notlpR', true),
+            "GAMBAR" => $namaBerkas,
+            
+        ];
+
+        $this->db->where('ID_USER', $this->input->post('idR'));
+        $this->db->update('user', $data);
     }
 
 }
