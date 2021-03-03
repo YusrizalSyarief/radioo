@@ -43,6 +43,17 @@
                         <h2 id="judulKategori">Galeri</h2>
                         <h1 id="judulKategori2">Galeri</h1>
                     </div>
+<<<<<<< HEAD
+=======
+                    <div class="kategori">
+                        <br>
+                        <?php foreach ($kategori as $k) : ?>
+                        <label for="<?= $k['NAMA_KATEGORI']; ?>"><?= $k['NAMA_KATEGORI']; ?></label> 
+                        <input type="radio" id="cbx" name="cbx" data-id="<?= $k['ID_KATEGORI']; ?>" >
+                        &emsp;
+                        <?php endforeach; ?>
+                    </div>
+>>>>>>> f581d0d787f172e55c18bb4c72d5550ffe69a262
                 </div>
             </div>
         </div>   

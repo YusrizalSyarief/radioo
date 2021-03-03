@@ -562,6 +562,12 @@ class Admin extends CI_Controller {
       echo json_encode($this->AdminModel->cariGalerilTgl($_POST['awal'],$_POST['akhir']));
    }
    
+   public function graphView()
+   {
+      $hasil = $this->AdminModel->getView();
+      echo json_encode($hasil);
+   }
+   
    public function ubahGaleriYt()
    {
 	 

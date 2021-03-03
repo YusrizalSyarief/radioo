@@ -13,8 +13,8 @@
    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
    <link href="<?= base_url()?>assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
    <script src="<?= base_url()?>assets/admin/vendor/jquery/jquery.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-   <script charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script> -->
+   <!-- <script charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script> -->
 
 </head>
 

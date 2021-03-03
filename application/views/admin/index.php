@@ -130,5 +130,247 @@
 </div>
 
 <!-- End of Main Content -->
+<script>
+$(document).ready(function () {
+    const arrayTotalViewer = [];
+   const monthViewer = [];
 
+   let monthJan = 0;
+   let monthFeb = 0;
+   let monthMar = 0;
+   let monthApr = 0;
+   let monthMay = 0;
+   let monthJun = 0;
+   let monthJul = 0;
+   let monthAug = 0;
+   let monthSep = 0;
+   let monthOct = 0;
+   let monthNov = 0;
+   let monthDec = 0;
+   $.get("<?= site_url('admin/graphView')?>",function (response) {
+    const data = JSON.parse(response);
+      const currentYear = new Date().getFullYear();
+      data.map((data) => {
+         const jsDate = new Date(data.TANGGAL_IP).toString();
+         let splited = jsDate.split(" ");
+         if (splited[3] == currentYear) {
+            if (splited[1] == "Jan") {
+               monthJan += 1;
+               if (monthViewer.includes("Jan") != true) {
+                  monthViewer.push("Jan");
+               }
+
+            } else if (splited[1] == "Feb") {
+               monthFeb += 1;
+               if (monthViewer.includes("Feb") != true) {
+                  monthViewer.push("Feb");
+               }
+
+            } else if (splited[1] == "Mar") {
+               monthMar += 1;
+               if (monthViewer.includes("Mar") != true) {
+                  monthViewer.push("Mar");
+               }
+
+            } else if (splited[1] == "Apr") {
+               monthApr += 1;
+               if (monthViewer.includes("Apr") != true) {
+                  monthViewer.push("Apr");
+               }
+
+            } else if (splited[1] == "May") {
+               monthMay += 1;
+               if (monthViewer.includes("May") != true) {
+                  monthViewer.push("May");
+               }
+
+            } else if (splited[1] == "Jun") {
+               monthJun += 1;
+               if (monthViewer.includes("Jun") != true) {
+                  monthViewer.push("Jun");
+               }
+
+            } else if (splited[1] == "Jul") {
+               monthJul += 1;
+               if (monthViewer.includes("Jul") != true) {
+                  monthViewer.push("Jul");
+               }
+
+            } else if (splited[1] == "Aug") {
+               monthAug += 1;
+               if (monthViewer.includes("Aug") != true) {
+                  monthViewer.push("Aug");
+               }
+
+            } else if (splited[1] == "Sep") {
+               monthSep += 1;
+               if (monthViewer.includes("Sep") != true) {
+                  monthViewer.push("Sep");
+               }
+
+            } else if (splited[1] == "Oct") {
+               monthOct += 1;
+               if (monthViewer.includes("Oct") != true) {
+                  monthViewer.push("Oct");
+               }
+
+            } else if (splited[1] == "Nov") {
+               monthNov += 1;
+               if (monthViewer.includes("Nov") != true) {
+                  monthViewer.push("Nov");
+               }
+
+            } else if (splited[1] == "Dec") {
+               monthDec += 1;
+               if (monthViewer.includes("Dec") != true) {
+                  monthViewer.push("Dec");
+               }
+            }
+         };
+
+      });
+
+      if (monthJan != 0) {
+        arrayTotalViewer.push(monthJan);
+      }
+
+      if (monthFeb != 0) {
+        arrayTotalViewer.push(monthFeb);
+      }
+
+      if (monthMar != 0) {
+        arrayTotalViewer.push(monthMar);
+      }
+
+      if (monthApr != 0) {
+        arrayTotalViewer.push(monthApr);
+      }
+
+      if (monthMay != 0) {
+        arrayTotalViewer.push(monthMay);
+      }
+
+      if (monthJun != 0) {
+        arrayTotalViewer.push(monthJun);
+      }
+
+      if (monthJul != 0) {
+        arrayTotalViewer.push(monthJul);
+      }
+
+      if (monthAug != 0) {
+        arrayTotalViewer.push(monthAug);
+      }
+
+      if (monthSep != 0) {
+        arrayTotalViewer.push(monthSep);
+      }
+
+      if (monthOct != 0) {
+        arrayTotalViewer.push(monthOct);
+      }
+
+      if (monthNov != 0) {
+        arrayTotalViewer.push(monthNov);
+      }
+
+      if (monthDec != 0) {
+        arrayTotalViewer.push(monthDec);
+      }
+      console.log(data);
+        var ctx = document.getElementById("myAreaChart");
+        var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: monthViewer,
+            datasets: [{
+            label: "Viewer Website",
+            lineTension: 0.3,
+            backgroundColor: "rgba(78, 115, 223, 0.05)",
+            borderColor: "rgba(78, 115, 223, 1)",
+            pointRadius: 3,
+            pointBackgroundColor: "rgba(78, 115, 223, 1)",
+            pointBorderColor: "rgba(78, 115, 223, 1)",
+            pointHoverRadius: 3,
+            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+            pointHitRadius: 10,
+            pointBorderWidth: 2,
+            data:arrayTotalViewer,
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            layout: {
+            padding: {
+                left: 10,
+                right: 25,
+                top: 25,
+                bottom: 0
+            }
+            },
+            scales: {
+            xAxes: [{
+                time: {
+                unit: 'date'
+                },
+                gridLines: {
+                display: false,
+                drawBorder: false
+                },
+                ticks: {
+                maxTicksLimit: 7
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                maxTicksLimit: 2000,
+                padding: 10,
+                // Include a dollar sign in the ticks
+                callback: function(value, index, values) {
+                    return ' ' + number_format(value);
+                }
+                },
+                gridLines: {
+                color: "rgb(234, 236, 244)",
+                zeroLineColor: "rgb(234, 236, 244)",
+                drawBorder: false,
+                borderDash: [2],
+                zeroLineBorderDash: [2]
+                }
+            }],
+            },
+            legend: {
+            display: false
+            },
+            tooltips: {
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#858796",
+            titleMarginBottom: 10,
+            titleFontColor: '#6e707e',
+            titleFontSize: 14,
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            intersect: false,
+            mode: 'index',
+            caretPadding: 10,
+            callbacks: {
+                label: function(tooltipItem, chart) {
+                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                return datasetLabel + ' ' + number_format(tooltipItem.yLabel);
+                }
+            }
+            }
+        }
+    });
+
+
+   });
+    
+})
+
+</script>
             

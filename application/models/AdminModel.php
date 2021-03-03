@@ -356,5 +356,15 @@ class AdminModel extends CI_Model
       ];
       $this->db->insert('link_stream', $data);
    }
+   //graph 
+   public function getView()
+   {
+       return $this->db->get('user_ip')->result();
+   }
+
+   public function cbGaleri($id)
+   {
+       return $this->db->get_where('galeri', ['ID_KATEGORI' => $id])->row_array();
+   }
 }
 
