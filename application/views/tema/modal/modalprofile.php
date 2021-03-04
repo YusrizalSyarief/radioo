@@ -92,6 +92,7 @@
     </div>
 </div>
 
+
 <!-- Modal Ubah Password -->
 <div class="modal fade" id="ubahPass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
@@ -118,4 +119,5 @@
             </form>
         </div>
     </div>
+</div>
 </div>

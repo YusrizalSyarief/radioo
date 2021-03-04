@@ -47,6 +47,11 @@
                         <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                         Ganti Pass
                     </a>
+                    <a class="dropdown-item ModalGantiPass" href="#" data-toggle="modal"
+                                    data-target="#formGantiPassword" data-id="<?= $u['ID_USER']?>">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Pindah Halaman User
+                    </a>
                     
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">

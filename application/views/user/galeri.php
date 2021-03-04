@@ -43,8 +43,6 @@
                         <h2 id="judulKategori">Galeri</h2>
                         <h1 id="judulKategori2">Galeri</h1>
                     </div>
-<<<<<<< HEAD
-=======
                     <div class="kategori">
                         <br>
                         <?php foreach ($kategori as $k) : ?>
@@ -53,7 +51,6 @@
                         &emsp;
                         <?php endforeach; ?>
                     </div>
->>>>>>> f581d0d787f172e55c18bb4c72d5550ffe69a262
                 </div>
             </div>
         </div>   

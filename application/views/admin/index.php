@@ -3,10 +3,7 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-   <!-- Page Heading -->
-   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800"><?= $title; ?></h1>
-   </div>
+   
 <!-- pesan error -->
 <?php if ($this->session->flashdata('pesan')):?>
 
@@ -133,6 +130,7 @@
 <script>
 $(document).ready(function () {
     const arrayTotalViewer = [];
+    
    const monthViewer = [];
 
    let monthJan = 0;
@@ -277,7 +275,14 @@ $(document).ready(function () {
       if (monthDec != 0) {
         arrayTotalViewer.push(monthDec);
       }
-      console.log(data);
+      //console.log(arrayTotalViewer);
+
+    //   var ctx = document.getElementById("myAreaChart");
+    //   var myLineChart = new Chart(ctx, {
+    // type: 'line',
+    // data: [15,16,17],
+    
+    // })
         var ctx = document.getElementById("myAreaChart");
         var myLineChart = new Chart(ctx, {
         type: 'line',
@@ -324,7 +329,8 @@ $(document).ready(function () {
             }],
             yAxes: [{
                 ticks: {
-                maxTicksLimit: 2000,
+                
+                maxTicksLimit: 20,
                 padding: 10,
                 // Include a dollar sign in the ticks
                 callback: function(value, index, values) {
@@ -373,4 +379,43 @@ $(document).ready(function () {
 })
 
 </script>
+<script>
+$(document).ready( function () {
+
+var ctx = document.getElementById("myPieChart");
+var myPieChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Like", "Dislike"],
+    datasets: [{
+      data: [<?= $rate[0]?>, <?= $rate[1]?>],
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+})
+
+
+
+</script>
+
             
