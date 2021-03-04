@@ -5,11 +5,16 @@ class UserModel extends CI_Model
     // Mengambil Format File
     public function getKategori0(){
 
-        // $jenis = 'youtube';
-        $queryKategori0 = " SELECT * FROM `galeri` WHERE `KATEGORI` LIKE 'audio' ";
+        $queryKategori0 = " SELECT * FROM `galeri` ";
         $kategori = $this->db->query($queryKategori0)->result_array();
 
         return $kategori;
+    }
+
+    // Mengambil Format File
+    public function getKategori1($kate){
+
+        return $this->db->get_where('galeri', ['KATEGORI' => $kate])->result_array();
     }
 
     // Mengambil Data Kategori Galeri

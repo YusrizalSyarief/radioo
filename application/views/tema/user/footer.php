@@ -31,7 +31,15 @@
                 </div>
                 <div class="col-lg-3 offset-lg-1 col-md-6">
                     <div class="footer__newslatter">
-                    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+                        <div id="MyClockDisplay" class="clock" onload="showTime()">
+                        </div>
+                        <div id="displayIP">
+                            <?php 
+                                $queryIp = " SELECT * FROM `user_ip` ";
+                                $Ipp = $this->db->query($queryIp)->num_rows();
+                            ?>
+                            <p style="float: center; font-size: 15px; color: white;">Jumlah Pengunjung Website RSKP = <?= $Ipp; ?> </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,7 +47,7 @@
 			<div class="footer__copyright__text">
 				<p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with 
                     <i class="fa fa-heart" aria-hidden="true"></i> by 
-                    <!-- <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
+                    <a href="https://colorlib.com" target="_blank">Colorlib</a>
                 </p>
 			</div>
 			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->

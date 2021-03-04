@@ -249,4 +249,40 @@ class User extends CI_Controller {
 	// 	echo json_encode($this->UserModel->getUserById($_POST['id']));
 	// }
 
+	public function galeriYT()
+	{
+		
+		// $a = $this->input->post('email', true);
+		$kate = "youtube";
+		$data['title'] = 'Galeri';
+		$data['u'] = $this->UserModel->getUserById($this->session->userdata('ID_USER'));
+		$data['kategori'] = $this->UserModel->getKategori1($kate);
+		
+      	$this->load->view('tema/user/header', $data);
+        $this->load->view('user/galeri', $data);
+		$this->load->view('tema/modal/modalprofile', $data);
+      	$this->load->view('tema/user/footer');
+		
+		// $this->UserModel->getDataFormat();
+   
+	}
+
+	public function galeriAudio()
+	{
+		
+		// $a = $this->input->post('email', true);
+		$kate = "audio";
+		$data['title'] = 'Galeri';
+		$data['u'] = $this->UserModel->getUserById($this->session->userdata('ID_USER'));
+		$data['kategori'] = $this->UserModel->getKategori1($kate);
+		
+      	$this->load->view('tema/user/header', $data);
+        $this->load->view('user/galeri', $data);
+		$this->load->view('tema/modal/modalprofile', $data);
+      	$this->load->view('tema/user/footer');
+		
+		// $this->UserModel->getDataFormat();
+   
+	}
+
 }

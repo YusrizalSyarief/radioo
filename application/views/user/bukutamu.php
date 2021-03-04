@@ -75,10 +75,23 @@
                     2. Dilarang menggunakan kata-kata mengandung SARA, Pornografi, Pelecehan, Ancaman yang dapat menyinggung perasaan orang lain.
                     </p>
                     <form method="post" action="<?php echo base_url(); ?>user/pengajuan">
+                    <?php
+                        if($this->session->userdata('ID_ROLE')) :
+                    ?>
                     <div class="input__list">
                         <input type="text" id="namaTamu" name="namaTamu" value="<?= $u['NAMA']; ?>" readonly>
                         <input type="text" id="emailTamu" name="emailTamu" value="<?= $u['EMAIL']; ?>" readonly>
                     </div>
+                    <?php
+                        else:
+                    ?>
+                    <div class="input__list">
+                        <input type="text" id="namaTamu" name="namaTamu" placeholder="Nama">
+                        <input type="text" id="emailTamu" name="emailTamu" placeholder="Email">
+                    </div>
+                    <?php
+                        endif;
+                    ?>
                     <textarea id="isiTamu" name="isiTamu" placeholder="Isi Pengaduan"></textarea>
                     <?= form_error('isiTamu', '<small class="text-danger pl-3">', '</small>'); ?>
                     <button type="submit" class="site-btn">Kirim</button>

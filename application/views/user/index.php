@@ -10,31 +10,39 @@
                     <a href="https://s7.alhastream.com/radio/8450/radio" class="play-btn video-popup"><i class="fa fa-play"></i></a> <br> <br>
                     <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ratingWeb">Rating Web</button>
                 </div> 
-                <!-- <div class="stations nowplaying"><div class="radio-player-widget" stationname="Radio Suara Kota Probolinggo" downloadplaylisturi="/public/46/playlist.pls" requestlisturi="/api/station/46/requests" customfields=""> 
-                <div class="now-playing-details">
-                <div class="now-playing-art">
-                <a href="http://alhastream.my.id/logo/RadioSuaraKotaProbolinggo.jpeg" data-fancybox="" target="_blank">
-                <img src="http://alhastream.my.id/logo/RadioSuaraKotaProbolinggo.jpeg" alt="Album Art"></a>
-                </div> 
-                <div class="now-playing-main"> 
-                <div>
-                <h4 class="now-playing-title">Stream Offline</h4> 
-                <h5 class="now-playing-artist"></h5>
-                </div> </div></div> <hr> 
-                <div class="radio-controls"><
-                    div class="radio-control-play-button">
-                    <a href="#" role="button" title="Play" aria-label="Play"><i aria-hidden="true" class="material-icons lg">play_circle_filled</i></a>
-                    </div> <div class="radio-control-select-stream"></div> 
-                    <div class="radio-control-mute-button"><a href="#" title="Mute" class="text-secondary"><i aria-hidden="true" class="material-icons">volume_mute</i></a>
-                    </div> 
-                    <div class="radio-control-volume-slider">
-                    <input type="range" title="Volume" min="0" max="100" step="1" class="custom-range"></div> 
-                    <div class="radio-control-max-volume-button"><a href="#" title="Full Volume" class="text-secondary"><i aria-hidden="true" class="material-icons">volume_up</i></a>
+                <!-- <div class="stations nowplaying">
+                    <div class="radio-player-widget" stationname="Radio Suara Kota Probolinggo" downloadplaylisturi="/public/46/playlist.pls" requestlisturi="/api/station/46/requests" customfields=""> 
+                        <div class="now-playing-details">
+                            <div class="now-playing-art">
+                                <a href="http://alhastream.my.id/logo/RadioSuaraKotaProbolinggo.jpeg" data-fancybox="" target="_blank">
+                                <img src="http://alhastream.my.id/logo/RadioSuaraKotaProbolinggo.jpeg" alt="Album Art"></a>
+                            </div> 
+                            <div class="now-playing-main"> 
+                                <div>
+                                    <h4 class="now-playing-title">Stream Offline</h4> 
+                                    <h5 class="now-playing-artist"></h5>
+                                </div> 
+                            </div>
+                        </div> 
+                        <hr> 
+                        <div class="radio-controls">
+                            <div class="radio-control-play-button">
+                                <a href="#" role="button" title="Play" aria-label="Play"><i aria-hidden="true" class="material-icons lg">play_circle_filled</i></a>
+                            </div> 
+                            <div class="radio-control-select-stream">
+                            </div> 
+                            <div class="radio-control-mute-button"><a href="#" title="Mute" class="text-secondary">
+                                <i aria-hidden="true" class="material-icons">volume_mute</i></a>
+                            </div> 
+                            <div class="radio-control-volume-slider">
+                                <input type="range" title="Volume" min="0" max="100" step="1" class="custom-range">
+                            </div> 
+                            <div class="radio-control-max-volume-button">
+                                <a href="#" title="Full Volume" class="text-secondary"><i aria-hidden="true" class="material-icons">volume_up</i></a>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                    </div>
-                    </div>  -->
-
+                </div>  -->
             </div>   
         </div>
     </div>
@@ -77,10 +85,8 @@
                         <div class="event__item__text">
                             <h4><?= $j['JUDUL_JADWAL']; ?></h4>
                             <p><i class="fas fa-clock"></i><?= $j['TANGGAL_JADWAL']; ?>  <?= $j['WAKTU']; ?></p>
-                        </div>
-                        
+                        </div> 
                     </div>
-                    
                 </div>
                 <?php endforeach; ?>
             </div>
@@ -94,7 +100,6 @@
     <div class="container">
         <div class="row">
         <?php foreach($penyiar as $p) : ?>
-            
             <div class="col-lg-6">
                 <div class="about__pic">
                     <img src="<?= base_url('uploads/img/')?><?= $p['GAMBAR_PENYIAR']; ?>" alt="penyiar<?= $p['ID_PENYIAR']; ?>" style="border-radius: 50%; weight: 400px; height: 400px;"><br> <br> <br>

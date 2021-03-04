@@ -59,7 +59,7 @@
                         <!-- Ambil Data Sub Menu -->
                         <?php
                         $menuId = $m['id_menu'];
-                        $querySubMenu = " SELECT * FROM `user_sub_menu` JOIN `user_menu` ON `user_sub_menu`.`id_menu` = `user_menu`.`id_menu` WHERE `user_sub_menu`.`id_menu` = {$m['id_menu']} AND `user_sub_menu`.`sub_active` = 1 AND `user_sub_menu`.`id_menu` != 1 AND `user_sub_menu`.`id_menu` != 2 ";
+                        $querySubMenu = " SELECT * FROM `user_sub_menu` JOIN `user_menu` ON `user_sub_menu`.`id_menu` = `user_menu`.`id_menu` WHERE `user_sub_menu`.`id_menu` = {$m['id_menu']} AND `user_sub_menu`.`sub_active` = 1 AND `user_sub_menu`.`id_menu` != 1 AND `user_sub_menu`.`id_menu` != 2 AND `user_sub_menu`.`id_menu` != 3";
                         $subMenu = $this->db->query($querySubMenu)->result_array();
                         ?>
                         <ul>
@@ -98,11 +98,14 @@
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Ubah Profile
                                     </a>
-                                    <a class="dropdown-item" href="#"data-toggle="modal"
-                                        data-target="#ubahPass" style="color: gray;">
+                                    <?php if($u['ID_ROLE'] == 1 || $u['ID_ROLE'] == 2) : ?>
+                                    <a class="dropdown-item" href="<?= base_url('admin'); ?>" style="color: gray;">
                                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Ubah Password
+                                        Kembali ke Admin
                                     </a>
+                                    <?php else : ?>
+
+                                    <?php endif;  ?>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#" data-toggle="modal" 
                                         data-target="#logoutModal" style="color: red;">

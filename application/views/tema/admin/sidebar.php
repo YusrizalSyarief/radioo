@@ -15,30 +15,21 @@
    <script src="<?= base_url()?>assets/admin/vendor/jquery/jquery.min.js"></script>
    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script> -->
    <!-- <script charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script> -->
-
 </head>
 
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
-
-       
-
         <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin'); ?>">
   <div class="sidebar-brand-icon">
-    <!-- Icon -->
-   <!--<i class="fas fa-laugh-wink"></i>    -->
      <img src="<?= base_url('./assets/logo/logoo.png'); ?>" style="width:70px;height:70px;">
-
   </div>
   <div class="sidebar-brand-text mx-3"></div>
 </a>
-
 <!-- Divider -->
 <hr class="sidebar-divider ">
 
@@ -50,21 +41,21 @@ $queryMenu = " SELECT `user_menu`.`id_menu`, `nama_menu` FROM `user_menu` JOIN `
 $menu = $this->db->query($queryMenu)->result_array();
 ?>
 
-
 <!-- Looping Menu -->
 <?php foreach ($menu as $m) : ?>
-<!-- <?php if($m['nama_menu'] == 'Konten') : ?> -->
-<!-- <?php else : ?> -->
-<div class="sidebar-heading">
-  <?= $m['nama_menu']; ?>
-</div>
-<!-- <?php endif; ?> -->
+<?php if($m['nama_menu'] == 'Super Admin' || $m['nama_menu'] == 'Konten') : ?> 
 
+  <?php else : ?>
+    <div class="sidebar-heading">
+      <?= $m['nama_menu']; ?>
+    </div>
+<?php endif; ?>
+ 
 
 <!-- Querry subMenu -->
 <?php
 $menuId = $m['id_menu'];
-$querySubMenu = " SELECT * FROM `user_sub_menu` JOIN `user_menu` ON `user_sub_menu`.`id_menu` = `user_menu`.`id_menu` WHERE `user_sub_menu`.`id_menu` = {$m['id_menu']} AND `user_sub_menu`.`sub_active` = 1 AND `user_sub_menu`.`id_menu` != 3 ";
+$querySubMenu = " SELECT * FROM `user_sub_menu` JOIN `user_menu` ON `user_sub_menu`.`id_menu` = `user_menu`.`id_menu` WHERE `user_sub_menu`.`id_menu` = {$m['id_menu']} AND `user_sub_menu`.`sub_active` = 1 AND `user_sub_menu`.`id_menu` != 4 ";
 
 $subMenu = $this->db->query($querySubMenu)->result_array();
 $title = "dashboard";
@@ -91,7 +82,6 @@ $title = "dashboard";
 <div class="text-center d-none d-md-inline">
   <button class="rounded-circle border-0" id="sidebarToggle"></button>
 </div>
-
 </ul>
 <!-- End of Sidebar -->
         <!-- End of Sidebar -->

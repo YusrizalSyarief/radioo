@@ -14,9 +14,10 @@
          <form class="user"method="post" action="">
             <div class="form-group">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                    <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-thumbs-up fa-2x"></i></a>
+                    <i class="fa fa-thumbs-up fa-2x" id="likeW" value="1"></i>
                     &emsp; 
-                    <a href="https://www.youtube.com/watch?v=K4DyBUG242c" class="play-btn video-popup"><i class="fa fa-fw fa-thumbs-down fa-2x"></i></a>
+                    <i class="fa fa-fw fa-thumbs-down fa-2x" id="dislikeW" value="0"></i>
+                    <input type="text" class="form-control form-control-user" id="ratingW" name="ratingW">
                 </div>
             </div>
             <div class="form-group">
