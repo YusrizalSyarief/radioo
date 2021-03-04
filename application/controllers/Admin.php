@@ -21,6 +21,7 @@ class Admin extends CI_Controller {
 	{
 		$data['title'] = 'Dashboard';
 		$user['u'] = $this->AdminModel->getUserById($this->session->userdata('ID_USER'));
+		$data['rate'] = $this->AdminModel->getRateWeb();
 		$this->load->view('tema/admin/sidebar',$data);
       	$this->load->view('tema/admin/topbar', $user);
       	$this->load->view('admin/index', $data);
@@ -564,8 +565,12 @@ class Admin extends CI_Controller {
    
    public function graphView()
    {
-      $hasil = $this->AdminModel->getView();
-      echo json_encode($hasil);
+      echo json_encode($this->AdminModel->getView());
+   }
+   public function pieRate()
+   {
+      
+      echo json_encode($this->AdminModel->getRateWeb());
    }
    
    public function ubahGaleriYt()

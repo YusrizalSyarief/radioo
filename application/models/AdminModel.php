@@ -356,15 +356,22 @@ class AdminModel extends CI_Model
       ];
       $this->db->insert('link_stream', $data);
    }
+   
+
+   public function cbGaleri($id)
+   {
+       return $this->db->get_where('galeri', ['ID_KATEGORI' => $id])->row_array();
+   }
    //graph 
    public function getView()
    {
        return $this->db->get('user_ip')->result();
    }
-
-   public function cbGaleri($id)
+   public function getRateWeb()
    {
-       return $this->db->get_where('galeri', ['ID_KATEGORI' => $id])->row_array();
+        $like = $this->db->get_where('rating', ['KATEGORI_RATING' => 'website'], ['RATING' => 1])->num_rows();
+        $dislike = $this->db->get_where('rating', ['KATEGORI_RATING' => 'website'], ['RATING' => 0])->num_rows();
+        return $sum = [$like,$dislike];
    }
 }
 
