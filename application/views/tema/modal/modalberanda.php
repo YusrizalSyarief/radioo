@@ -14,9 +14,9 @@
          <form class="user"method="post" action="">
             <div class="form-group">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                    <i class="fa fa-thumbs-up fa-2x" id="likeW" value="1"></i>
+                    <i class="fa fa-thumbs-up fa-2x" id="likeW" data-likW="like"></i>
                     &emsp; 
-                    <i class="fa fa-fw fa-thumbs-down fa-2x" id="dislikeW" value="0"></i>
+                    <i class="fa fa-fw fa-thumbs-down fa-2x" id="dislikeW" data-disW="dislike"></i>
                     <input type="text" class="form-control form-control-user" id="ratingW" name="ratingW">
                 </div>
             </div>

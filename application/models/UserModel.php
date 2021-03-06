@@ -5,7 +5,7 @@ class UserModel extends CI_Model
     // Mengambil Format File
     public function getKategori0(){
 
-        $queryKategori0 = " SELECT * FROM `galeri` ";
+        $queryKategori0 = " SELECT * FROM `galeri` Join `kategori_galeri` ON `galeri`.`ID_KATEGORI` = `kategori_galeri`.`ID_KATEGORI` ";
         $kategori = $this->db->query($queryKategori0)->result_array();
 
         return $kategori;
@@ -14,7 +14,10 @@ class UserModel extends CI_Model
     // Mengambil Format File
     public function getKategori1($kate){
 
-        return $this->db->get_where('galeri', ['KATEGORI' => $kate])->result_array();
+        return $this->db->select('*')->from('galeri')
+        ->join('kategori_galeri', 'galeri.ID_KATEGORI = kategori_galeri.ID_KATEGORI')
+        ->WHERE('KATEGORI', $kate)
+        ->get()->result_array();
     }
 
     // Mengambil Data Kategori Galeri

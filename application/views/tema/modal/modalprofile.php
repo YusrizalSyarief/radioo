@@ -74,13 +74,13 @@
                     </div>
                 </div>    
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="namaR" name="namaR" placeholder="Nama User" value="<?= $u['NAMA']; ?>">
+                    <input type="text" class="form-control form-control-user" id="namaR" name="namaR" placeholder="Nama User" >
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="emailR" name="emailR" placeholder="Email User" value="<?= $u['EMAIL']; ?>">
+                    <input type="text" class="form-control form-control-user" id="emailR" name="emailR" placeholder="Email User" >
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="notlpR" name="nptlpR" placeholder="Nomor User" value="<?= $u['NO_TLP']; ?>">
+                    <input type="text" class="form-control form-control-user" id="notlpR" name="nptlpR" placeholder="Nomor User" >
                 </div>
             </div>
             <div class="modal-footer">

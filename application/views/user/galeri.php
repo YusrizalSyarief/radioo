@@ -47,15 +47,11 @@
             </div>
         </div>   
         <div class="row">
-
-            <?php 
+            <?php    
                 foreach ($kategori as $f) :
-                $kate = $f['KATEGORI'];
-                $id = $f['ID_KATEGORI'];
-    
-                    switch(isset($kate)){
-                        case $kate == 'youtube' :
-                            // if($id)
+                    $kategoriYT = $f['KATEGORI'];
+                    switch(isset($kategoriYT)){
+                        case $kategoriYT == "youtube" :
             ?>            
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="youtube__item">
@@ -64,20 +60,26 @@
                     </div>
                     <div class="youtube__item__text">
                         <h4><?= $f['JUDUL']; ?></h4>
-                        <p><?= $f['DESCK_GALERI']; ?></p>
+                        <p>Kategori : <?= $f['NAMA_KATEGORI']; ?></p>
+                        <p>Deskripsi : <?= $f['DESCK_GALERI']; ?></p>
                     </div>
                 </div>
             </div>
-            <br>
             <?php
                         break;
-                        case $kate == 'audio' :
+                    };
+                endforeach;
+
+                foreach ($kategori as $f) :
+                    $kategoriAudio = $f['KATEGORI'];
+                    switch(isset($kategoriAudio)){   
+                        case $kategoriAudio == "audio" :
             ?>
-            
             <div class="col-lg-7 p-0">
                     <div class="single_player_container">
                         <br>
                         <h4><?= $f['JUDUL']; ?></h4>
+                        <p>Kategori : <?= $f['NAMA_KATEGORI']; ?></p>
                         <div class="jp-jplayer jplayer" data-ancestor=".jp_container_<?=$f['ID_GALERI']; ?>" id="jp_jplayer_<?=$f['ID_GALERI']; ?>" data-url="<?= base_url('uploads/'); ?><?=$f['NAMA_FILE']; ?>">
                         </div>
                         <div class="jp-audio jp_container_<?=$f['ID_GALERI']; ?>" role="application" aria-label="media player">
@@ -116,7 +118,7 @@
             <br>
             <?php
                         break;
-                        };
+                    };
                 endforeach;
             ?> 
             <!-- Akhir Looping Isi Kategori -->

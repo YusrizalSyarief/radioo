@@ -15,42 +15,41 @@ $(function(){
     });
 
     $('#likeW').on('click', function(){
-        const rate = $(this).val();
-        
+        const rate = $(this).data("likW");
+        $("#ratingW").val('Audio');
         console.log(rate);
     });
 
     $('#dislikeW').on('click', function(){
-        const rate = $(this).val();
-        
+        const rate = $(this).data("disW");
+        $("#ratingW").val('tes');
         console.log(rate);
     });
     
     
 
-    // $('.ModalUbahProfil').on('click', function() {
+    $('.ModalUbahProfil').on('click', function() {
 
-    //     const id = $(this).data('id');
+        const id = $(this).data('id');
         
-    //     $.ajax({
-    //         url: 'https://localhost/radioo/user/getProfil',
-    //         data: {id : id},
-    //         method: 'post',
-    //         dataType: 'json',
-    //         success: function(data) {
-    //             console.log(data);
-    //             $('#idPro').val(data.ID_USER);
-    //             $('#outputProfil').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR);
-    //             $('#GambarPro').val(data.GAMBAR);
-    //             $('#UrlYt').val(data.NAMA_FILE);
-    //             $('#JudulGaleriYt').val(data.JUDUL);
-    //             $('#KategoriYt').val(data.ID_KATEGORI);
-    //             $('#DeskripsiGaleriYt').val(data.DESCK_GALERI);
+        $.ajax({
+            url: 'https://localhost/radioo/user/getProfil',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                $('#idPro').val(data.ID_USER);
+                $('#outputProfil').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR);
+                $('#GambarPro').val(data.GAMBAR);
+                $('#namaR').val(data.NAMA);
+                $('#emailR').val(data.EMAIL);
+                $('#notlpR').val(data.NO_TLP);
                 
-    //         }
-    //     });
+            }
+        });
 
-    // });
+    });
 
     // $("#myCheck").onclick(function() {
     //     const nilai = $(this).val();

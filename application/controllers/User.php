@@ -211,13 +211,13 @@ class User extends CI_Controller {
 		$config['upload_path']          = './uploads/img';
 		$config['allowed_types']        = 'png|jpg';
 		$config['max_size']             = 10000;
-		$config['max_width'] 			= '1920';
-		$config['max_height'] 			= '1080';
+		$config['max_width'] 			= '1000';
+		$config['max_height'] 			= '1000';
 		
 		$this->upload->initialize($config);
-		$this->form_validation->set_rules('namaR', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('emailR', 'Email', 'trim|required');
-		$this->form_validation->set_rules('notlpR', 'Nomor Telp ', 'trim|required');
+		$this->form_validation->set_rules('namaR', 'Nama', 'trim');
+		$this->form_validation->set_rules('emailR', 'Email', 'trim');
+		$this->form_validation->set_rules('notlpR', 'Nomor Telp ', 'trim');
 
 		
 		//$this->upload->initialize($config);
@@ -225,7 +225,7 @@ class User extends CI_Controller {
 			echo "File Tidak Dapat Di Update";
 		} else {
 			if(empty($_FILES['UpdateFoto']['name'])) {
-				$namaBerkas = $this->input->post('UpdateFoto', true);
+				$namaBerkas = $this->input->post('GambarPro', true);
 				$this->UserModel->ubahProfil($namaBerkas);
 				echo "Berhasil Di Upload Tanpa Gambar";
 				
@@ -245,9 +245,9 @@ class User extends CI_Controller {
 		echo json_encode($this->UserModel->getKategori($_POST['kategori']));
 	}
 	
-	// public function getProfil(){
-	// 	echo json_encode($this->UserModel->getUserById($_POST['id']));
-	// }
+	public function getProfil(){
+		echo json_encode($this->UserModel->getUserById($_POST['id']));
+	}
 
 	public function galeriYT()
 	{
