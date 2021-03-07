@@ -243,6 +243,51 @@ $("#cariUser").keyup(function() {
        req();
    });
 
+   
+
+});
+//pencarian Rate
+$("#cariAcara").keyup(function() {
+    const nilai = $(this).val();
+    console.log(nilai);
+    $.post("https://localhost/radioo/admin/pencarianAcara", {
+       nilai: nilai
+    }, function(data) {
+       let output = '';
+    
+      
+       console.log(data);
+       $("#tBodyRate").empty();
+       data.map((data) => {
+        
+        console.log(data);
+
+
+        output += `
+                <tr>
+                    <td>${data.JUDUL_JADWAL}</td>
+                    <td>${data.SUKA}</td>
+                    <td>${data.TIDAK_SUKA}</td>
+                    <td>
+                    <button href=""  class="btn btn-success ml-1 ModalKomentar" data-toggle="modal"
+                    data-target="#ModalKomentar" data-id="${data.ID_JADWAL}"><i class="fas fa-info-circle"></i> Detail</button>
+                    </td>    
+                    
+                </tr>
+                `;
+        
+            console.log(output);
+
+         
+     })
+    $("#tBodyRate").append(output);
+   }, "json").done(function(){
+       req();
+   });
+
+   
+
+
 });
 
 });
@@ -660,5 +705,43 @@ function req() {
         });
         
     });
+    $('.ModalKomentar').on('click', function() {
+        
+
+        const id = $(this).data('id');
+        console.log(id);
+        $.ajax({
+            url: 'https://localhost/radioo/admin/getKomentar',
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                let output = '';  
+                data.map((data) => {
+                console.log(data);
+                $("#tBodyKomentar").empty();
+                  output += `
+                            <tr>
+                               <td>${data.NAMA}</td>
+                               <td>${data.EMAIL}</td>
+                               <td>
+                               <div class="form-group">
+                               <textarea class="form-control"  rows="5" readonly>${data.KOMENTAR}</textarea>
+                                </div>
+                             </td>
+                               
+                           </tr>
+                         `;
+                     
+                         console.log(output);
+            
+                $("#tBodyKomentar").append(output);
+                   })
+                
+            }
+        });
+        
+    });
+    
     
 }

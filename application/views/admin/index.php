@@ -11,12 +11,13 @@
     <div class="col-md-6">
         
         <?= $this->session->flashdata('pesan'); ?>
-
+        
     </div>
 </div>
 <?php endif; ?>
 <div class="row">
     <div class="form-group col-md-6">
+    
         <a data-toggle="modal" data-target="#formLinkStream" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm "><i
         class="fas fa-plus"></i> Tambah Link Stream </a>
     </div>
@@ -61,14 +62,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <input type="email" class="form-control" id="cariTransaksi" placeholder="Ketikan disini...">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <select class="custom-select col-6" id="pilihan" name="pilihan">
-				        <option selected>Pilih Kategori...</option>			
-				        <option value="1">Rating Terendah</option>
-                        <option value="2">Rating Tertinggi</option>
-			            </select>
+                        <input type="text" class="form-control" id="cariAcara" placeholder="Cari Acara">
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -76,20 +70,24 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">Nama Acara</th>
-                            <th scope="col">Jumlah Responden</th>
                             <th scope="col">Jumlah Like</th>
                             <th scope="col">Jumlah Dislike</th>
-                            <th scope="col">Presentase Acara</th>
+                            <th scope="col">Komentar</th>
                         </tr>
                     </thead>
-                    <tbody id="tBodyTransaksi">              
+                    <tbody id="tBodyRate">
+                    <?php foreach($rate_jadwal as $r): ?>               
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><?= $r['JUDUL_JADWAL']?></td>
+                            <td><?= $r['SUKA']?></td>
+                            <td><?= $r['TIDAK_SUKA']?></td>
+                            <td>
+                            <button href=""  class="btn btn-success ml-1 ModalKomentar" data-toggle="modal"
+                                    data-target="#ModalKomentar" data-id="<?= $r['ID_JADWAL']?>"><i class="fas fa-info-circle"></i> Detail</button>
+                            </td>
+                            
                         </tr>
+                        <?php endforeach; ?>
                     </tbody>
                     </table>
                 </div>
@@ -125,6 +123,31 @@
         </div>
     </div>
 </div>
+<!-- Large modal -->
+
+
+<div class="modal fade bd-example-modal-lg" id="ModalKomentar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <div class="table-responsive">
+                    <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Nama </th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Komentar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tBodyKomentar">
+                                
+                    </tbody>
+                    </table>
+                </div>
+    </div>
+  </div>
+</div>
+
+
 
 <!-- End of Main Content -->
 <script>
