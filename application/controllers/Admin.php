@@ -22,6 +22,7 @@ class Admin extends CI_Controller {
 		$data['title'] = 'Dashboard';
 		$user['u'] = $this->AdminModel->getUserById($this->session->userdata('ID_USER'));
 		$data['rate'] = $this->AdminModel->getRateWeb();
+		$data['rate_jadwal'] = $this->AdminModel->getRateJadwal();
 		$this->load->view('tema/admin/sidebar',$data);
       	$this->load->view('tema/admin/topbar', $user);
       	$this->load->view('admin/index', $data);
@@ -558,9 +559,17 @@ class Admin extends CI_Controller {
    {
       echo json_encode($this->AdminModel->cariGaleri($_POST['nilai']));
    }
+   public function pencarianAcara()
+   {
+      echo json_encode($this->AdminModel->cariAcara($_POST['nilai']));
+   }
    public function pencarianGaleriTgl()
    {
       echo json_encode($this->AdminModel->cariGalerilTgl($_POST['awal'],$_POST['akhir']));
+   }
+   public function getKomentar()
+   {
+      echo json_encode($this->AdminModel->getKomentar($_POST['id']));
    }
    
    public function graphView()

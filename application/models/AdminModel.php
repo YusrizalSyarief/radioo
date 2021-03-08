@@ -369,9 +369,40 @@ class AdminModel extends CI_Model
    }
    public function getRateWeb()
    {
-        $like = $this->db->get_where('rating', ['KATEGORI_RATING' => 'website'], ['RATING' => 1])->num_rows();
-        $dislike = $this->db->get_where('rating', ['KATEGORI_RATING' => 'website'], ['RATING' => 0])->num_rows();
+        $like = $this->db->select('*')->from('rating')
+                ->where('KATEGORI_RATING','website')
+                ->where('RATING', 1)
+                ->get()->num_rows();
+
+        $dislike = $this->db->select('*')->from('rating')
+                    ->where('KATEGORI_RATING','website')
+                    ->where('RATING', 0)
+                    ->get()->num_rows();
         return $sum = [$like,$dislike];
    }
+   public function getRateJadwal()
+   {
+       $query = "SELECT jadwal.ID_JADWAL, jadwal.JUDUL_JADWAL, SUM(rating.RATING = 1 ) AS SUKA, SUM(rating.RATING  = 0 ) AS TIDAK_SUKA
+                    FROM jadwal JOIN rating ON jadwal.ID_JADWAL = rating.ID_JADWAL 
+                    GROUP BY jadwal.ID_JADWAL";
+       return $this->db->query($query)->result_array();
+   }
+   public function getKomentar($id)
+   {
+    return $this->db->select('*')->from('rating')
+    ->join('user', 'rating.ID_USER = user.ID_USER')
+    ->where('ID_JADWAL',$id)
+    ->order_by('user.ID_USER', 'DESC')
+    ->get()->result();
+   }
+
+   public function cariAcara($nilai)
+    {
+        $query = "SELECT jadwal.ID_JADWAL, jadwal.JUDUL_JADWAL, SUM(rating.RATING = 1 ) AS SUKA, SUM(rating.RATING  = 0 ) AS TIDAK_SUKA
+        FROM jadwal JOIN rating ON jadwal.ID_JADWAL = rating.ID_JADWAL 
+        WHERE jadwal.JUDUL_JADWAL LIKE '%$nilai%'
+        GROUP BY jadwal.ID_JADWAL";
+        return $this->db->query($query)->result();
+    }
 }
 
