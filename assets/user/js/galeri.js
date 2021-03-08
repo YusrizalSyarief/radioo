@@ -1,32 +1,50 @@
 $(function(){
 
     $('#coba1').on('click', function(){
-        $("#judulKategori").html('Youtube');
-        $("#judulKategori2").html('Youtube');
+        // $("#judulKategori").html('Youtube');
+        // $("#judulKategori2").html('Youtube');
         const kategori = $(this).data("kategori");
         console.log(kategori);
     });
 
     $('#coba').on('click', function(){
-        $("#judulKategori").html('Audio');
-        $("#judulKategori2").html('Audio');
+        // $("#judulKategori").html('Audio');
+        // $("#judulKategori2").html('Audio');
         const kategori = $(this).data("kategori");
         console.log(kategori);
     });
 
     $('#likeW').on('click', function(){
-        const rate = $(this).data("likW");
-        $("#ratingW").val('Audio');
-        console.log(rate);
+        
+        $("#likeW").css("color","gray");
+        $("#dislikeW").css("color","blue");
+        $("#ratingW").val(1);
+        
     });
 
     $('#dislikeW').on('click', function(){
-        const rate = $(this).data("disW");
-        $("#ratingW").val('tes');
-        console.log(rate);
+    
+        $("#dislikeW").css("color","gray");
+        $("#likeW").css("color","blue");
+        $("#ratingW").val(0);
+        
     });
+
+    $('#likeJ').on('click', function(){
+        
+        $("#likeJ").css("color","gray");
+        $("#dislikeJ").css("color","blue");
+        $("#ratingJ").val(1);
+        
+    });
+
+    $('#dislikeJ').on('click', function(){
     
-    
+        $("#dislikeJ").css("color","gray");
+        $("#likeJ").css("color","blue");
+        $("#ratingJ").val(0);
+        
+    });
 
     $('.ModalUbahProfil').on('click', function() {
 

@@ -70,14 +70,12 @@
         </div>
         <div class="row">
             <div class="event__slider owl-carousel">
-                 <?php foreach($jadwal as $j) : ?> 
+                <?php foreach($jadwal as $j) : ?> 
                 <div class="col-lg-4">
-                
                     <div class="event__item">
-                    
                         <div class="event__item__pic set-bg" data-setbg="<?= base_url()?>uploads/img/<?= $j['GAMBAR_JADWAL']; ?>">
                             <div class="tag-date">
-                                <a data-toggle="modal" data-target="#ratingAcara">
+                                <a data-toggle="modal" data-target="#Acara_<?= $j['ID_JADWAL']; ?>">
                                 <span>Rating Acara</span>
                                 </a>
                             </div>
@@ -88,7 +86,48 @@
                         </div> 
                     </div>
                 </div>
+                <!-- Modal Rating Acara -->
+                <div class="modal fade" id="Acara_<?= $j['ID_JADWAL']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Rating Acara</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p> Bagaimana menurut anda mengenai acara kami ?</p>
+                                <form class="user"method="post" action="<?= base_url('user/ratingJadwal'); ?>">
+                                <div class="form-group">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <i class="fa fa-thumbs-up fa-2x" style="color: blue;" id="likeJ"></i>
+                                        &emsp; 
+                                        <i class="fa fa-fw fa-thumbs-down fa-2x" style="color: blue;" id="dislikeJ"></i>
+                                        <input type="text" class="form-control form-control-user" id="idJ" name="idJ" value="<?= $u['ID_USER']; ?>">
+                                        <input type="text" class="form-control form-control-user" id="idJ" name="idJ" value="<?= $j['ID_JADWAL']; ?>">
+                                        <input type="text" class="form-control form-control-user" id="ratingJ" name="ratingJ">
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="emailJ" name="emailJ" placeholder="Alamat email" value="<?= $u['EMAIL']; ?>" readonly>
+                            </div>
+                            <div class="form-floating">
+                                <label for="floatingTextareaW">Komentar</label>
+                                <textarea class="form-control" placeholder="..." id="floatingTextareaW"></textarea> 
+                            </div>  
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                                <button class="btn btn-primary" type="submit" >Kirim</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <?php endforeach; ?>
+                
+                
             </div>
         </div>
     </div>
@@ -325,5 +364,3 @@
     </div> -->
 </section>
 <!-- Countdown Section End -->
-
-    

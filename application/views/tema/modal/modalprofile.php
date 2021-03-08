@@ -66,11 +66,11 @@
                 <input type="hidden" name='GambarPro' id='GambarPro' value="1">
                 <div class="section-title center-title" >
                     <img class="img-profile rounded-circle center"
-                        src="<?= base_url(); ?>uploads/img/<?= $u['GAMBAR']; ?>" id="outputProfil" alt="..." style="height:180px; weight:180px;"> <br> <br>
+                        src="<?= base_url(); ?>uploads/img/" id="outputProfil" alt="..." style="height:180px; weight:180px;"> <br> <br>
                     <div class="form-group ">
-                        <label for="exampleFormControlFile1">Upload Foto</label><br>    
+                        <label for="form-control-file">Upload Foto</label><br>    
                         <small class="form-text text-danger">Ukuran maksimal Foto 1000x1000 pixel potrait, Berformat JPG atau PNG</small>
-                        <input type="file" class="form-control-file" id="UpdateFoto" name="UpdateFoto" accept="image/*" onchange="loadFile(event)">
+                        <input type="file" class="form-control-file" id="UpdateFoto" name="UpdateFoto" accept="image/*" onchange="loadProfile(event)">
                     </div>
                 </div>    
                 <div class="form-group">

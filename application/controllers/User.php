@@ -22,6 +22,7 @@ class User extends CI_Controller {
 		$data['penyiar'] = $this->UserModel->getPenyiar();
 		$data['audio'] = $this->UserModel->getAudio();
 		
+		
       	$this->load->view('tema/user/header', $data);
         $this->load->view('user/index', $data);
 		$this->load->view('tema/modal/modalprofile', $data);
@@ -135,13 +136,37 @@ class User extends CI_Controller {
 
 	public function ratingWeb()
 	{
+		$this->form_validation->set_rules('ratingW', 'Rating Web', 'trim|required');
 
+		$idW = $this->input->post('idW');
+		$web = "website";
+		if($this->form_validation->run() == false){
+			echo "data tidak lengkap";
+		} else {
+
+				$this->UserModel->updateRatingW($idW,$web);
+				$this->UserModel->komentar();
+				redirect('user');
+			
+		}
 
 	} 
 
-	public function ratingAcara()
+	public function ratingJadwal()
 	{
+		$this->form_validation->set_rules('ratingJ', 'Rating Jadwal', 'trim|required');
 
+		$idJ = $this->input->post('idJ');
+		$Jadwal = $this->input->post('Jadwal');
+		if($this->form_validation->run() == false){
+			echo "data tidak lengkap";
+		} else {
+
+				$this->UserModel->updateRatingW($idJ,$Jadwal);
+				$this->UserModel->komentar();
+				redirect('user');
+			
+		}
 		
 	}
 
@@ -221,6 +246,7 @@ class User extends CI_Controller {
 
 		
 		//$this->upload->initialize($config);
+		// $this->getProfil();
 		if ($this->form_validation->run() == false) {
 			echo "File Tidak Dapat Di Update";
 		} else {

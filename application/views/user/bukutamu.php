@@ -71,8 +71,8 @@
                         <?= $this->session->flashdata('pesan'); ?>
                     </div>
                     <p>Ketentuan Pengisian Saran dan Pengaduan. <br>
-                    1. Pastikan telah login sebelum mengisi form saran dan pengaduan. <br>
-                    2. Dilarang menggunakan kata-kata mengandung SARA, Pornografi, Pelecehan, Ancaman yang dapat menyinggung perasaan orang lain.
+                    1. Dilarang menggunakan kata-kata mengandung SARA, Pornografi, Pelecehan, Ancaman yang dapat menyinggung perasaan orang lain. <br>
+                    2. Mengirimkan pesan berulang-ulang (Spamming)
                     </p>
                     <form method="post" action="<?php echo base_url(); ?>user/pengajuan">
                     <?php

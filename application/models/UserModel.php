@@ -149,5 +149,59 @@ class UserModel extends CI_Model
         $this->db->update('user', $data);
     }
 
+    public function updateRatingW($idW,$web)
+    {
+        $cek = $this->db->get_where('rating', ['ID_USER' => $idW], ['KATEGORI_RATING' => $web])->row_array();
+        if($cek['ID_USER'] == $idW && $cek['KATEGORI_RATING'] == $web){
+            $ratingW = [
+                'ID_USER' => $idW,
+                'KATEGORI_RATING' => $web,
+                'RATING' => $this->input->post('ratingW')
+            ];
+            $this->db->where('ID_USER', $idW);
+            $this->db->where('KATEGORI_RATING', $web);
+            $this->db->update('rating', $ratingW);
+        } else {
+            $ratingW = [
+                'ID_USER' => $idW,
+                'KATEGORI_RATING' => $web,
+                'RATING' => $this->input->post('ratingW')
+            ];
+            $this->db->insert('rating', $ratingW);
+        }
+    }
+
+    public function updateRatingJ($idJ,$Jadwal)
+    {
+        $cek = $this->db->get_where('rating', ['ID_USER' => $idJ], ['ID_JADWAL' => $Jadwal])->row_array();
+        if($cek['ID_USER'] == $idJ && $cek['ID_JADWAL'] == $Jadwal){
+            $ratingJ = [
+                'ID_JADWAL' => $Jadwal,
+                'ID_USER' => $idJ,
+                'KATEGORI_RATING' => null,
+                'RATING' => $this->input->post('ratingJ')
+            ];
+            $this->db->where('ID_USER', $idJ);
+            $this->db->where('ID_JADWAL', $Jadwal);
+            $this->db->update('rating', $ratingJ);
+        } else {
+            $ratingJ = [
+                'ID_JADWAL' => $Jadwal,
+                'ID_USER' => $idJ,
+                'KATEGORI_RATING' => null,
+                'RATING' => $this->input->post('ratingJ')
+            ];
+            $this->db->insert('rating', $ratingJ);
+        }
+    }
+
+    public function komentar()
+    {
+        $komentar = [
+            'KOMENTAR' => htmlspecialchars($this->input->post('floatingTextareaW', true))
+        ];
+        $this->db->insert('komentar', $komentar);
+    }
+
 }
 ?>
