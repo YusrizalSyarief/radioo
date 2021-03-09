@@ -129,6 +129,12 @@ class UserModel extends CI_Model
     {
         return $this->db->order_by('ID_STREAM', 'DESC')->get('link_stream')->row_array();
     }
+    public function getInfoUser()
+   {
+	 
+		echo json_encode($this->AdminModel->getUserById($_POST['id']));
+		
+   }
 
     public function getUserById($id)
    {

@@ -69,35 +69,14 @@ $(function(){
 
     });
 
-    // $("#myCheck").onclick(function() {
-    //     const nilai = $(this).val();
-    //     $.post("https://localhost/radioo/user/galeri", {
-    //     nilai: nilai
-    //     }, function(data) {
-    //         let background = '';
-    //         let judul = '';
+    $('.ModalRateAcara').on('click', function() {
 
-    //         $("#tBodyJadwal").empty();
-    //         $('#tanggalAwal').val("");
-    //         $('#tanggalAkhir').val("");
-    //         data.map((data) => {
-    //             background = `<div class="youtube__item__pic set-bg" data-setbg="https://localhost/radioo/assets/user/img/youtube/youtube-1.jpg">
-    //             <a href="${data.NAMA_FILE}" class="play-btn video-popup"><i class="fa fa-play"></i></a>
-    //             </div>`
-
-    //             judul = `<div class="youtube__item__text">
-    //             <h4>${data.JUDUL}</h4>
-    //             <p>${data.DESCK_GALERI}</p>
-    //             </div>`
-    //         })
-    //     })
-    // });
-
-    // $.ajax({
-    //     url: 'https://localhost/radioo/admin/getInfoGaleri',
-    //     data: {id : id},
-    //     method: 'post',
-    //     dataType: 'json',
-    // });
+        
+        
+        const id = $(this).data('id');
+        $('#id').val(id);
+        console.log(id);
+        
+    });
 
 });
