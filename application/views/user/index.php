@@ -101,6 +101,7 @@
 <!-- Penyiar Section -->
 <section class="about spad">
     <div class="container">
+    <h2><b>Penyiar</b></h2>
         <div class="row">
         <?php foreach($penyiar as $p) : ?>
             <div class="col-lg-6">
