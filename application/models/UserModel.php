@@ -125,6 +125,10 @@ class UserModel extends CI_Model
 
         return $kategori;
     }
+    public function getStream()
+    {
+        return $this->db->order_by('ID_STREAM', 'DESC')->get('link_stream')->row_array();
+    }
 
     public function getUserById($id)
    {

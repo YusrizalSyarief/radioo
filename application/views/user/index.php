@@ -7,7 +7,7 @@
                     <span>Selamat datang</span>
                     <h1>Radio Suara Kota Probolinggo</h1>
                     <p>Now Streaming</p>
-                    <a href="https://s7.alhastream.com/radio/8450/radio" class="play-btn video-popup"><i class="fa fa-play"></i></a> <br> <br>
+                    <a href="<?= $stream['LINK']; ?>" class="play-btn video-popup"><i class="fa fa-play"></i></a> <br> <br>
                     <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ratingWeb">Rating Web</button>
                 </div> 
                 <!-- <div class="stations nowplaying">

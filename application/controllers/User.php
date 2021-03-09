@@ -21,6 +21,7 @@ class User extends CI_Controller {
 		$data['jadwal'] = $this->UserModel->getJadwal();
 		$data['penyiar'] = $this->UserModel->getPenyiar();
 		$data['audio'] = $this->UserModel->getAudio();
+		$data['stream'] = $this->UserModel->getStream();
 		
 		
       	$this->load->view('tema/user/header', $data);
