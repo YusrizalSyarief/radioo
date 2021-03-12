@@ -87,17 +87,12 @@
                         </div>
                         <div class="event__item__text">
                             <h4><?= $j['JUDUL_JADWAL']; ?></h4>
-                            
                             <h4>Penyiar : <?= $j['NAMA_PENYIAR']; ?></h4>
                             <p><i class="fas fa-clock"></i><?= $j['TANGGAL_JADWAL']; ?>  <?= $j['WAKTU']; ?></p>
                         </div> 
                     </div>
                 </div>
                 <?php endforeach; ?>
-                
-                
-                
-                
             </div>
         </div>
     </div>
@@ -147,52 +142,6 @@
     </div>
 </section>
 <!-- Penyiar Section -->
-
-<!-- Services Section Begin -->
-<!-- <section class="services">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6 p-0">
-                <div class="services__left set-bg" data-setbg="img/services/service-left.jpg">
-                    <a href="https://www.youtube.com/watch?v=JGwWNGJdvx8" class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-6 p-0">
-                <div class="row services__list">
-                    <div class="col-lg-6 p-0 order-lg-1 col-md-6 order-md-1">
-                        <div class="service__item deep-bg">
-                            <img src="<?= base_url()?>assets/user/img/services/service-1.png" alt="">
-                            <h4>Wedding</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 p-0 order-lg-2 col-md-6 order-md-2">
-                        <div class="service__item">
-                            <img src="<?= base_url()?>assets/user/img/services/service-2.png" alt="">
-                            <h4>Clubs and bar</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 p-0 order-lg-4 col-md-6 order-md-4">
-                        <div class="service__item deep-bg">
-                            <img src="<?= base_url()?>assets/user/img/services/service-4.png" alt="">
-                            <h4>DJ lessons</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 p-0 order-lg-3 col-md-6 order-md-3">
-                        <div class="service__item">
-                            <img src="<?= base_url()?>assets/user/img/services/service-3.png" alt="">
-                            <h4>Corporate events</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!-- Services Section End -->
 
 <!-- Galeri Section -->
 <section class="track spad">
@@ -348,19 +297,18 @@
                     <div class="modal-body">
                         <p> Bagaimana menurut anda mengenai acara kami ?</p>
                         <form class="user"method="post" action="<?= base_url('user/ratingJadwal'); ?>">
-                        <input type="text" name='id' id='id' value="1">
+                        <input type="text" name='idJ' id='idJ' value="1" hidden>
+                        <input type="text" name="idUJ" id="idUJ" value="<?= $u['ID_USER']; ?>" hidden>
                         <div class="form-group">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <i class="fa fa-thumbs-up fa-2x" style="color: blue;" id="likeJ"></i>
                                 &emsp; 
                                 <i class="fa fa-fw fa-thumbs-down fa-2x" style="color: blue;" id="dislikeJ"></i>
-                                <input type="text" class="form-control form-control-user" id="idJ" name="idJ" >
-                                <input type="text" class="form-control form-control-user" id="idJ" name="idJ" >
-                                <input type="text" class="form-control form-control-user" id="ratingJ" name="ratingJ">
+                                <input type="text" name="ratingJ" id="ratingJ" hidden>
                             </div>
                         </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="emailJ" name="emailJ" placeholder="Alamat email"  readonly>
+                        <input type="text" class="form-control form-control-user" id="emailJ" name="emailJ" placeholder="Alamat email" value="<?= $u['EMAIL'];?>"  readonly>
                     </div>
                     <div class="form-floating">
                         <label for="floatingTextareaW">Komentar</label>

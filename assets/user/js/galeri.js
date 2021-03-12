@@ -71,10 +71,8 @@ $(function(){
 
     $('.ModalRateAcara').on('click', function() {
 
-        
-        
         const id = $(this).data('id');
-        $('#id').val(id);
+        $('#idJ').val(id);
         console.log(id);
         
     });
