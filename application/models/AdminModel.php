@@ -281,14 +281,18 @@ class AdminModel extends CI_Model
    {
       return $this->db->get_where('user', ['EMAIL' => $id])->num_rows();
    }
-   public function getCountDataUser() 
+   public function getCountDataUser($id) 
    {
-      return $this->db->get('user')->num_rows();
+      return $this->db->where('ID_USER !=', $id)->get('user')->num_rows();
    }
    public function hapusDataUser($id)
    {
            
-           $this->db->delete('user', ['ID_USER' => $id]);
+    if (!$this->db->delete('user', ['ID_USER' => $id])) {
+        $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Hapus User Masih Digunakan</div>');
+        redirect('admin/user');
+    }
+           
           
    }
    public function getUserById($id)
