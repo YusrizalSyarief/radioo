@@ -384,6 +384,7 @@ class AdminModel extends CI_Model
    {
        $query = "SELECT jadwal.ID_JADWAL, jadwal.JUDUL_JADWAL, SUM(rating.RATING = 1 ) AS SUKA, SUM(rating.RATING  = 0 ) AS TIDAK_SUKA
                     FROM jadwal JOIN rating ON jadwal.ID_JADWAL = rating.ID_JADWAL 
+                     
                     GROUP BY jadwal.ID_JADWAL";
        return $this->db->query($query)->result_array();
    }
@@ -394,6 +395,10 @@ class AdminModel extends CI_Model
     ->where('ID_JADWAL',$id)
     ->order_by('user.ID_USER', 'DESC')
     ->get()->result();
+   }
+   public function getCountDataRate() 
+   {
+      return $this->db->where('KATEGORI_RATING != ', 'website')->get('rating')->num_rows();
    }
 
    public function cariAcara($nilai)
