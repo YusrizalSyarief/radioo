@@ -269,7 +269,7 @@ class AdminModel extends CI_Model
             "ID_ROLE" => $this->input->post('KategoriUser', true),
             "EMAIL" => $this->input->post('Email', true),
             "NAMA" => $this->input->post('Nama', true),
-            "PASSWORD" => $this->input->post('Password2', true),
+            "PASSWORD" => password_hash($this->input->post('Password2', true),PASSWORD_DEFAULT) ,
             "NO_TLP" => $this->input->post('NoTlpUser', true),
             "USER_ACTIVE" => 1,
             "GAMBAR" => $namaBerkas,
@@ -301,7 +301,8 @@ class AdminModel extends CI_Model
    public function ubahPass()
     {
         $data = [
-            "PASSWORD" => $this->input->post('Ubahpassword2', true),
+            
+            "PASSWORD" => password_hash($this->input->post('Ubahpassword2', true),PASSWORD_DEFAULT),
             
         ];
 
