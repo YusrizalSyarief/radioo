@@ -18,7 +18,7 @@ class Login extends CI_Controller {
 			// jika user aktif
 			if($user['USER_ACTIVE'] == 1){
 				// cek password
-				if($password == $user['PASSWORD']){
+				if(password_verify($password ,$user['PASSWORD'])){
 
 					$data = [
 						'EMAIL' => $user['EMAIL'],

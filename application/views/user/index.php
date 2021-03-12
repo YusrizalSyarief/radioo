@@ -87,17 +87,12 @@
                         </div>
                         <div class="event__item__text">
                             <h4><?= $j['JUDUL_JADWAL']; ?></h4>
-                            
                             <h4>Penyiar : <?= $j['NAMA_PENYIAR']; ?></h4>
                             <p><i class="fas fa-clock"></i><?= $j['TANGGAL_JADWAL']; ?>  <?= $j['WAKTU']; ?></p>
                         </div> 
                     </div>
                 </div>
                 <?php endforeach; ?>
-                
-                
-                
-                
             </div>
         </div>
     </div>
@@ -302,19 +297,18 @@
                     <div class="modal-body">
                         <p> Bagaimana menurut anda mengenai acara kami ?</p>
                         <form class="user"method="post" action="<?= base_url('user/ratingJadwal'); ?>">
-                        <input type="text" name='id' id='id' value="1">
+                        <input type="text" name='idJ' id='idJ' value="1" hidden>
+                        <input type="text" name="idUJ" id="idUJ" value="<?= $u['ID_USER']; ?>" hidden>
                         <div class="form-group">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <i class="fa fa-thumbs-up fa-2x" style="color: blue;" id="likeJ"></i>
                                 &emsp; 
                                 <i class="fa fa-fw fa-thumbs-down fa-2x" style="color: blue;" id="dislikeJ"></i>
-                                <input type="text" class="form-control form-control-user" id="idJ" name="idJ" >
-                                <input type="text" class="form-control form-control-user" id="idJ" name="idJ" >
-                                <input type="text" class="form-control form-control-user" id="ratingJ" name="ratingJ">
+                                <input type="text" name="ratingJ" id="ratingJ" hidden>
                             </div>
                         </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="emailJ" name="emailJ" placeholder="Alamat email"  readonly>
+                        <input type="text" class="form-control form-control-user" id="emailJ" name="emailJ" placeholder="Alamat email" value="<?= $u['EMAIL'];?>"  readonly>
                     </div>
                     <div class="form-floating">
                         <label for="floatingTextareaW">Komentar</label>

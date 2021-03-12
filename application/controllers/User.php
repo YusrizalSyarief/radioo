@@ -157,13 +157,13 @@ class User extends CI_Controller {
 	{
 		$this->form_validation->set_rules('ratingJ', 'Rating Jadwal', 'trim|required');
 
-		$idJ = $this->input->post('idJ');
-		$Jadwal = $this->input->post('Jadwal');
+		$idJ = $this->input->post('idUJ');
+		$Jadwal = $this->input->post('idJ');
 		if($this->form_validation->run() == false){
 			echo "data tidak lengkap";
 		} else {
 
-				$this->UserModel->updateRatingW($idJ,$Jadwal);
+				$this->UserModel->updateRatingJ($idJ,$Jadwal);
 				$this->UserModel->komentar();
 				redirect('user');
 			
