@@ -54,10 +54,10 @@ class UserModel extends CI_Model
     // Mengambil Data Jadwal
     public function getJadwal(){
 
-        $queryJadwal = " SELECT * FROM `jadwal` ";
-        $jadwal = $this->db->query($queryJadwal)->result_array(); 
-
-        return $jadwal;
+        $queryJadwal = $this->db->select('*')->from('jadwal')
+        ->join('penyiar', ' jadwal.ID_PENYIAR = penyiar.ID_PENYIAR ' )
+        ->order_by('jadwal.ID_PENYIAR', 'DESC')->get()->result_array();
+        return $queryJadwal;
     }
 
     // Mengambil File
