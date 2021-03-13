@@ -52,7 +52,6 @@ class User extends CI_Controller {
 	public function bukutamu()
 	{
 		
-
 		$data['title'] = 'Buku Tamu';
 		$data['u'] = $this->UserModel->getUserById($this->session->userdata('ID_USER'));
 		
@@ -249,20 +248,26 @@ class User extends CI_Controller {
 		//$this->upload->initialize($config);
 		// $this->getProfil();
 		if ($this->form_validation->run() == false) {
-			echo "File Tidak Dapat Di Update";
+			$this->session->set_flashdata('pesan', 'Cek Kembali Data Anda');
+			redirect('user');
+
 		} else {
 			if(empty($_FILES['UpdateFoto']['name'])) {
 				$namaBerkas = $this->input->post('GambarPro', true);
 				$this->UserModel->ubahProfil($namaBerkas);
-				echo "Berhasil Di Upload Tanpa Gambar";
+				$this->session->set_flashdata('pesan', 'Berhasil diupload');
+				redirect('user');
 				
 			} else {
 				if (!$this->upload->do_upload('UpdateFoto')) {
-					echo "Terdapat Kesalahan dalam Update";	
+					$this->session->set_flashdata('pesan', 'Gambar Gagal Diupload');
+					redirect('user');
+
 				} else {
 					$namaBerkas = $this->upload->data("file_name");
-					$this->AdminModel->ubahProfil($namaBerkas);
-					echo "Berhasil Di Upload Keseluruhan";
+					$this->UserModel->ubahProfil($namaBerkas);
+					$this->session->set_flashdata('pesan', 'Berhasil diupload');
+					redirect('user');
 				}
 			}
 		}

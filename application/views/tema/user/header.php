@@ -41,7 +41,7 @@
     <header class="header">
         <div class="container" id="navbar">
             <div class="row">
-                <div class="col-lg-2 col-md-2">
+                <div class="col-lg-2 col-md-2"> 
                     <div class="header__logo">
                         <img src="<?= base_url()?>assets/logo/logoo.png" alt="Logo_RSKP" style="width:120px;height:75px;">
                     </div>
@@ -49,6 +49,7 @@
                 <div class="col-lg-10 col-md-10">
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
+                        
                         <!-- Ambil Role -->
                         <?php 
                         $queryMenu = " SELECT `user_menu`.`id_menu`, `nama_menu` FROM `user_menu` JOIN `user_access_menu` ON `user_menu`.`id_menu` = `user_access_menu`.`id_menu` WHERE `user_access_menu`.`id_role` = 1 ORDER BY `user_access_menu`.`id_menu` ASC ";
@@ -63,6 +64,7 @@
                         $subMenu = $this->db->query($querySubMenu)->result_array();
                         ?>
                         <ul>
+                        
                         <!-- Looping Sub Menu -->
                         <?php foreach($subMenu as $sm) : ?>
                         <?php if($title == $sm['JUDUL_SUB']) : ?>
@@ -79,7 +81,7 @@
                             if($this->session->userdata('ID_ROLE')){
                         ?>
                                 <!-- Nav Item - User Information -->
-                            <li class="nav-item dropdown no-arrow">
+                            <li class="nav-item dropdown no-arrow kecil">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img class="img-profile rounded-circle"
@@ -156,9 +158,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#modalRegister" style="float:left;">Buat Akun Baru</button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary" type="submit" >Masuk</button>
-                    
-                    
+                    <button class="btn btn-primary" type="submit" id="loginB">Masuk</button>
                 </div>
             </form>
             </div>
@@ -202,6 +202,27 @@
                     <button class="btn btn-primary" type="submit" >Buat Akun</button>
                 </div>
             </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Apakah anda yakin ingin logout ?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                    <a class="btn btn-primary" href="<?= base_url('login/logout'); ?>" id="logoutB">Yakin</a>
+                </div>
             </div>
         </div>
     </div>

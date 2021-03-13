@@ -1,19 +1,34 @@
 <!-- Streaming Section -->
 <section class="hero spad set-bg" data-setbg="<?= base_url()?>assets/logo/radio-bg.png">
     <div class="container">
+        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('pesan');?>">
+        </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="hero__text">
+                    
                     <span>Selamat datang</span>
                     <h1>Radio Suara Kota Probolinggo</h1>
                     <p>Now Streaming</p>
-                    
-                    
-                    <a href="<?= $stream['LINK']; ?>" class="play-btn video-popup"><i class="fa fa-play"></i></a> <br> <br>
-                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ratingWeb">Rating Web</button> 
-                    
+                    <audio controls="controls">
+			            <source src="<?= $stream['LINK']; ?>" type="audio/mpeg">
+                    </audio>
+                    <!-- <a href="<?= $stream['LINK']; ?>" class="play-btn video-popup"><i class="fa fa-play"></i></a> <br> <br> -->
+                    <br>
+                    <div class="digital_clock_wrapper">
+                        <div id="digit_clock_time"></div>
+                        <div id="digit_clock_date"></div>
+                    </div>
+                    <?php
+                        if($this->session->userdata('ID_ROLE')){
+                    ?>
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ratingWeb">Rating Web</button>
+                    <?php
+                        } else{
+                        }
+                    ?>
+
                 </div> 
-                
                 <!-- <div class="stations nowplaying">
                     <div class="radio-player-widget" stationname="Radio Suara Kota Probolinggo" downloadplaylisturi="/public/46/playlist.pls" requestlisturi="/api/station/46/requests" customfields=""> 
                         <div class="now-playing-details">
@@ -78,12 +93,19 @@
                 <div class="col-lg-4">
                     <div class="event__item">
                         <div class="event__item__pic set-bg" data-setbg="<?= base_url()?>uploads/img/<?= $j['GAMBAR_JADWAL']; ?>">
+                        <?php
+                            if($this->session->userdata('ID_ROLE')){
+                        ?>
                             <div class="tag-date">
                                 <a data-toggle="modal" class="ModalRateAcara"
                                     data-target="#rateAcara" data-id="<?= $j['ID_JADWAL']; ?>">
                                 <span>Rating Acara</span>
                                 </a>
                             </div>
+                        <?php
+                        } else{
+                        }
+                        ?>
                         </div>
                         <div class="event__item__text">
                             <h4><?= $j['JUDUL_JADWAL']; ?></h4>

@@ -31,8 +31,8 @@
                 </div>
                 <div class="col-lg-3 offset-lg-1 col-md-6">
                     <div class="footer__newslatter">
-                        <div id="MyClockDisplay" class="clock" onload="showTime()">
-                        </div>
+                        <!-- <div id="MyClockDisplay" class="clock" onload="showTime()">
+                        </div> -->
                         <div id="displayIP">
                             <?php 
                                 $queryIp = " SELECT * FROM `user_ip` ";
@@ -60,6 +60,8 @@
     <!-- Akhir script -->
 
     <!-- Js Plugins -->
+    <script src="<?= base_url()?>assets/user/js/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script> -->
     <script src="<?= base_url()?>assets/user/js/jquery-3.3.1.min.js"></script>
     <!-- <script src="<?= base_url()?>assets/admin/js/jquery.min.js"></script> -->
@@ -102,44 +104,74 @@
     </script> -->
 
     <script>
-        var loadProfile = function(event) {
-            var reader = new FileReader();
-            reader.onload = function(){
-                var output = document.getElementById('outputProfil');
-                output.src = reader.result;
+        const flashData = $('.flash-data').data('flashdata');
+        if(flashData){
+            if(flashData == 'Gambar Gagal Diupload' || flashData == 'Cek Kembali Data Anda' || flashData == 'Password Salah!' 
+            || flashData == 'Akun Belum diaktivasi!' || flashData == 'Akun Belum Terdaftar!'){
+                Swal.fire({
+                    title: '',
+                    text: flashData,
+                    icon: 'warning'
+                });
+            } else{
+                Swal.fire({
+                    title: '',
+                    text: flashData,
+                    icon: 'success'
+                });
             };
-            reader.readAsDataURL(event.target.files[0]);
         };
     </script>
 
     <script>
-        function showTime(){
-        var date = new Date();
-        var h = date.getHours(); // 0 - 23
-        var m = date.getMinutes(); // 0 - 59
-        var s = date.getSeconds(); // 0 - 59
-        var session = "AM";
-        
-        if(h == 0){
-            h = 12;
+        var loadProfile = function(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function(){
+                var dataURL = reader.result;
+                var output = document.getElementById('outputProfil');
+                output.src = dataURL;
+            };
+            reader.readAsDataURL(input.files[0]);
+        };
+    </script>
+
+    <script>
+    function currentTime() {
+    var date = new Date(); /* creating object of Date class */
+    var hour = date.getHours();
+    var min = date.getMinutes();
+    var sec = date.getSeconds();
+    var midday = "AM";
+    midday = (hour >= 12) ? "PM" : "AM"; /* assigning AM/PM */
+    hour = (hour == 0) ? 12 : ((hour > 12) ? (hour - 12): hour); /* assigning hour in 12-hour format */
+    hour = changeTime(hour);
+    min = changeTime(min);
+    sec = changeTime(sec);
+    document.getElementById("digit_clock_time").innerText = hour + " : " + min + " : " + sec + " " + midday; /* adding time to the div */
+    
+    var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    
+    var curWeekDay = days[date.getDay()]; // get day
+    var curDay = date.getDate();  // get date
+    var curMonth = months[date.getMonth()]; // get month
+    var curYear = date.getFullYear(); // get year
+    var date = curWeekDay+", "+curDay+" "+curMonth+" "+curYear; // get full date
+    document.getElementById("digit_clock_date").innerHTML = date;
+    
+    var t = setTimeout(currentTime, 1000); /* setting timer */
+    }
+ 
+    function changeTime(k) { /* appending 0 before time elements if less than 10 */
+        if (k < 10) {
+            return "0" + k;
         }
-        
-        if(h > 12){
-            h = h - 12;
-            session = "PM";
+        else {
+            return k;
         }
-        
-        h = (h < 10) ? "0" + h : h;
-        m = (m < 10) ? "0" + m : m;
-        s = (s < 10) ? "0" + s : s;
-        
-        var time = h + ":" + m + ":" + s + " " + session;
-        document.getElementById("MyClockDisplay").innerText = time;
-        document.getElementById("MyClockDisplay").textContent = time;
-        
-        setTimeout(showTime, 1000);
-        }
-        showTime();
+    } 
+    currentTime();
     </script>
 
 </body>

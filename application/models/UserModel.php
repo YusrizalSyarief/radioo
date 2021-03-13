@@ -45,7 +45,7 @@ class UserModel extends CI_Model
     // Mengambil Data Penyiar
     public function getPenyiar(){
 
-        $queryPenyiar = " SELECT * FROM `penyiar` ";
+        $queryPenyiar = " SELECT * FROM `penyiar` ORDER BY 'ID_GALERI' DESC LIMIT 3";
         $penyiar = $this->db->query($queryPenyiar)->result_array(); 
 
         return $penyiar;
@@ -63,7 +63,7 @@ class UserModel extends CI_Model
     // Mengambil File
     public function getAudio(){
 
-        $queryAudio = " SELECT * FROM `galeri` WHERE `KATEGORI` LIKE 'audio' ";
+        $queryAudio = " SELECT * FROM `galeri` WHERE `KATEGORI` LIKE 'audio' ORDER BY 'ID_GALERI' DESC LIMIT 5";
         $audio = $this->db->query($queryAudio)->result_array();
 
         return $audio;
@@ -155,7 +155,7 @@ class UserModel extends CI_Model
             
         ];
 
-        $this->db->where('ID_USER', $this->input->post('idR'));
+        $this->db->where('ID_USER', $this->input->post('idPro'));
         $this->db->update('user', $data);
     }
 

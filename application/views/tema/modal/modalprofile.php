@@ -1,24 +1,3 @@
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Apakah anda yakin ingin logout ?
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-primary" href="<?= base_url('login/logout'); ?>">Yakin</a>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Modal Profil -->
 <div class="modal fade" id="Profil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
@@ -61,7 +40,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="user"method="post" action="<?= base_url('user/ubahPro'); ?>">
+                <form class="user"method="post" action="<?= base_url('user/ubahPro'); ?>" enctype="multipart/form-data">
                 <input type="hidden" name='idPro' id='idPro' value="1">
                 <input type="hidden" name='GambarPro' id='GambarPro' value="1">
                 <div class="section-title center-title" >
@@ -80,7 +59,7 @@
                     <input type="text" class="form-control form-control-user" id="emailR" name="emailR" placeholder="Email User" >
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="notlpR" name="nptlpR" placeholder="Nomor User" >
+                    <input type="text" class="form-control form-control-user" id="notlpR" name="notlpR" placeholder="Nomor User" >
                 </div>
             </div>
             <div class="modal-footer">
@@ -106,10 +85,10 @@
             <div class="modal-body">
                 <form class="user"method="post" action="<?= base_url('user/ratingAcara'); ?>">
                 <div class="form-group">
-                    <input type="password" class="form-control form-control-user" id="passwordB" name="passwordLB" placeholder="Password Baru">
+                    <input type="password" class="form-control form-control-user" id="passwordLB" name="passwordLB" placeholder="Password Baru">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control form-control-user" id="passwordB2" name="passwordLB2" placeholder="Ulangi Password Baru">
+                    <input type="password" class="form-control form-control-user" id="passwordLB2" name="passwordLB2" placeholder="Ulangi Password Baru">
                 </div>
             </div>
             <div class="modal-footer">

@@ -17,8 +17,8 @@
                     <i class="fa fa-thumbs-up fa-2x" style="color: blue;" id="likeW"></i>
                     &emsp; 
                     <i class="fa fa-fw fa-thumbs-down fa-2x" style="color: blue;" id="dislikeW"></i>
-                    <input type="text" class="form-control form-control-user" id="idW" name="idW" value="<?= $u['ID_USER']; ?>">
-                    <input type="text" class="form-control form-control-user" id="ratingW" name="ratingW">
+                    <input type="text" class="form-control form-control-user" id="idW" name="idW" value="<?= $u['ID_USER']; ?>" hidden>
+                    <input type="text" class="form-control form-control-user" id="ratingW" name="ratingW" hidden>
                 </div>
             </div>
             <div class="form-group">
