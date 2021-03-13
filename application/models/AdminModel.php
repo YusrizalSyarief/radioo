@@ -269,7 +269,7 @@ class AdminModel extends CI_Model
             "ID_ROLE" => $this->input->post('KategoriUser', true),
             "EMAIL" => $this->input->post('Email', true),
             "NAMA" => $this->input->post('Nama', true),
-            "PASSWORD" => $this->input->post('Password2', true),
+            "PASSWORD" => password_hash($this->input->post('Password2', true),PASSWORD_DEFAULT) ,
             "NO_TLP" => $this->input->post('NoTlpUser', true),
             "USER_ACTIVE" => 1,
             "GAMBAR" => $namaBerkas,
@@ -281,14 +281,18 @@ class AdminModel extends CI_Model
    {
       return $this->db->get_where('user', ['EMAIL' => $id])->num_rows();
    }
-   public function getCountDataUser() 
+   public function getCountDataUser($id) 
    {
-      return $this->db->get('user')->num_rows();
+      return $this->db->where('ID_USER !=', $id)->get('user')->num_rows();
    }
    public function hapusDataUser($id)
    {
            
-           $this->db->delete('user', ['ID_USER' => $id]);
+    if (!$this->db->delete('user', ['ID_USER' => $id])) {
+        $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Hapus User Masih Digunakan</div>');
+        redirect('admin/user');
+    }
+           
           
    }
    public function getUserById($id)
@@ -301,7 +305,8 @@ class AdminModel extends CI_Model
    public function ubahPass()
     {
         $data = [
-            "PASSWORD" => $this->input->post('Ubahpassword2', true),
+            
+            "PASSWORD" => password_hash($this->input->post('Ubahpassword2', true),PASSWORD_DEFAULT),
             
         ];
 

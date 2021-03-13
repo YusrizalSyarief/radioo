@@ -261,7 +261,7 @@ class Admin extends CI_Controller {
 	{
 		$data['title'] = 'User';
 		$config['base_url'] = 'https://localhost/radioo/admin/user';
-		$config['total_rows'] = $this->AdminModel->getCountDataUser();
+		$config['total_rows'] = $this->AdminModel->getCountDataUser($this->session->userdata('ID_USER'));
 		
 		$config['per_page'] = 5;
 
