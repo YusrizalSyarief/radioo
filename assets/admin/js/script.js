@@ -6,6 +6,7 @@ $(function() {
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
         $('.modal-footer button[type=submit]').html('Tambah Data');
         $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'btn btn-secondary dropdown-toggle');
+        
         $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahGaleri');
         $('#JudulGaleri').val("");
         $('#Kategori').val("");
@@ -18,6 +19,7 @@ $(function() {
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Galeri');
         $('.modal-footer button[type=submit]').html('Tambah Data');
         $('.modal-footer button[id=dropdownMenuButton]').attr('class', 'btn btn-secondary dropdown-toggle');
+        $('#outputGaleri').attr('src', 'https://localhost/radioo/assets/user/img/blank.png');
         $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahGaleriYt');
         $('#UrlYt').val("");
         $('#JudulGaleriYt').val("");
@@ -31,6 +33,7 @@ $(function() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Jadwal');
         $('.modal-footer button[type=submit]').html('Tambah Data');
+        $('#outputJadwal').attr('src', 'https://localhost/radioo/assets/user/img/blank.png');
         $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahJadwal');
         $('#Judul').val("");
         $('#Waktu').val("");
@@ -43,7 +46,7 @@ $(function() {
 
         $('.modal-header h5[id=exampleModalLabel]').html('Tambah Penyiar');
         $('.modal-footer button[type=submit]').html('Tambah Data');
-        $('#outputPenyiar').attr('src', 'https://localhost/radioo/uploads/img/blank.png');
+        $('#outputPenyiar').attr('src', 'https://localhost/radioo/assets/user/img/blank.png');
         $('.modal-body form').attr('action', 'https://localhost/radioo/admin/tambahPenyiar');
         $('#Nama').val("");
         $('#NoTlp').val("");
