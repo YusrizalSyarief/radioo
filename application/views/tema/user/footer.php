@@ -105,9 +105,10 @@
 
     <script>
         const flashData = $('.flash-data').data('flashdata');
+
         if(flashData){
             if(flashData == 'Gambar Gagal Diupload' || flashData == 'Cek Kembali Data Anda' || flashData == 'Password Salah!' 
-            || flashData == 'Akun Belum diaktivasi!' || flashData == 'Akun Belum Terdaftar!'){
+            || flashData == 'Akun Belum diaktivasi!' || flashData == 'Akun Belum Terdaftar!' || flashData == 'Mohon lengkapi form sebelum submit'){
                 Swal.fire({
                     title: '',
                     text: flashData,
@@ -119,8 +120,28 @@
                     text: flashData,
                     icon: 'success'
                 });
-            };
+            }; 
         };
+    </script>
+
+<script>
+        const flashBuku = $('.flash-buku').data('flashbuku');
+        
+        if(flashBuku){
+            if(flashBuku == 'Form Harus Lengkap!'){
+                Swal.fire({
+                    title: '',
+                    text: flashBuku,
+                    icon: 'warning'
+                });
+            } else{
+                Swal.fire({
+                    title: '',
+                    text: flashBuku,
+                    icon: 'success'
+                });
+            };
+        };     
     </script>
 
     <script>

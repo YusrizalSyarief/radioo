@@ -68,7 +68,13 @@
                 <div class="contact__form">
                     <div class="section-title">
                         <h3>Form Saran dan Pengaduan</h3>
-                        <?= $this->session->flashdata('pesan'); ?>
+                        <div class="flash-buku" data-flashbuku="<?= $this->session->flashdata('buku');?>" nilai="0">
+                        </div>
+                        <?php 
+                            if(isset($_SESSION['buku'])){
+                                unset($_SESSION['buku']);
+                            }
+                        ?>
                     </div>
                     <p>Ketentuan Pengisian Saran dan Pengaduan. <br>
                     1. Dilarang menggunakan kata-kata mengandung SARA, Pornografi, Pelecehan, Ancaman yang dapat menyinggung perasaan orang lain. <br>

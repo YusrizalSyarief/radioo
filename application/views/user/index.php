@@ -1,8 +1,13 @@
 <!-- Streaming Section -->
 <section class="hero spad set-bg" data-setbg="<?= base_url()?>assets/logo/radio-bg.png">
     <div class="container">
-        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('pesan');?>">
+        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('login');?>" nilai="0">
         </div>
+        <?php 
+            if(isset($_SESSION['login'])){
+                unset($_SESSION['login']);
+            }
+        ?>
         <div class="row">
             <div class="col-lg-12">
                 <div class="hero__text">

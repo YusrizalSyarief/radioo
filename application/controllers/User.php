@@ -69,11 +69,11 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('isiTamu', 'Isi Tamu', 'trim|required');
 	
 		if ($this->form_validation->run() == false) {
-			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Form Harus Lengkap!</div>');
+			$this->session->set_flashdata('buku', 'Form Harus Lengkap!');
 			redirect('user/bukutamu');	
 		} else {
 				$this->UserModel->bukuTamu();
-				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Form Berhasil Dikirim</div>');
+				$this->session->set_flashdata('buku', 'Form Berhasil Dikirim');
 				redirect('user/bukutamu');	
 		}
    
@@ -141,12 +141,14 @@ class User extends CI_Controller {
 		$idW = $this->input->post('idW');
 		$web = "website";
 		if($this->form_validation->run() == false){
-			echo "data tidak lengkap";
+			$this->session->set_flashdata('login', 'Mohon lengkapi form sebelum submit');
+			redirect('user','refresh');
 		} else {
 
 				$this->UserModel->updateRatingW($idW,$web);
 				$this->UserModel->komentar();
-				redirect('user');
+				$this->session->set_flashdata('login', 'Terimakasih atas Penilaian Anda');
+				redirect('user','refresh');
 			
 		}
 
@@ -159,12 +161,14 @@ class User extends CI_Controller {
 		$idJ = $this->input->post('idUJ');
 		$Jadwal = $this->input->post('idJ');
 		if($this->form_validation->run() == false){
-			echo "data tidak lengkap";
+			$this->session->set_flashdata('login', 'Mohon lengkapi form sebelum submit');
+			redirect('user','refresh');
 		} else {
 
 				$this->UserModel->updateRatingJ($idJ,$Jadwal);
 				$this->UserModel->komentar();
-				redirect('user');
+				$this->session->set_flashdata('login', 'Terimakasih atas Penilaian Anda');
+				redirect('user','refresh');
 			
 		}
 		
@@ -248,25 +252,25 @@ class User extends CI_Controller {
 		//$this->upload->initialize($config);
 		// $this->getProfil();
 		if ($this->form_validation->run() == false) {
-			$this->session->set_flashdata('pesan', 'Cek Kembali Data Anda');
+			$this->session->set_flashdata('login', 'Cek Kembali Data Anda');
 			redirect('user');
 
 		} else {
 			if(empty($_FILES['UpdateFoto']['name'])) {
 				$namaBerkas = $this->input->post('GambarPro', true);
 				$this->UserModel->ubahProfil($namaBerkas);
-				$this->session->set_flashdata('pesan', 'Berhasil diupload');
+				$this->session->set_flashdata('login', 'Berhasil diupload');
 				redirect('user');
 				
 			} else {
 				if (!$this->upload->do_upload('UpdateFoto')) {
-					$this->session->set_flashdata('pesan', 'Gambar Gagal Diupload');
+					$this->session->set_flashdata('login', 'Gambar Gagal Diupload');
 					redirect('user');
 
 				} else {
 					$namaBerkas = $this->upload->data("file_name");
 					$this->UserModel->ubahProfil($namaBerkas);
-					$this->session->set_flashdata('pesan', 'Berhasil diupload');
+					$this->session->set_flashdata('login', 'Berhasil diupload');
 					redirect('user');
 				}
 			}

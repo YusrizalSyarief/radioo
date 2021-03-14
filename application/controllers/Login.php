@@ -38,30 +38,36 @@ class Login extends CI_Controller {
                         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Login Berhasil </div>');
 						redirect('admin');
 					} else {
-						$this->session->set_flashdata('pesan', 'Berhasil Login');
-						redirect('user');
+						$this->session->set_flashdata('login', 'Berhasil Login');
+						redirect('user','refresh');
+						
 					}
 				
 				} else {
-					$this->session->set_flashdata('pesan', 'Password Salah!');
-			        redirect('user');
+					$this->session->set_flashdata('login', 'Password Salah!');
+			        redirect('user','refresh');
+					
+
 				}
 				
 			} else {
-                $this->session->set_flashdata('pesan', 'Akun Belum diaktivasi!');
-			    redirect('user');
+                $this->session->set_flashdata('login', 'Akun Belum diaktivasi!');
+			    redirect('user','refresh');
+				
 				//echo "Akun Belum Aktif!";
 			}
 		} else{
-            $this->session->set_flashdata('pesan', 'Akun Belum Terdaftar!');
-			redirect('user');
+            $this->session->set_flashdata('login', 'Akun Belum Terdaftar!');
+			redirect('user','refresh');
+			
 			//echo "Tidak Ada Akun !";
 		}
 	}
 	public function logout()
     {
 		$this->session->sess_destroy();
-		$this->session->set_flashdata('pesan', 'Berhasil Log Out');
-        redirect('user');
+		$this->session->set_flashdata('login', 'Berhasil Log Out');
+        redirect('user','refresh');
+		
     }
 }
