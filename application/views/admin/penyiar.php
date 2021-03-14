@@ -96,7 +96,7 @@
             <div class="modal-body">
             <form class="user"method="post" action="">
             <div class="form-group ">
-                <img src="<?= base_url()?>assets/user/img/events/event-2.jpg" id="FotoInfo" alt="..." class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;">
+                <img src="<?= base_url()?>assets/user/img/blank.png" id="FotoInfo" alt="..." class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Nama</label>
