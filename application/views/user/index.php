@@ -11,7 +11,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="hero__text">
-                    
                     <span>Selamat datang</span>
                     <h1>Radio Suara Kota Probolinggo</h1>
                     <p>Now Streaming</p>
@@ -32,41 +31,7 @@
                         } else{
                         }
                     ?>
-
                 </div> 
-                <!-- <div class="stations nowplaying">
-                    <div class="radio-player-widget" stationname="Radio Suara Kota Probolinggo" downloadplaylisturi="/public/46/playlist.pls" requestlisturi="/api/station/46/requests" customfields=""> 
-                        <div class="now-playing-details">
-                            <div class="now-playing-art">
-                                <a href="http://alhastream.my.id/logo/RadioSuaraKotaProbolinggo.jpeg" data-fancybox="" target="_blank">
-                                <img src="http://alhastream.my.id/logo/RadioSuaraKotaProbolinggo.jpeg" alt="Album Art"></a>
-                            </div> 
-                            <div class="now-playing-main"> 
-                                <div>
-                                    <h4 class="now-playing-title">Stream Offline</h4> 
-                                    <h5 class="now-playing-artist"></h5>
-                                </div> 
-                            </div>
-                        </div> 
-                        <hr> 
-                        <div class="radio-controls">
-                            <div class="radio-control-play-button">
-                                <a href="#" role="button" title="Play" aria-label="Play"><i aria-hidden="true" class="material-icons lg">play_circle_filled</i></a>
-                            </div> 
-                            <div class="radio-control-select-stream">
-                            </div> 
-                            <div class="radio-control-mute-button"><a href="#" title="Mute" class="text-secondary">
-                                <i aria-hidden="true" class="material-icons">volume_mute</i></a>
-                            </div> 
-                            <div class="radio-control-volume-slider">
-                                <input type="range" title="Volume" min="0" max="100" step="1" class="custom-range">
-                            </div> 
-                            <div class="radio-control-max-volume-button">
-                                <a href="#" title="Full Volume" class="text-secondary"><i aria-hidden="true" class="material-icons">volume_up</i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>  -->
             </div>   
         </div>
     </div>
@@ -148,17 +113,17 @@
                     <?php switch($p['NAMA_PENYIAR'] != null){
                             case $p['INSTAGRAM'] != null :
                     ?>
-                    <a href="<?= base_url($p['INSTAGRAM']); ?>"><i class="fa fa-instagram fa-3x" style="color: #ED7796;"></i></a>
+                    <a href="<?= $p['INSTAGRAM']; ?>"><i class="fa fa-instagram fa-3x" style="color: #ED7796;"></i></a>
                     &emsp;
                     <?php   
                             case $p['FACEBOOK'] != null :
                     ?>
-                    <a href="<?= base_url($p['FACEBOOK']); ?>"><i class="fa fa-facebook fa-3x" style="color: #4000D9"></i></a>
+                    <a href="<?= $p['FACEBOOK']; ?>"><i class="fa fa-facebook fa-3x" style="color: #4000D9"></i></a>
                     &emsp;
                     <?php   
                             case $p['TWITTER'] != null :
                     ?>
-                    <a href="<?= base_url($p['TWITTER']); ?>"><i class="fa fa-twitter fa-3x" style="color: #7DFAE0;"></i></a>
+                    <a href="<?= $p['TWITTER']; ?>"><i class="fa fa-twitter fa-3x" style="color: #7DFAE0;"></i></a>
                     <?php   break;
                         }
                     ?>

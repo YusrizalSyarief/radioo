@@ -120,6 +120,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('passwordR2', 'Password2', 'required|trim|matches[passwordR]');
 	
 		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('login', 'Terdapat Kesalahan');
 			redirect('user');
 		} else {
 			$token = base64_encode(random_bytes(32));
@@ -130,7 +131,8 @@ class User extends CI_Controller {
 			$this->UserModel->register();
 			$this->db->insert('user_token', $user_token);
 			$this->sendEmail($token, 'verify');
-			redirect('user');	
+			$this->session->set_flashdata('login', 'Silahkan Aktivasi Akun Terlebih Dahulu');
+			redirect('user','refresh');	
 		}
 	}
 
@@ -194,7 +196,9 @@ class User extends CI_Controller {
 
 		if($type == 'verify') {
 			$this->email->subject('Account Verification');
-			$this->email->message('Click this link to verify your account : <a href="'. base_url() .'user/verify?email=' . $this->input->post('EmailU') .'&token=' . urlencode($token) . '">Activate</a>');
+			$this->email->message('
+			Click this link to verify your account : <a href="'. base_url() .'user/verify?email=' . $this->input->post('EmailU') .'&token=' . urlencode($token) . '">Activate</a>
+			');
 		
 		} else{
 
@@ -226,12 +230,15 @@ class User extends CI_Controller {
 				
 				$this->db->delete('user_token', ['EMAIL_TOKEN' => $email]);
 				
-				echo "verifikasi berhasil";
+				$this->session->set_flashdata('login', 'Verifikasi Berhasil');
+				redirect('user','refresh');
 			} else {
-				echo "Gagal verifikasi token";
+				$this->session->set_flashdata('login', 'Verifikasi Token Gagal');
+				redirect('user','refresh');
 			}
 		} else {
-			echo "Gagal verifikasi email";
+			$this->session->set_flashdata('login', 'Verifikasi Email Gagal');
+			redirect('user','refresh');
 		}
 		
 	}
@@ -253,25 +260,25 @@ class User extends CI_Controller {
 		// $this->getProfil();
 		if ($this->form_validation->run() == false) {
 			$this->session->set_flashdata('login', 'Cek Kembali Data Anda');
-			redirect('user');
+			redirect('user', 'refresh');
 
 		} else {
 			if(empty($_FILES['UpdateFoto']['name'])) {
 				$namaBerkas = $this->input->post('GambarPro', true);
 				$this->UserModel->ubahProfil($namaBerkas);
 				$this->session->set_flashdata('login', 'Berhasil diupload');
-				redirect('user');
+				redirect('user', 'refresh');
 				
 			} else {
 				if (!$this->upload->do_upload('UpdateFoto')) {
 					$this->session->set_flashdata('login', 'Gambar Gagal Diupload');
-					redirect('user');
+					redirect('user', 'refresh');
 
 				} else {
 					$namaBerkas = $this->upload->data("file_name");
 					$this->UserModel->ubahProfil($namaBerkas);
 					$this->session->set_flashdata('login', 'Berhasil diupload');
-					redirect('user');
+					redirect('user', 'refresh');
 				}
 			}
 		}

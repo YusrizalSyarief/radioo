@@ -17,6 +17,7 @@ class UserModel extends CI_Model
         return $this->db->select('*')->from('galeri')
         ->join('kategori_galeri', 'galeri.ID_KATEGORI = kategori_galeri.ID_KATEGORI')
         ->WHERE('KATEGORI', $kate)
+        ->order_by('galeri.TANGGAL', 'DESC')
         ->get()->result_array();
     }
 
@@ -101,8 +102,6 @@ class UserModel extends CI_Model
 			'GAMBAR' => 'default.jpg'
 
         ];
-
-        var_dump($data);
         $this->db->insert('user', $data);
     }
 
@@ -166,7 +165,8 @@ class UserModel extends CI_Model
             $ratingW = [
                 'ID_USER' => $idW,
                 'KATEGORI_RATING' => $web,
-                'RATING' => $this->input->post('ratingW')
+                'RATING' => $this->input->post('ratingW'),
+                'KOMENTAR' => htmlspecialchars($this->input->post('floatingTextareaW', true))
             ];
             $this->db->where('ID_USER', $idW);
             $this->db->where('KATEGORI_RATING', $web);
@@ -175,7 +175,8 @@ class UserModel extends CI_Model
             $ratingW = [
                 'ID_USER' => $idW,
                 'KATEGORI_RATING' => $web,
-                'RATING' => $this->input->post('ratingW')
+                'RATING' => $this->input->post('ratingW'),
+                'KOMENTAR' => htmlspecialchars($this->input->post('floatingTextareaW', true))
             ];
             $this->db->insert('rating', $ratingW);
         }
@@ -189,7 +190,8 @@ class UserModel extends CI_Model
                 'ID_JADWAL' => $Jadwal,
                 'ID_USER' => $idJ,
                 'KATEGORI_RATING' => null,
-                'RATING' => $this->input->post('ratingJ')
+                'RATING' => $this->input->post('ratingJ'),
+                'KOMENTAR' => htmlspecialchars($this->input->post('floatingTextareaW', true))
             ];
             $this->db->where('ID_USER', $idJ);
             $this->db->where('ID_JADWAL', $Jadwal);
@@ -199,7 +201,8 @@ class UserModel extends CI_Model
                 'ID_JADWAL' => $Jadwal,
                 'ID_USER' => $idJ,
                 'KATEGORI_RATING' => null,
-                'RATING' => $this->input->post('ratingJ')
+                'RATING' => $this->input->post('ratingJ'),
+                'KOMENTAR' => htmlspecialchars($this->input->post('floatingTextareaW', true))
             ];
             $this->db->insert('rating', $ratingJ);
         }
