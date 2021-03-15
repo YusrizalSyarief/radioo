@@ -55,7 +55,7 @@
             ?>            
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="youtube__item">
-                    <div class="youtube__item__pic set-bg" data-setbg="<?= base_url()?>assets/user/img/youtube/youtube-1.jpg">
+                    <div class="youtube__item__pic set-bg" data-setbg="<?= base_url(); ?>uploads/img/<?= $f['GAMBAR_GALERI']; ?>">
                         <a href="<?= $f['NAMA_FILE']; ?>" class="play-btn video-popup"><i class="fa fa-play"></i></a>
                     </div>
                     <div class="youtube__item__text">

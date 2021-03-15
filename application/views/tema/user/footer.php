@@ -109,7 +109,7 @@
         if(flashData){
             if(flashData == 'Gambar Gagal Diupload' || flashData == 'Cek Kembali Data Anda' || flashData == 'Password Salah!' 
             || flashData == 'Akun Belum diaktivasi!' || flashData == 'Akun Belum Terdaftar!' || flashData == 'Mohon lengkapi form sebelum submit'
-            || flashData == 'Terdapat Kesalahan') || flashData == 'Verifikasi Email Gagal') || flashData == 'Verifikasi Token Gagal'){
+            || flashData == 'Terdapat Kesalahan' || flashData == 'Verifikasi Email Gagal' || flashData == 'Verifikasi Token Gagal'){
                 Swal.fire({
                     title: '',
                     text: flashData,
