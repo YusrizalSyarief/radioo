@@ -99,7 +99,7 @@
         <?php foreach($penyiar as $p) : ?>
             <div class="col-lg-6">
                 <div class="about__pic">
-                    <img src="<?= base_url('uploads/img/')?><?= $p['GAMBAR_PENYIAR']; ?>" alt="penyiar<?= $p['ID_PENYIAR']; ?>" style="border-radius: 50%; weight: 400px; height: 400px;"><br> <br> <br>
+                    <img src="<?= base_url('uploads/img/')?><?= $p['GAMBAR_PENYIAR']; ?>" alt="penyiar<?= $p['ID_PENYIAR']; ?>" style="border-radius: 50%; weight: 300px; height: 300px;"><br> <br> <br>
                 </div>
             </div>
             <div class="col-lg-6">
