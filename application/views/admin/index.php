@@ -62,7 +62,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <input type="text" class="form-control" id="cariAcara" placeholder="Cari Acara">
+                        <input type="text" class="form-control" id="cariAcara" placeholder="Cari Acara & Selengkapnya">
                     </div>
                 </div>
                 <div class="table-responsive">
