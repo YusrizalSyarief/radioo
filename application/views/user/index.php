@@ -303,8 +303,8 @@
                         <input type="text" class="form-control form-control-user" id="emailJ" name="emailJ" placeholder="Alamat email" value="<?= $u['EMAIL'];?>"  readonly>
                     </div>
                     <div class="form-floating">
-                        <label for="floatingTextareaW">Komentar</label>
-                        <textarea class="form-control" placeholder="..." id="floatingTextareaW"></textarea> 
+                        <label for="floatingTextareaR">Komentar</label>
+                        <textarea class="form-control" placeholder="..." id="floatingTextareaR" name="floatingTextareaR"></textarea> 
                     </div>  
                     </div>
                     <div class="modal-footer">

@@ -191,7 +191,7 @@ class UserModel extends CI_Model
                 'ID_USER' => $idJ,
                 'KATEGORI_RATING' => null,
                 'RATING' => $this->input->post('ratingJ'),
-                'KOMENTAR' => htmlspecialchars($this->input->post('floatingTextareaW', true))
+                'KOMENTAR' => htmlspecialchars($this->input->post('floatingTextareaR', true))
             ];
             $this->db->where('ID_USER', $idJ);
             $this->db->where('ID_JADWAL', $Jadwal);
@@ -202,7 +202,7 @@ class UserModel extends CI_Model
                 'ID_USER' => $idJ,
                 'KATEGORI_RATING' => null,
                 'RATING' => $this->input->post('ratingJ'),
-                'KOMENTAR' => htmlspecialchars($this->input->post('floatingTextareaW', true))
+                'KOMENTAR' => htmlspecialchars($this->input->post('floatingTextareaR', true))
             ];
             $this->db->insert('rating', $ratingJ);
         }
@@ -210,10 +210,25 @@ class UserModel extends CI_Model
 
     public function komentar()
     {
-        $komentar = [
-            'KOMENTAR' => htmlspecialchars($this->input->post('floatingTextareaW', true))
-        ];
-        $this->db->insert('komentar', $komentar);
+        $kw = $this->input->post('floatingTextareaW', true);
+        $kr = $this->input->post('floatingTextareaR', true); 
+        if($kw || $kr){
+            if($kw != null){
+                $komentar = [
+                    'KOMENTAR' => htmlspecialchars($this->input->post('floatingTextareaW', true))
+                ];
+                $this->db->insert('komentar', $komentar);
+                $kw = null;
+            } else if($kr != null){
+                $komentar = [
+                    'KOMENTAR' => htmlspecialchars($this->input->post('floatingTextareaR', true))
+                ];
+                $this->db->insert('komentar', $komentar);
+                $kr = null;
+            }
+            
+        }
+        
     }
 
 }
