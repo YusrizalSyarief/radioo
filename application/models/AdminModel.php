@@ -394,7 +394,7 @@ class AdminModel extends CI_Model
                     FROM jadwal JOIN rating ON jadwal.ID_JADWAL = rating.ID_JADWAL 
                     
                     GROUP BY jadwal.ID_JADWAL
-                    ORDER BY jadwal.ID_JADWAL DESC LIMIT 10";
+                    ORDER BY jadwal.ID_JADWAL DESC LIMIT 20";
        return $this->db->query($query)->result_array();
    }
    public function getKomentar($id)
