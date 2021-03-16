@@ -53,7 +53,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <h2>Jadwal Hari Ini</h2>
+                    <h2>Jadwal Terkini</h2>
                 </div>
             </div>
         </div>

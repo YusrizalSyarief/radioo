@@ -57,7 +57,7 @@ class UserModel extends CI_Model
 
         $queryJadwal = $this->db->select('*')->from('jadwal')
         ->join('penyiar', ' jadwal.ID_PENYIAR = penyiar.ID_PENYIAR ' )
-        ->limit(5)
+        ->limit(10)
         ->order_by('jadwal.ID_JADWAL', 'DESC')->get()->result_array();
         return $queryJadwal;
     }
