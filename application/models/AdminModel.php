@@ -26,7 +26,7 @@ class AdminModel extends CI_Model
             "KATEGORI" => 'audio',
             "JUDUL" => $this->input->post('JudulGaleri', true),
             "DESCK_GALERI" => $this->input->post('DeskripsiGaleri', true),
-            //"TGL_REV_PENGAJUAN" => date("y-m-d"),
+            "GAMBAR_GALERI" => "0",
             "TANGGAL" => date("y-m-d"),
          ];
         $this->db->insert('galeri', $data);
@@ -144,7 +144,10 @@ class AdminModel extends CI_Model
     public function hapusDataJadwal($id)
     {
         // $this->db->where('id', $id);
-        $this->db->delete('jadwal', ['ID_JADWAL' => $id]);
+        if (!$this->db->delete('jadwal', ['ID_JADWAL' => $id])) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Hapus Jadwal Masih Digunakan</div>');
+            redirect('admin/jadwal');
+        }
     }
     public function getJadwalById($id)
    {
