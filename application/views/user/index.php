@@ -113,17 +113,17 @@
                     <?php switch($p['NAMA_PENYIAR'] != null){
                             case $p['INSTAGRAM'] != null :
                     ?>
-                    <a href="<?= $p['INSTAGRAM']; ?>"><i class="fa fa-instagram fa-3x" style="color: #ED7796;"></i></a>
+                    <a href="<?= $p['INSTAGRAM']; ?>" target="_blank"><i class="fa fa-instagram fa-3x" style="color: #ED7796;"></i></a>
                     &emsp;
                     <?php   
                             case $p['FACEBOOK'] != null :
                     ?>
-                    <a href="<?= $p['FACEBOOK']; ?>"><i class="fa fa-facebook fa-3x" style="color: #4000D9"></i></a>
+                    <a href="<?= $p['FACEBOOK']; ?>" target="_blank"><i class="fa fa-facebook fa-3x" style="color: #4000D9"></i></a>
                     &emsp;
                     <?php   
                             case $p['TWITTER'] != null :
                     ?>
-                    <a href="<?= $p['TWITTER']; ?>"><i class="fa fa-twitter fa-3x" style="color: #7DFAE0;"></i></a>
+                    <a href="<?= $p['TWITTER']; ?>" target="_blank"><i class="fa fa-twitter fa-3x" style="color: #7DFAE0;"></i></a>
                     <?php   break;
                         }
                     ?>

@@ -22,10 +22,10 @@
                     <div class="footer__social">
                         <h2>Sosial Media</h2>
                         <div class="footer__social__links">
-                            <a href="https://www.facebook.com/pg/suarakotaprobolinggo/about/?ref=page_internal"><i class="fa fa-facebook" style="color: #4000D9"></i></a>
-                            <a href="https://twitter.com/suarakotaprob"><i class="fa fa-twitter" style="color: #7DFAE0;"></i></a>
-                            <a href="https://www.instagram.com/suarakota1017fm/"><i class="fa fa-instagram" style="color: #ED7796;"></i></a>
-                            <a href="https://www.youtube.com/channel/UC-O2M5ys3FpHskzTUp8WGKQ"><i class="fa fa-youtube" style="color: #F0130B;"></i></a>
+                            <a href="https://www.facebook.com/suarakota.prolink" target="_blank"><i class="fa fa-facebook" style="color: #4000D9"></i></a>
+                            <a href="https://twitter.com/suarakotaprob" target="_blank"><i class="fa fa-twitter" style="color: #7DFAE0;"></i></a>
+                            <a href="https://www.instagram.com/suarakota1017fm/" target="_blank"><i class="fa fa-instagram" style="color: #ED7796;"></i></a>
+                            <a href="https://www.youtube.com/channel/UC-O2M5ys3FpHskzTUp8WGKQ" target="_blank"><i class="fa fa-youtube" style="color: #F0130B;"></i></a>
                         </div>
                     </div>
                 </div>
