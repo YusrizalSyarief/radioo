@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <!-- pesan error -->
 <?php if ($this->session->flashdata('pesan')):?>
 
@@ -37,12 +38,14 @@
                     <?php endforeach; ?>   
                     </tbody>
                     </table>
-                    
+                    <?= $this->pagination->create_links(); ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+
 <!-- modal detail -->
 <div class="modal fade" id="formDetailTamu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
