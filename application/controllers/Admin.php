@@ -516,6 +516,12 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dihapus</div>');
 			redirect('admin/galeri');
     }
+	public function hapusTamu($id)
+    {
+			$this->AdminModel->hapusDataTamu($id);
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Dihapus</div>');
+			redirect('admin/buku_tamu');
+    }
 	public function hapusJadwal($id)
     {
 			$this->AdminModel->hapusDataJadwal($id);

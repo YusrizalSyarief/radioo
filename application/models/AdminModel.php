@@ -418,5 +418,16 @@ class AdminModel extends CI_Model
         GROUP BY jadwal.ID_JADWAL";
         return $this->db->query($query)->result();
     }
+    //bukutamu
+    public function hapusDataTamu($id)
+   {
+           
+    if (!$this->db->delete('buku_tamu', ['ID_TAMU' => $id])) {
+        $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dihapus Terhadi Kesalahan</div>');
+        redirect('admin/buku_tamu');
+    }
+           
+          
+   }
 }
 
