@@ -509,7 +509,7 @@ function req() {
             dataType: 'json',
             success: function(data) {
                 console.log(data);
-                
+                $('#idTamu').val(data.ID_TAMU)
                 $('#PesanTamu').val(data.PESAN);
                 
                 

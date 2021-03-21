@@ -343,7 +343,7 @@ class AdminModel extends CI_Model
     {
      //$x = $this->db->get('kategori_galeri')->result_array();
      
-     $z = $this->db->order_by('buku_tamu.ID_TAMU', 'DESC')->get('buku_tamu',$limit, $start)->result_array(); ;
+     $z = $this->db->where('IS_READ ',1)->or_where('IS_READ ',2)->order_by('buku_tamu.ID_TAMU', 'DESC')->get('buku_tamu',$limit, $start)->result_array(); ;
        
         return $z;
     }
@@ -355,6 +355,18 @@ class AdminModel extends CI_Model
    {
        return $this->db->get_where('buku_tamu', ['ID_TAMU' => $id])->row_array();
    }
+   public function bacaPesan()
+    {
+        $data = [
+            
+            "IS_READ" => 2
+            
+        ];
+
+        $this->db->where('ID_TAMU', $this->input->post('idTamu'));
+        $this->db->update('buku_tamu', $data);
+        
+    }
    //tambah stream 
    public function tambahStream()
    {

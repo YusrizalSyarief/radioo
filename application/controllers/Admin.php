@@ -861,6 +861,16 @@ public function ubahGaleri()
 			
 		}
 	}
+	public function telahBaca()
+	{
+		
+	
+			$this->AdminModel->bacaPesan();
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Telah Dibaca</div>');
+			redirect('admin/buku_tamu');
+		
+		
+	}
 }
 
 

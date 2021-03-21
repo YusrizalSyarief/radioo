@@ -261,7 +261,7 @@ class User extends CI_Controller {
 		$user = $this->db->get_where('user', ['EMAIL' => $email])->row_array();
 		
 		if ($user) {
-			$user_token = $this->db->get_where('user_token', ['TOKEN' => $subToken])->row_array();
+			$user_token = $this->db->get_where('user_token', ['TOKEN' => $token])->row_array();
 			if ($user_token) {
 				$this->db->set('USER_ACTIVE', 1);
 				$this->db->where('EMAIL', $email);
