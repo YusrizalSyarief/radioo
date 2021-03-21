@@ -94,7 +94,7 @@ $(function() {
                </tr>
              `;
          
-             console.log(output);
+             
 
           
        })
@@ -121,7 +121,8 @@ $("#cariGaleri").keyup(function() {
        $('#tanggalAwal').val("");
         $('#tanggalAkhir').val("");
        data.map((data) => {
-        console.log(data); 
+        
+
         if (data.KATEGORI === 'youtube') {
             btnAksi = `<a href=""  class="btn btn-warning ml-1 ModalUbahGaleriYt" data-toggle="modal"
                         data-target="#formTambahGaleriYt" data-id="${data.ID_GALERI}"><i class="fas fa-pen"></i> Edit</a>
@@ -149,7 +150,7 @@ $("#cariGaleri").keyup(function() {
               </tr>
             `;
         
-            //console.log(output); 
+           
 
          
       })
@@ -198,7 +199,7 @@ $("#cariPenyiar").keyup(function() {
               </tr>
             `;
         
-            console.log(output);
+            
 
          
       })
@@ -237,7 +238,7 @@ $("#cariUser").keyup(function() {
               </tr>
             `;
         
-            console.log(output);
+           
 
          
       })
@@ -252,18 +253,18 @@ $("#cariUser").keyup(function() {
 //pencarian Rate
 $("#cariAcara").keyup(function() {
     const nilai = $(this).val();
-    console.log(nilai);
+   
     $.post("https://localhost/radioo/admin/pencarianAcara", {
        nilai: nilai
     }, function(data) {
        let output = '';
     
       
-       console.log(data);
+       
        $("#tBodyRate").empty();
        data.map((data) => {
         
-        console.log(data);
+        
 
 
         output += `
@@ -279,7 +280,7 @@ $("#cariAcara").keyup(function() {
                 </tr>
                 `;
         
-            console.log(output);
+           
 
          
      })
@@ -300,7 +301,7 @@ function tgl(){
 
         const awal = $('#tanggalAwal').val();
         const akhir = $(this).val();
-        console.log(awal+" "+akhir);
+        
         $.post("https://localhost/radioo/admin/pencarianJadwalTgl", {
             awal: awal,
             akhir: akhir 
@@ -331,7 +332,7 @@ function tgl(){
                    </tr>
                  `;
              
-                 //console.log(output);
+                 
     
               
            })
@@ -384,7 +385,7 @@ function tgl(){
                   </tr>
                 `;
             
-                //console.log(output); 
+                
     
              
           })
@@ -406,14 +407,14 @@ function req() {
         $('.modal-body form').attr('action', 'https://localhost/radioo/admin/ubahGaleri');
         
         const id = $(this).data('id');
-        console.log(id);
+       
         $.ajax({
             url: 'https://localhost/radioo/admin/getInfoGaleri',
             data: {id : id},
             method: 'post',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                
                 $('#id').val(data.ID_GALERI);
                 $('#AudioGaleri').val(data.NAMA_FILE);
                 $('#JudulGaleri').val(data.JUDUL);
@@ -440,7 +441,7 @@ function req() {
             method: 'post',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                
                 $('#idYt').val(data.ID_GALERI);
                 $('#outputGaleri').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_GALERI);
                 $('#GambarYt').val(data.GAMBAR_GALERI);
@@ -466,7 +467,7 @@ function req() {
             method: 'post',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                
                 $('#outputGaleriInfo').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_GALERI);
                 $('#JudulGaleriInfo').val(data.JUDUL);
                 $('#TanggalUploadInfo').val(data.TANGGAL);
@@ -487,7 +488,7 @@ function req() {
             method: 'post',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                
 
                 $('#JudulGaleriInfo').val(data.JUDUL);
                 $('#TanggalUploadInfo').val(data.TANGGAL);
@@ -508,7 +509,7 @@ function req() {
             method: 'post',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                
                 $('#idTamu').val(data.ID_TAMU)
                 $('#PesanTamu').val(data.PESAN);
                 
@@ -534,7 +535,7 @@ function req() {
             method: 'post',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                
                 $('#idJadwal').val(data.ID_JADWAL);
                 $('#outputJadwal').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_JADWAL);
                 $('#GambarJadwal').val(data.GAMBAR_JADWAL);
@@ -562,7 +563,7 @@ function req() {
             method: 'post',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+            
                 $('#idPenyiar').val(data.ID_PENYIAR);
                 $('#outputPenyiar').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_PENYIAR);
                 $('#GambarPenyiar').val(data.GAMBAR_PENYIAR);
@@ -582,14 +583,14 @@ function req() {
         
 
         const id = $(this).data('id');
-        //console.log(id);
+        
         $.ajax({
             url: 'https://localhost/radioo/admin/getInfoUser',
             data: {id : id},
             method: 'post',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+               
                 $('#idProfile').val(data.ID_USER);
                 $('#outputProfile').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR);
                 $('#gambarProfile').val(data.GAMBAR);
@@ -613,7 +614,7 @@ function req() {
             method: 'post',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+               
                 //https://localhost/radioo/assets/user/img/events/event-2.jpg
                 $('#FotoInfo').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_PENYIAR);
                 $('#NamaInfo').val(data.NAMA_PENYIAR);
@@ -641,7 +642,7 @@ function req() {
             method: 'post',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+               
                 
                 
                 $('#idGantiPass').val(data.ID_USER);
@@ -659,8 +660,7 @@ function req() {
         
         let output = '';
         
-        //console.log(output);
-        //
+        
         $.ajax({
 
             url: 'https://localhost/radioo/admin/getCountUser',
@@ -668,7 +668,7 @@ function req() {
             method: 'post',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                
                 if (data ==! 1) {
                     $(".validasiEmail").empty();
                     output = '<i class="fas fa-check fa-lg"></i>'
@@ -697,7 +697,7 @@ function req() {
             method: 'post',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                
                 $('#FotoJadwal').attr('src', 'https://localhost/radioo/uploads/img/'+data.GAMBAR_JADWAL);
                 $('#JudulInfo').val(data.JUDUL_JADWAL);
                 $('#WaktuInfo').val(data.WAKTU);
@@ -712,7 +712,7 @@ function req() {
         
 
         const id = $(this).data('id');
-        console.log(id);
+        
         $.ajax({
             url: 'https://localhost/radioo/admin/getKomentar',
             data: {id : id},
@@ -721,7 +721,7 @@ function req() {
             success: function(data) {
                 let output = '';  
                 data.map((data) => {
-                console.log(data);
+                
                 $("#tBodyKomentar").empty();
                   output += `
                             <tr>
@@ -736,7 +736,7 @@ function req() {
                            </tr>
                          `;
                      
-                         console.log(output);
+                         
             
                 $("#tBodyKomentar").append(output);
                    })
