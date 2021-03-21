@@ -129,7 +129,8 @@
         const flashBuku = $('.flash-buku').data('flashbuku');
         
         if(flashBuku){
-            if(flashBuku == 'Form Harus Lengkap!' || flashBuku == 'Pesan anda sebelumnya belum dibaca oleh pihak admin, Mohon tunggu untuk menghindari spam. Terimakasih'){
+            if(flashBuku == 'Form Harus Lengkap!' || flashBuku == 'Pesan anda sebelumnya belum dibaca oleh pihak admin, Mohon tunggu untuk menghindari spam. Terimakasih' || 
+            flashBuku == 'Form Harus Lengkap!' || flashBuku == 'Form Harus Lengkap!'){
                 Swal.fire({
                     title: '',
                     text: flashBuku,

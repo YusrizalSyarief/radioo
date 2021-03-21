@@ -35,7 +35,7 @@ class UserModel extends CI_Model
 
         $email = $this->input->post('emailTamu', true);
         $cek = $this->db->get_where('buku_tamu', ['EMAIL_TAMU' => $email], ['IS_READ' => 0])->row_array();
-        if($cek['EMAIL_TAMU'] == $email && $cek['IS_READ'] == 0){
+        if($cek['EMAIL_TAMU'] == $email && $cek['IS_READ'] == 0 || $cek['IS_READ'] == 1){
 
             $this->session->set_flashdata('buku', 'Pesan anda sebelumnya belum dibaca oleh pihak admin, Mohon tunggu untuk menghindari spam. Terimakasih');
 			redirect('user/bukutamu');
@@ -48,7 +48,7 @@ class UserModel extends CI_Model
                 "IS_READ" => 0
              ];
             $this->db->insert('buku_tamu', $data);
-            $this->session->set_flashdata('buku', 'Form Berhasil Dikirim');
+            $this->session->set_flashdata('buku', 'Form Berhasil Dikirim, Silahkan verifikasi email anda untuk menghindari spamming');
 			redirect('user/bukutamu');
         }
     }

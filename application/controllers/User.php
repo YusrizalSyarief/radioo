@@ -72,7 +72,15 @@ class User extends CI_Controller {
 			$this->session->set_flashdata('buku', 'Form Harus Lengkap!');
 			redirect('user/bukutamu');	
 		} else {
-				$this->UserModel->bukuTamu();
+
+			$token = base64_encode(random_bytes(32));
+			$user_token = [
+				'EMAIL_TOKEN' =>  htmlspecialchars($this->input->post('emailTamu', true)),
+				'TOKEN' => $token
+			];
+			$this->db->insert('user_token', $user_token);
+			$this->sendEmail($token, 'bukutamu');
+			$this->UserModel->bukuTamu();
 					
 		}
    
@@ -189,18 +197,20 @@ class User extends CI_Controller {
 		$this->load->library('email', $config);
 		$this->email->initialize($config);
 		$this->email->from('radiosuarakotaprobolinggo@gmail.com', 'RSKP TEAM');
-		$this->email->to($this->input->post('EmailU'));
-
-		$this->email->subject('Account Verification');
-
+		
 		if($type == 'verify') {
+			$this->email->to($this->input->post('EmailU'));
 			$this->email->subject('Account Verification');
 			$this->email->message('
 			Click this link to verify your account : <a href="'. base_url() .'user/verify?email=' . $this->input->post('EmailU') .'&token=' . urlencode($token) . '">Activate</a>
 			');
 		
-		} else{
-
+		} else if($type == 'bukutamu'){
+			$this->email->to($this->input->post('emailTamu'));
+			$this->email->subject('Buku Tamu Verification');
+			$this->email->message('
+			Click link ini untuk dapat meneruskan pesan anda ke admin : <a href="'. base_url() .'user/verify2?email=' . $this->input->post('emailTamu') .'&token=' . urlencode($token) . '">Teruskan</a>
+			');
 		}
 
 		if($this->email->send()){
@@ -210,6 +220,36 @@ class User extends CI_Controller {
 			die;
 		}
 
+	}
+
+	public function verify2(){
+		
+		$email = $this->input->get('email');
+		$token = $this->input->get('token');
+		$subToken = substr($token,0,32);
+		
+		$user = $this->db->get_where('buku_tamu', ['EMAIL_TAMU' => $email, 'IS_READ' => 0])->row_array();
+		
+		if ($user) {
+			$user_token = $this->db->get_where('user_token', ['TOKEN' => $subToken])->row_array();
+			if ($user_token) {
+				$this->db->set('IS_READ', 1);
+				$this->db->where('EMAIL_TAMU', $email);
+				$this->db->update('buku_tamu');
+				
+				$this->db->delete('user_token', ['EMAIL_TOKEN' => $email]);
+				
+				$this->session->set_flashdata('buku', 'Verifikasi Berhasil');
+				redirect('user/bukutamu','refresh');
+			} else {
+				$this->session->set_flashdata('buku', 'Verifikasi Token Gagal');
+				redirect('user/bukutamu','refresh');
+			}
+		} else {
+			$this->session->set_flashdata('buku', 'Verifikasi Email Gagal');
+			redirect('user/bukutamu','refresh');
+		}
+		
 	}
 
 	public function verify(){
