@@ -73,8 +73,7 @@ class User extends CI_Controller {
 			redirect('user/bukutamu');	
 		} else {
 				$this->UserModel->bukuTamu();
-				$this->session->set_flashdata('buku', 'Form Berhasil Dikirim');
-				redirect('user/bukutamu');	
+					
 		}
    
 	}

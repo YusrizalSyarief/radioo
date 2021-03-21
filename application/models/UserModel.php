@@ -33,14 +33,24 @@ class UserModel extends CI_Model
     // kirim data bukuTamu
     public function bukuTamu(){
 
-        $data = [
-            
-            "NAMA_TAMU" => $this->input->post('namaTamu', true),
-            "EMAIL_TAMU" => $this->input->post('emailTamu', true),
-            "PESAN" => $this->input->post('isiTamu', true)
-         ];
-        $this->db->insert('buku_tamu', $data);
+        $email = $this->input->post('emailTamu', true);
+        $cek = $this->db->get_where('buku_tamu', ['EMAIL_TAMU' => $email], ['IS_READ' => 0])->row_array();
+        if($cek['EMAIL_TAMU'] == $email && $cek['IS_READ'] == 0){
 
+            $this->session->set_flashdata('buku', 'Pesan anda sebelumnya belum dibaca oleh pihak admin, Mohon tunggu untuk menghindari spam. Terimakasih');
+			redirect('user/bukutamu');
+        } else{
+            $data = [
+            
+                "NAMA_TAMU" => $this->input->post('namaTamu', true),
+                "EMAIL_TAMU" => $email,
+                "PESAN" => $this->input->post('isiTamu', true),
+                "IS_READ" => 0
+             ];
+            $this->db->insert('buku_tamu', $data);
+            $this->session->set_flashdata('buku', 'Form Berhasil Dikirim');
+			redirect('user/bukutamu');
+        }
     }
 
     // Mengambil Data Penyiar
