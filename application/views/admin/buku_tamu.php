@@ -57,8 +57,8 @@
                 </button>
             </div>
             <div class="modal-body">
-            <form class="user"method="post" action="" enctype="multipart/form-data">
-            
+            <form class="user"method="post" action="<?php echo base_url(); ?>admin/telahBaca" enctype="multipart/form-data">
+            <input type="hidden" name='idTamu' id='idTamu' value="1">
                     <div class="form-group">
                         <textarea class="form-control " id="PesanTamu" name="PesanTamu" rows="20" readonly></textarea>
                     </div>
