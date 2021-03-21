@@ -26,7 +26,7 @@ class AdminModel extends CI_Model
             "KATEGORI" => 'audio',
             "JUDUL" => $this->input->post('JudulGaleri', true),
             "DESCK_GALERI" => $this->input->post('DeskripsiGaleri', true),
-            //"TGL_REV_PENGAJUAN" => date("y-m-d"),
+            "GAMBAR_GALERI" => "0",
             "TANGGAL" => date("y-m-d"),
          ];
         $this->db->insert('galeri', $data);
@@ -144,7 +144,10 @@ class AdminModel extends CI_Model
     public function hapusDataJadwal($id)
     {
         // $this->db->where('id', $id);
-        $this->db->delete('jadwal', ['ID_JADWAL' => $id]);
+        if (!$this->db->delete('jadwal', ['ID_JADWAL' => $id])) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Hapus Jadwal Masih Digunakan</div>');
+            redirect('admin/jadwal');
+        }
     }
     public function getJadwalById($id)
    {
@@ -389,8 +392,9 @@ class AdminModel extends CI_Model
    {
        $query = "SELECT jadwal.ID_JADWAL, jadwal.JUDUL_JADWAL, SUM(rating.RATING = 1 ) AS SUKA, SUM(rating.RATING  = 0 ) AS TIDAK_SUKA
                     FROM jadwal JOIN rating ON jadwal.ID_JADWAL = rating.ID_JADWAL 
-                     
-                    GROUP BY jadwal.ID_JADWAL";
+                    
+                    GROUP BY jadwal.ID_JADWAL
+                    ORDER BY jadwal.ID_JADWAL DESC LIMIT 20";
        return $this->db->query($query)->result_array();
    }
    public function getKomentar($id)
@@ -414,5 +418,16 @@ class AdminModel extends CI_Model
         GROUP BY jadwal.ID_JADWAL";
         return $this->db->query($query)->result();
     }
+    //bukutamu
+    public function hapusDataTamu($id)
+   {
+           
+    if (!$this->db->delete('buku_tamu', ['ID_TAMU' => $id])) {
+        $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Dihapus Terhadi Kesalahan</div>');
+        redirect('admin/buku_tamu');
+    }
+           
+          
+   }
 }
 

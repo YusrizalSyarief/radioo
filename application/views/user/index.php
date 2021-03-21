@@ -53,7 +53,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <h2>Jadwal Hari Ini</h2>
+                    <h2>Jadwal Terkini</h2>
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@
         <?php foreach($penyiar as $p) : ?>
             <div class="col-lg-6">
                 <div class="about__pic">
-                    <img src="<?= base_url('uploads/img/')?><?= $p['GAMBAR_PENYIAR']; ?>" alt="penyiar<?= $p['ID_PENYIAR']; ?>" style="border-radius: 50%; weight: 400px; height: 400px;"><br> <br> <br>
+                    <img src="<?= base_url('uploads/img/')?><?= $p['GAMBAR_PENYIAR']; ?>" alt="penyiar<?= $p['ID_PENYIAR']; ?>" style="border-radius: 50%; weight: 300px; height: 300px;"><br> <br> <br>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -113,17 +113,17 @@
                     <?php switch($p['NAMA_PENYIAR'] != null){
                             case $p['INSTAGRAM'] != null :
                     ?>
-                    <a href="<?= $p['INSTAGRAM']; ?>"><i class="fa fa-instagram fa-3x" style="color: #ED7796;"></i></a>
+                    <a href="<?= $p['INSTAGRAM']; ?>" target="_blank"><i class="fa fa-instagram fa-3x" style="color: #ED7796;"></i></a>
                     &emsp;
                     <?php   
                             case $p['FACEBOOK'] != null :
                     ?>
-                    <a href="<?= $p['FACEBOOK']; ?>"><i class="fa fa-facebook fa-3x" style="color: #4000D9"></i></a>
+                    <a href="<?= $p['FACEBOOK']; ?>" target="_blank"><i class="fa fa-facebook fa-3x" style="color: #4000D9"></i></a>
                     &emsp;
                     <?php   
                             case $p['TWITTER'] != null :
                     ?>
-                    <a href="<?= $p['TWITTER']; ?>"><i class="fa fa-twitter fa-3x" style="color: #7DFAE0;"></i></a>
+                    <a href="<?= $p['TWITTER']; ?>" target="_blank"><i class="fa fa-twitter fa-3x" style="color: #7DFAE0;"></i></a>
                     <?php   break;
                         }
                     ?>
