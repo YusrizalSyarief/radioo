@@ -209,14 +209,6 @@ class User extends CI_Controller {
 			$this->email->to($this->input->post('emailTamu'));
 			$this->email->subject('Buku Tamu Verification');
 			$this->email->message('
-			<form method="post">
-				<div class="input__list">
-					<input type="text" id="namaTamu2" name="namaTamu2" value="'. $this->input->post('namaTamu') .'">
-					<input type="text" id="emailTamu2" name="emailTamu2" value="'. $this->input->post('emailTamu') .'">
-					<input type="text" id="isiTamu2" name="isiTamu2" value="'. $this->input->post('isiTamu') .'">
-					<a >
-				</div>
-			</form>
 			Click link ini untuk dapat meneruskan pesan anda ke admin : <a href="'. base_url() .'user/verify2?email=' . $this->input->post('emailTamu') .'&token=' . urlencode($token) . '&nama='. $this->input->post('namaTamu') .'&isi='. $this->input->post('isiTamu') .'">Teruskan</a>
 			');
 		}
