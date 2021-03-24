@@ -183,7 +183,7 @@
                         <input type="text" class="form-control form-control-user" id="NamaU" name="NamaU" placeholder="Nama" value="<?= set_value('NamaU'); ?>">
                     </div>
                     <div class="form-group">
-                        <small class="form-text text-danger">*Harus di isi!*</small>
+                        <small class="form-text text-danger">*Harus di isi menggunakan email google!*</small>
                         <input type="text" class="form-control form-control-user" id="EmailU" name="EmailU" placeholder="Alamat Email" value="<?= set_value('EmailU'); ?>">
                     </div>
                     <div class="form-group row">
