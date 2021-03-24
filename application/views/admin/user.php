@@ -94,6 +94,7 @@
                </div>
                <div class="form-group row">
                <div class="col-sm-11 mb-3 mb-sm-0">
+               <small class="form-text text-danger">Harus Menggunakan Googlemail</small>
                   <input type="email" class="form-control " id="Email" name="Email" placeholder="Alamat email" maxlength="128" required>
                </div>
                <div class="col-sm-1 validasiEmail">
