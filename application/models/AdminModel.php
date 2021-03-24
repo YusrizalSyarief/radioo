@@ -343,7 +343,7 @@ class AdminModel extends CI_Model
     {
      //$x = $this->db->get('kategori_galeri')->result_array();
      
-     $z = $this->db->where('IS_READ ',1)->or_where('IS_READ ',2)->order_by('buku_tamu.ID_TAMU', 'DESC')->get('buku_tamu',$limit, $start)->result_array(); ;
+     $z = $this->db->where('IS_READ ',0)->or_where('IS_READ ',1)->order_by('buku_tamu.ID_TAMU', 'DESC')->get('buku_tamu',$limit, $start)->result_array(); ;
        
         return $z;
     }
