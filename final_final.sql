@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Waktu pembuatan: 17 Mar 2021 pada 06.17
+-- Waktu pembuatan: 21 Mar 2021 pada 16.23
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.2
 
@@ -35,6 +35,19 @@ CREATE TABLE `buku_tamu` (
   `PESAN` text DEFAULT NULL,
   `IS_READ` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `buku_tamu`
+--
+
+INSERT INTO `buku_tamu` (`ID_TAMU`, `NAMA_TAMU`, `EMAIL_TAMU`, `PESAN`, `IS_READ`) VALUES
+(4, 'yusrizal', 'syariefyusrizal@gmail.com', 'asdfasdf', '1'),
+(7, 'RADIO SUARA KOTA', 'skfm@gmail.com', 'gas lah', '2'),
+(8, 'RADIO SUARA KOTA', 'skfm@gmail.com', 'gas lah', '1'),
+(9, 'RADIO SUARA KOTA', 'skfm@gmail.com', 'gas lah', '0'),
+(10, 'RADIO SUARA KOTA', 'skfm@gmail.com', 'gaslah', '0'),
+(11, 'yusrizal syarief', 'h06218021@uinsby.ac.id', 'coba je', '1'),
+(12, 'yusrizal', 'h06218021@uinsby.ac.id', 'asdf', '1');
 
 -- --------------------------------------------------------
 
@@ -85,11 +98,7 @@ CREATE TABLE `kategori_galeri` (
 --
 
 INSERT INTO `kategori_galeri` (`ID_KATEGORI`, `NAMA_KATEGORI`) VALUES
-(1, 'Music'),
-(2, 'Podcast'),
-(3, 'politik'),
-(4, 'coba'),
-(5, 'cobs lagi');
+(1, 'Music');
 
 -- --------------------------------------------------------
 
@@ -142,11 +151,7 @@ CREATE TABLE `link_stream` (
 --
 
 INSERT INTO `link_stream` (`ID_STREAM`, `LINK`, `TANGGAL_STREAM`) VALUES
-(1, 'WWW.PRONGHUB.COM', '2021-03-02'),
-(2, 'http://s7.alhastream.com/public/46', '2021-03-09'),
-(3, 'http://s7.alhastream.com/public/46/embed', '2021-03-12'),
-(4, 'https://s7.alhastream.com/public/46/playlist.m3u', '2021-03-17'),
-(5, 'https://freeuk17.listen2myradio.com/records/radiouser3247800/record.mp3', '2021-03-17');
+(11, 'https://s7.alhastream.com/radio/8450/radio', '2021-03-20');
 
 -- --------------------------------------------------------
 
@@ -479,7 +484,49 @@ INSERT INTO `user_ip` (`ID_IP`, `IP`, `TANGGAL_IP`) VALUES
 (287, '::1', '2021-03-17'),
 (288, '::1', '2021-03-17'),
 (289, '::1', '2021-03-17'),
-(290, '::1', '2021-03-17');
+(290, '::1', '2021-03-17'),
+(291, '::1', '2021-03-18'),
+(292, '::1', '2021-03-18'),
+(293, '::1', '2021-03-18'),
+(294, '::1', '2021-03-18'),
+(295, '::1', '2021-03-18'),
+(296, '::1', '2021-03-18'),
+(297, '::1', '2021-03-19'),
+(298, '::1', '2021-03-19'),
+(299, '::1', '2021-03-19'),
+(300, '::1', '2021-03-19'),
+(301, '::1', '2021-03-19'),
+(302, '::1', '2021-03-19'),
+(303, '::1', '2021-03-19'),
+(304, '::1', '2021-03-19'),
+(305, '::1', '2021-03-19'),
+(306, '::1', '2021-03-19'),
+(307, '::1', '2021-03-19'),
+(308, '::1', '2021-03-19'),
+(309, '::1', '2021-03-19'),
+(310, '::1', '2021-03-20'),
+(311, '::1', '2021-03-20'),
+(312, '::1', '2021-03-20'),
+(313, '::1', '2021-03-20'),
+(314, '::1', '2021-03-20'),
+(315, '::1', '2021-03-20'),
+(316, '::1', '2021-03-20'),
+(317, '::1', '2021-03-20'),
+(318, '::1', '2021-03-20'),
+(319, '::1', '2021-03-20'),
+(320, '::1', '2021-03-20'),
+(321, '::1', '2021-03-20'),
+(322, '::1', '2021-03-20'),
+(323, '::1', '2021-03-20'),
+(324, '::1', '2021-03-20'),
+(325, '::1', '2021-03-20'),
+(326, '::1', '2021-03-20'),
+(327, '::1', '2021-03-20'),
+(328, '::1', '2021-03-20'),
+(329, '::1', '2021-03-20'),
+(330, '::1', '2021-03-21'),
+(331, '::1', '2021-03-21'),
+(332, '::1', '2021-03-21');
 
 -- --------------------------------------------------------
 
@@ -561,15 +608,8 @@ INSERT INTO `user_sub_menu` (`ID_SUB`, `ID_MENU`, `JUDUL_SUB`, `URL`, `ICON`, `S
 CREATE TABLE `user_token` (
   `ID_TOKEN` int(11) NOT NULL,
   `EMAIL_TOKEN` varchar(128) NOT NULL,
-  `TOKEN` varchar(32) NOT NULL
+  `TOKEN` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `user_token`
---
-
-INSERT INTO `user_token` (`ID_TOKEN`, `EMAIL_TOKEN`, `TOKEN`) VALUES
-(1, 'yamamotosora.ys@gmail.com', 'i0EmZub9IsZkNgEMnhsGtEcPxDV9XA/j');
 
 --
 -- Indexes for dumped tables
@@ -684,7 +724,7 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT untuk tabel `buku_tamu`
 --
 ALTER TABLE `buku_tamu`
-  MODIFY `ID_TAMU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_TAMU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `galeri`
@@ -714,7 +754,7 @@ ALTER TABLE `komentar`
 -- AUTO_INCREMENT untuk tabel `link_stream`
 --
 ALTER TABLE `link_stream`
-  MODIFY `ID_STREAM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_STREAM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `penyiar`
@@ -732,7 +772,7 @@ ALTER TABLE `rating`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID_USER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `ID_USER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
@@ -744,7 +784,7 @@ ALTER TABLE `user_access_menu`
 -- AUTO_INCREMENT untuk tabel `user_ip`
 --
 ALTER TABLE `user_ip`
-  MODIFY `ID_IP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=291;
+  MODIFY `ID_IP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=333;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_menu`
@@ -768,7 +808,7 @@ ALTER TABLE `user_sub_menu`
 -- AUTO_INCREMENT untuk tabel `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `ID_TOKEN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_TOKEN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

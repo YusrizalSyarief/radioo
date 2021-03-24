@@ -7,9 +7,16 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800"><?= $title; ?></h1>
 </div>
-
+<div class="row">
+    <div class="col-md-6">
+        <label for="exampleFormControlInput1">Cari Galeri</label>
+    </div>
+    <div class="col-md-6">
+        <label for="exampleFormControlInput1">Cari Interval Waktu</label>
+    </div>
+</div>
 <!-- Search Berita -->
-<label for="exampleFormControlInput1">Cari Galeri</label>
+
     <div class="row">
         <div class="form-group col-md-6">
             <input type="email" class="form-control" id="cariGaleri" placeholder="Cari Berdasarkan Judul & Kategori">

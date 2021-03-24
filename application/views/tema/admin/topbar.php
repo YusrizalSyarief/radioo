@@ -13,7 +13,7 @@
         </button>
 
         <!-- Topbar Navbar -->
-        <marquee class="navbar-nav navbar-dark" scrolldelay="70" title="Semoga Harimu Menyenangkan">Selamat Datang <?=$u['NAMA']?> </marquee>
+        <marquee class="navbar-nav navbar-dark" scrolldelay="70" title="Semoga Harimu Menyenangkan">Selamat Datang <?=$u['NAMA']?>. Disarankan Landscape Bagi Pengguna Perangkat Mobile </marquee>
         <ul class="navbar-nav ml-auto">
 
             
