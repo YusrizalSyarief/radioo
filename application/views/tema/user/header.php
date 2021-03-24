@@ -44,6 +44,7 @@
                 <div class="col-lg-2 col-md-2"> 
                     <div class="header__logo">
                         <img src="<?= base_url()?>assets/logo/logoo.png" alt="Logo_RSKP" style="width:120px;height:75px;">
+                        <marquee class="navbar-nav navbar-dark" scrolldelay="70" title="Semoga Harimu Menyenangkan" style="color: yellow;">Disarankan untuk landscape bagi pengguna perangkat mobile</marquee>
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-10">

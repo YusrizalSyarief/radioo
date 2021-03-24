@@ -78,7 +78,9 @@
                     </div>
                     <p>Ketentuan Pengisian Saran dan Pengaduan. <br>
                     1. Dilarang menggunakan kata-kata mengandung SARA, Pornografi, Pelecehan, Ancaman yang dapat menyinggung perasaan orang lain. <br>
-                    2. Mengirimkan pesan berulang-ulang (Spamming)
+                    2. Dilarang mengirimkan pesan berulang-ulang (Spamming). <br>
+                    3. Harap gunakan email aktif, karena akan ada verifikasi email. <br>
+                    4. Tidak dapat melebihi 700 karakter.
                     </p>
                     <form method="post" action="<?php echo base_url(); ?>user/pengajuan">
                     <?php
@@ -98,7 +100,7 @@
                     <?php
                         endif;
                     ?>
-                    <textarea id="isiTamu" name="isiTamu" placeholder="Isi Pengaduan"></textarea>
+                    <textarea id="isiTamu" name="isiTamu" placeholder="Isi Pengaduan" maxlength="700"></textarea>
                     <?= form_error('isiTamu', '<small class="text-danger pl-3">', '</small>'); ?>
                     <button type="submit" class="site-btn">Kirim</button>
                     </form>

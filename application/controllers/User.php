@@ -209,7 +209,15 @@ class User extends CI_Controller {
 			$this->email->to($this->input->post('emailTamu'));
 			$this->email->subject('Buku Tamu Verification');
 			$this->email->message('
-			Click link ini untuk dapat meneruskan pesan anda ke admin : <a href="'. base_url() .'user/verify2?email=' . $this->input->post('emailTamu') .'&token=' . urlencode($token) . '">Teruskan</a>
+			<form method="post">
+				<div class="input__list">
+					<input type="text" id="namaTamu2" name="namaTamu2" value="'. $this->input->post('namaTamu') .'">
+					<input type="text" id="emailTamu2" name="emailTamu2" value="'. $this->input->post('emailTamu') .'">
+					<input type="text" id="isiTamu2" name="isiTamu2" value="'. $this->input->post('isiTamu') .'">
+					<a >
+				</div>
+			</form>
+			Click link ini untuk dapat meneruskan pesan anda ke admin : <a href="'. base_url() .'user/verify2?email=' . $this->input->post('emailTamu') .'&token=' . urlencode($token) . '&nama='. $this->input->post('namaTamu') .'&isi='. $this->input->post('isiTamu') .'">Teruskan</a>
 			');
 		}
 
@@ -224,31 +232,34 @@ class User extends CI_Controller {
 
 	public function verify2(){
 		
+		$nama = $this->input->get('nama'); 
+		$isi = $this->input->get('isi');
 		$email = $this->input->get('email');
 		$token = $this->input->get('token');
 		$subToken = substr($token,0,32);
 		
-		$user = $this->db->get_where('buku_tamu', ['EMAIL_TAMU' => $email, 'IS_READ' => 0])->row_array();
+		// $user = $this->db->get_where('buku_tamu', ['EMAIL_TAMU' => $email, 'IS_READ' => 0])->row_array();
 		
-		if ($user) {
+		// if ($user) {
 			$user_token = $this->db->get_where('user_token', ['TOKEN' => $token])->row_array();
 			if ($user_token) {
-				$this->db->set('IS_READ', 1);
-				$this->db->where('EMAIL_TAMU', $email);
-				$this->db->update('buku_tamu');
+				// $this->db->set('IS_READ', 1);
+				// $this->db->where('EMAIL_TAMU', $email);
+				// $this->db->update('buku_tamu');
 				
 				$this->db->delete('user_token', ['EMAIL_TOKEN' => $email]);
 				
-				$this->session->set_flashdata('buku', 'Verifikasi Berhasil');
-				redirect('user/bukutamu','refresh');
+				$this->UserModel->pengajuan($nama, $email, $isi);
+				// $this->session->set_flashdata('buku', 'Verifikasi Berhasil');
+				// redirect('user/bukutamu','refresh');
 			} else {
 				$this->session->set_flashdata('buku', 'Verifikasi Token Gagal');
 				redirect('user/bukutamu','refresh');
 			}
-		} else {
-			$this->session->set_flashdata('buku', 'Verifikasi Email Gagal');
-			redirect('user/bukutamu','refresh');
-		}
+		// } else {
+		// 	$this->session->set_flashdata('buku', 'Verifikasi Email Gagal');
+		// 	redirect('user/bukutamu','refresh');
+		// }
 		
 	}
 
