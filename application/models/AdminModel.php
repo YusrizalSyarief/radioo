@@ -359,7 +359,7 @@ class AdminModel extends CI_Model
     {
         $data = [
             
-            "IS_READ" => 2
+            "IS_READ" => 1
             
         ];
 
