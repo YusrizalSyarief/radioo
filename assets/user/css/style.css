@@ -37,6 +37,22 @@ body {
 	font-family: "Now Regular";
 	-webkit-font-smoothing: antialiased;
 }
+.radioo{
+	position: absolute;
+  	top: 85%;
+	left: 38%;
+  	width: 30%;
+	padding: 5px 5px;
+	justify-content: center;
+  	text-align: center;
+}
+.modall{
+	position: absolute;
+  	top: 85%;
+	left: 45%;
+	justify-content: center;
+  	text-align: center;
+}
 
 h1,
 h2,
@@ -2930,5 +2946,11 @@ ol {
 	.footer {
 		margin-top: -970px;
 		background-position: top 0 left 19%;
+	}
+	.kecil {
+		height: auto;
+		padding: 40px 40px 40px 40px;
+		font-size: 14px;
+		text-transform: capitalize;
 	}
 }

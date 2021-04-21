@@ -20,19 +20,29 @@
 
 <div class="row">
     <div class="form-group col-md-6">
-        <input type="email" class="form-control" id="cariTransaksi" placeholder="Ketikan disini...">
+        <input type="text" class="form-control" id="cariJadwal" placeholder="Berdasarkan Nama Acara & Penyiar">
     </div>
     <div class="form-group col-md-2">
-        <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">
+        <input type="date" class="form-control" placeholder="Tanggal" id="tanggalAwal">
     </div>
     <div class="form-group col-md-2">
-        <input type="date" class="form-control" placeholder="Tanggal" aria-label="Username">
+        <input type="date" class="form-control" placeholder="Tanggal" id="tanggalAkhir">
     </div>
 </div>
+<!-- pesan error -->
+<?php if ($this->session->flashdata('pesan')):?>
 
+<div class="row mt-3">
+    <div class="col-md-6">
+
+        <?= $this->session->flashdata('pesan'); ?>
+
+    </div>
+</div>
+<?php endif; ?>
 <div class="row">
 <div class="form-group col-md-6">
-    <a data-toggle="modal" data-target="#formJadwal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    <a data-toggle="modal" data-target="#formJadwal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm ModalTambahJadwal">
     <i class="fas fa-plus"></i> Tambah Jadwal </a>
 </div>
 </div>
@@ -46,35 +56,39 @@
                     <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Hari</th>
-                            <th scope="col">Waktu</th>
                             <th scope="col">Nama Acara</th>
                             <th scope="col">Penyiar</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Waktu</th>
                             <th scope="col">Deskripsi Acara</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody id="tBodyTransaksi">              
+                    <tbody id="tBodyJadwal">     
+                    <?php foreach($z['0'] as $j): ?>         
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><?= $j['JUDUL_JADWAL']?></td>
+                            <td><?= $j['NAMA_PENYIAR']?></td>
+                            <td><?= $j['TANGGAL_JADWAL'] ?></td>
+                            <td><?= $j['WAKTU']?></td>
+                            
                             <td>
-                                <button href=""  class="btn btn-success ml-1 tampilModalRevisiSPJ" data-toggle="modal"
-                                    data-target="#formInfoJadwal" data-id=""><i class="fas fa-info-circle"></i> Detail</button>
+                                <button href=""  class="btn btn-success ml-1 ModalInfoJadwal" data-toggle="modal"
+                                    data-target="#formInfoJadwal" data-id="<?= $j['ID_JADWAL']; ?>"><i class="fas fa-info-circle"></i> Detail</button>
                             </td>
                             <td>
-                                <button href=""  class="btn btn-warning ml-1 tampilModalRevisiSPJ" data-toggle="modal"
-                                    data-target="#formJadwal" data-id=""><i class="fas fa-pen"></i> Edit</button>
-                                <button href=""  class="btn btn-danger ml-1 "><i class="fas fa-trash-alt"></i> Hapus</button>
+                                <button href=""  class="btn btn-warning ml-1 ModalUbahJadwal" data-toggle="modal"
+                                    data-target="#formJadwal" data-id="<?= $j['ID_JADWAL']; ?>"><i class="fas fa-pen"></i> Edit</button>
+                                <a href="<?=base_url(); ?>admin/hapusJadwal/<?= $j['ID_JADWAL']; ?>"  class="btn btn-danger ml-1 " onclick="return confirm('apakah kamu yakin menghapus jadwal ini');"><i class="fas fa-trash-alt"></i> Hapus</a>
                         
                             </td>
                         </tr>
+                    <?php endforeach; ?>
+                    
                     </tbody>
+                    
                     </table>
+                <?= $this->pagination->create_links(); ?>
                 </div>
             </div>
         </div>
@@ -93,31 +107,47 @@
             </button>
             </div>
             <div class="modal-body">
-                <form class="user"method="post" action="">
-                    <div class="form-group">
-                        <input type="text" class="form-control " id="username" name="username" placeholder="Judul">
+                <form class="user"method="post" action="<?php echo base_url(); ?>admin/tambahJadwal" enctype="multipart/form-data">
+                <input type="hidden" name='idJadwal' id='idJadwal' value="1">
+                <input type="hidden" name='GambarJadwal' id='GambarJadwal' value="1">
+                
+                    <div class="form-group ">
+                        <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="outputJadwal" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
+                        <label for="exampleFormControlFile1">Upload Foto Thumnail</label><br>    
+                        <small class="form-text text-danger">Ukuran maksimal Foto 1000x1000 pixel potrait, Berformat JPG atau PNG, 10MB</small>
+                        <input type="file" class="form-control-file" id="UploadFoto" name="UploadFoto" accept="image/*" onchange="loadFile(event)" >
                     </div>
-                    
+                    <div class="form-group">
+                        <input type="text" class="form-control " id="Judul" name="Judul" placeholder="Judul" required>
+                    </div>
+                    <div class="form-group">
+                    <select class="custom-select custom-select-sm " style="  height: 40px;" name="Penyiar" required>
+                        
+                            <?php foreach($z['1'] as $kg): ?>
+                            <option value="<?= $kg['ID_PENYIAR']?>"><?= $kg['NAMA_PENYIAR']?></option>
+                            <?php endforeach; ?>
+                    </select>
+                </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="date" class="form-control " id="tanggal" name="tanggal" >
+                            <input type="date" class="form-control " id="Tanggal" name="Tanggal" required>
                         </div>
                         <div class="col-sm-6">
                         
-                            <input type="time" class="form-control " id="waktu" name="waktu" >
+                            <input type="time" class="form-control " id="Waktu" name="Waktu" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Deskripsi Jadwal</label>
-                        <textarea class="form-control " id="DeskripsiJadwal" name="DeskripsiJadwal" rows="3"></textarea>
+                        <textarea class="form-control " id="DeskripsiJadwal" name="DeskripsiJadwal" rows="10" required></textarea>
                     </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-primary" href="login.html">Ubah Password</a>
+                <button class="btn btn-primary" type="submit" >Tambah Data</button>
             </div>
-                </form>
+        </form>
         </div>
     </div>
 </div>
@@ -127,7 +157,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Info Jadwal</h5>
+                <h5 class="modal-title" >Info Jadwal</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
             </button>
@@ -135,24 +165,28 @@
             <div class="modal-body">
                 <form class="user"method="post" action="">
                     <div class="form-group">
+                        <small class="form-text text-dark">Thumnail</small>
+                        <img src="<?= base_url()?>assets/user/img/blank.png" alt="..." id="FotoJadwal" class="  shadow-lg p-3 mb-5 bg-white rounded" style="width: 200px; height: 200px;"><br>
+                    </div>
+                    <div class="form-group">
                         <label for="exampleFormControlTextarea1">Judul</label>
-                        <input type="text" class="form-control " id="judul" name="judul"  readonly>
+                        <input type="text" class="form-control " id="JudulInfo" name="JudulInfo"  readonly>
                     </div>
                     
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="exampleFormControlTextarea1">Tanggal</label>
-                            <input type="date" class="form-control " id="tanggal" name="tanggal" readonly>
+                            <input type="date" class="form-control " id="TanggalInfo" name="TanggalInfo" readonly>
                         </div>
                         <div class="col-sm-6">
                             <label for="exampleFormControlTextarea1">Waktu</label>
-                            <input type="time" class="form-control " id="waktu" name="waktu" readonly>
+                            <input type="time" class="form-control " id="WaktuInfo" name="WaktuInfo" readonly>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Deskripsi Jadwal</label>
-                        <textarea class="form-control " id="DeskripsiJadwal" name="DeskripsiJadwal" rows="3" readonly></textarea>
+                        <textarea class="form-control " id="DeskripsiJadwalInfo" name="DeskripsiJadwalInfo" rows="10" readonly></textarea>
                     </div>
             </div>
             <div class="modal-footer">
@@ -161,3 +195,13 @@
         </div>
     </div>
 </div>
+<script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('outputJadwal');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script>

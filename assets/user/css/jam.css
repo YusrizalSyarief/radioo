@@ -1,0 +1,75 @@
+body {
+	background: black;
+}
+
+#digit_clock_time {
+	font-family: 'Work Sans', sans-serif;
+	color: #f5f4eb;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	font-size: 35px;
+	text-align: center;
+	padding-top: 10px;
+}
+
+#digit_clock_date {
+	font-family: 'Work Sans', sans-serif;
+	color: #f5f4eb;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	font-size: 20px;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.digital_clock_wrapper {
+	padding: 15px;
+	max-width: 300px;
+	width: 100%;
+	text-align: center;
+	border-radius: 5px;
+	margin: 0 auto;
+}
+
+#displayIP {
+	border: 3px solid black;
+	background-color: darkcyan;
+	padding: 15px;
+	max-width: 300px;
+	width: 100%;
+	text-align: center;
+
+	border-radius: 5px;
+	margin: 0 auto;
+}
+
+/* #navbar {
+    overflow: hidden;
+    background-color: #333;
+  } */
+
+/* Navbar links */
+/* #navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+  } */
+
+/* Page content */
+/* .content {
+    padding: 16px;
+  } */
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+/* .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  } */
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+/* .sticky + .content {
+    padding-top: 60px;
+  } */
