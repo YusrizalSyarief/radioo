@@ -13,7 +13,9 @@ class User extends CI_Controller {
 		
 		// Ambil IP
 		$ip = $_SERVER['REMOTE_ADDR'];
-		$this->UserModel->ipAdd($ip);
+		$mydate = getdate(date("U"));
+		$newdate = $mydate['mday'] . " - " . $mydate['month'] . " - " . $mydate['year'];
+		$this->UserModel->ipAdd($ip , $newdate);
 
 		// Isi Beranda
 		$data['title'] = 'Beranda';

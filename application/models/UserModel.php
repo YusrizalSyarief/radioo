@@ -132,16 +132,21 @@ class UserModel extends CI_Model
     }
 
     // Mendapatkan IP Pengunjung
-    public function ipAdd($ip){
+    public function ipAdd($ip , $newdate){
 
+        $cek = $this->db->get_where('user_ip', ['TANGGAL_IP' => $newdate], ['IP' => $ip])->row_array();
+        if($cek['IP'] == $ip && $cek['TANGGAL_IP'] == $newdate){
+
+        } else {
         $data = [
 
             'IP' => $ip,
-            'TANGGAL_IP' => date("y-m-d")
+            'TANGGAL_IP' => $newdate
 
         ];
         // var_dump($data);
         $this->db->insert('user_ip', $data);
+        }
     }
 
     public function getKategori($kat){
